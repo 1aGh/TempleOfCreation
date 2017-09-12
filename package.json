@@ -1,0 +1,29 @@
+{
+  "name": "templeofcreation",
+  "version": "1.0.0",
+  "description": "TempleOfCreation webApp",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1aGh/TempleOfCreation.git"
+  },
+  "author": "Michal Dovrtel <m.dovrtel@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/1aGh/TempleOfCreation/issues"
+  },
+  "homepage": "https://github.com/1aGh/TempleOfCreation#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2016": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "webpack": "^3.5.6",
+    "webpack-dev-server": "^2.7.1"
+  }
+}
