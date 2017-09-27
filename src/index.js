@@ -3,15 +3,13 @@ import ReactDOM from 'react-dom';
 
 import App from 'App/App';
 
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { HashRouter } from 'react-router-dom';
+
+const dest = document.getElementById('app');
 
 ReactDOM.render(
-	<App />,
-	// <Router history={ browserHistory }>
-	// 	<Route path='/' component={ App }/>
-	// 		<IndexRoute component={ Home } />
-	// 		<Route path='about' component={ About } />
-	// 	</Route>
-	// </Router>,
-	document.getElementById('app')
+	(<HashRouter>
+		<App />
+	</HashRouter>),
+	dest
 );
