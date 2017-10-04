@@ -10,15 +10,7 @@ export default class App extends Component {
 		// const { children } = this.props;
 
 		return (
-			<div>
-				<div>
-					<nav>
-						<ul>
-							<li><Link to='/'>Home</Link></li>
-							<li><Link to='/test'>Test</Link></li>
-						</ul>
-					</nav>
-				</div>
+			<div className={theme.main}>
 				<Switch>
 					<Route exact path='/' component={Home}/>
 					<Route exact path='/test' component={Test}/>

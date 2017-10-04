@@ -4,17 +4,17 @@ const precss = require('precss');
 const autoprefixer = require('autoprefixer');
 
 var cssLoader = {
-  loader: "css-loader",
-  options: {
-    modules: true,
-    importLoaders: 2,
-    sourceMap: true,
-    localIdentName: '[local]___[hash:base64:5]'
-  }
+	loader: "css-loader",
+	options: {
+		modules: true,
+		importLoaders: 2,
+		sourceMap: true,
+		localIdentName: '[local]___[hash:base64:5]',
+	}
 };
 
 var styleLoader = {
-  loader: 'style-loader',
+	loader: 'style-loader',
 };
 
 module.exports = {
@@ -29,9 +29,10 @@ module.exports = {
 			path.resolve('./src'),
 			path.resolve('./src/components'),
 			path.resolve('./src/containers'),
+			path.resolve('./src/theme'),
 			path.resolve('./node_modules'),
 		],
-		extensions: [".tsx", ".ts", ".js", "scss"],
+		extensions: [".tsx", ".ts", ".js", "scss", ".png"],
 	},
 	output: {
 		path: path.resolve(__dirname, "dist"),
@@ -51,14 +52,14 @@ module.exports = {
 				test: /\.jsx?$/,
 				exclude: /node_modules/,
 				use: [
-          {loader: 'react-hot-loader'},
-          {loader: 'babel-loader',
-            options: {
-              presets: [['es2015', { "modules": false }], 'stage-0', 'react'],
-            }
-          },
-          {loader: 'eslint-loader'},
-        ]
+					{loader: 'react-hot-loader'},
+					{loader: 'babel-loader',
+					options: {
+						presets: [['es2015', { "modules": false }], 'stage-0', 'react'],
+					}
+				},
+				{loader: 'eslint-loader'},
+				]
 			},
 			{
 				test: /\.html$/,
@@ -81,19 +82,26 @@ module.exports = {
 				]
 			},
 			{ test: /\.scss$/,
-          use: [
-            styleLoader,
-            cssLoader,
-            {
-              loader: 'sass-loader',
-              options: {
-                outputStyle: 'expanded',
-                sourceMap: true,
-                sourceMapContents: true,
-              }
-            }
-          ]
-      },
+				use: [
+					styleLoader,
+					cssLoader,
+					{
+						loader: 'sass-loader',
+						options: {
+							outputStyle: 'expanded',
+							sourceMap: true,
+							sourceMapContents: true,
+							data: '@import "' + path.resolve(__dirname, 'src/theme/_config.scss') + '";',
+						}
+					}
+				]
+			},
+			{ test: /\.(jpe?g|png|gif|svg)$/i,
+				use: [
+					'url-loader',
+					'img-loader'
+				]
+			}
 		]
 	}
 };
