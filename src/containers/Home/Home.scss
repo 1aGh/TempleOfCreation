@@ -19,3 +19,11 @@
 	width: 180px;
 	text-align: center;
 }
+
+.animContainer{
+	@include flexbox();
+	@include flexCol();
+	justify-content: center;
+	align-items: center;
+	@include animation('fadeIn cubic-bezier(0.0, 0.0, 0.2, 1) 2.375s');
+}

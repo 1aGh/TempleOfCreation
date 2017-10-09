@@ -1,0 +1,43 @@
+@import "mixin";
+
+// Click animation
+@include keyframes (clickAnimation){
+	0% { transform: scaleX(1.00) scaleY(1.00); }
+	50% { transform: scaleX(1.20) scaleY(1.20); }
+	100% { transform: scaleX(1.00) scaleY(1.00); }
+}
+
+// Disabled click animation
+@include keyframes (clickDisabled){
+	0% { transform: translate(0,0); }
+	20% { transform: translate(10px,0); }
+	40% { transform: translate(-10px,0px); }
+	60% { transform: translate(10px,0); }
+	80% { transform: translate(-10px,0px); }
+	100% { transform: translate(0,0); }
+}
+
+// rotation
+@include keyframes (rotation) {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(1080deg); }
+};
+
+// Scale out
+@include keyframes (scaleout) {
+	0% { transform: scale(0) }
+	100% {
+		transform: scale(1.5);
+		opacity: 0;
+	}
+}
+
+// Fade in
+@include keyframes (fadeIn) {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
