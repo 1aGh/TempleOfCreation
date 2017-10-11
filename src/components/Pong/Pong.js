@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import theme from './Pong.scss';
 
 import CancelIcon from 'react-icons/lib/ti/delete-outline';
+import MobileDetect from 'mobile-detect';
+import Swipe from 'react-easy-swipe';
 
 export default class Pong extends Component {
 	static propTypes = {
@@ -33,6 +35,7 @@ export default class Pong extends Component {
 			paddleSpeed: 20,
 			keys: null,
 			newGame: false,
+			mobile: null,
 		};
 	}
 
@@ -43,37 +46,42 @@ export default class Pong extends Component {
 	componentDidMount = () => {
 		let gameWidth = document.getElementById('gameCanvas').clientWidth;
 		console.log('componentDidMount');
+		let mobile = new MobileDetect(window.navigator.userAgent);
+		console.log('MOBILE: ', mobile.mobile());
 		this.setState({
 			gameWidth: gameWidth,
 			ballY: (this.state.gameHeight/2)-10,
 			ballX: (gameWidth/2)-10,
 			paddle1Y: (this.state.gameHeight/2)-(this.state.paddleWidth/2),
-			paddle2Y: (this.state.gameHeight/2)-(this.state.paddleWidth/2)
+			paddle2Y: (this.state.gameHeight/2)-(this.state.paddleWidth/2),
+			mobile: mobile.mobile()
 		});
-		function KeyListener() {
-			this.pressedKeys = [];
-			this.keydown = (e) => { this.pressedKeys[e.keyCode] = true; };
-			this.keyup = (e) => { this.pressedKeys[e.keyCode] = false; };
-			document.addEventListener('keydown', this.keydown.bind(this));
-			document.addEventListener('keyup', this.keyup.bind(this));
-		}
-		KeyListener.prototype.isPressed = function(key){
-			return this.pressedKeys[key] ? true : false;
-		};
-		KeyListener.prototype.addKeyPressListener = function(keyCode, callback){
+		// if (mobile.mobile() === null) {
+			function KeyListener() {
+				this.pressedKeys = [];
+				this.keydown = (e) => { this.pressedKeys[e.keyCode] = true; };
+				this.keyup = (e) => { this.pressedKeys[e.keyCode] = false; };
+				document.addEventListener('keydown', this.keydown.bind(this));
+				document.addEventListener('keyup', this.keyup.bind(this));
+			}
+			KeyListener.prototype.isPressed = function(key){
+				return this.pressedKeys[key] ? true : false;
+			};
+			KeyListener.prototype.addKeyPressListener = function(keyCode, callback){
+				document.addEventListener('keypress', function(e) {
+					if (e.keyCode === keyCode) {
+						callback(e);
+					}
+				});
+			};
+			var keys = new KeyListener();
+			this.setState({keys: keys});
 			document.addEventListener('keypress', function(e) {
-				if (e.keyCode === keyCode) {
-					callback(e);
+				if (e.keyCode === 32){
+					this.startNewGame();
 				}
 			});
-		};
-		var keys = new KeyListener();
-		this.setState({keys: keys});
-		document.addEventListener('keypress', function(e) {
-			if (e.keyCode === 32){
-				this.startNewGame();
-			}
-		});
+		// }
 		this.interval = null;
 	}
 
@@ -184,33 +192,43 @@ export default class Pong extends Component {
 		this.endGame();
 		this.setState({buttonRight: false, btnMultiplayer: false, monkey: false});
 	}
+
+	swipeHandle = (event) => {
+		const {paddle1Y, paddleWidth, gameHeight, paddleSpeed} = this.state;
+		console.log('SWIPE', event.touches);
+		let p1Y = event.touches[0].screenY;
+		this.setState({paddle1Y: p1Y-(paddleWidth)});
+	}
+
 	render() {
-		const {ballY, ballX, gameWidth, gameHeight, player1Score, player2Score, paddle1Y, paddle2Y, paddleWidth, ballRadius, ballSpeedX, ballSpeedY, monkey, paddleSpeed, winner, btnMultiplayer, buttonRight, keys, newGame, secondsElapsed, gameOver} = this.state;
+		const {ballY, ballX, gameWidth, gameHeight, player1Score, player2Score, paddle1Y, paddle2Y, paddleWidth, ballRadius, ballSpeedX, ballSpeedY, monkey, paddleSpeed, winner, btnMultiplayer, buttonRight, keys, newGame, secondsElapsed, gameOver, mobile} = this.state;
 		return(
-			<div className={theme.pongWrapper} id='pongWrapper'>
-				<CancelIcon className={theme.cancelIcon} onClick={this.props.close}/>
-				<div className={theme.scoreP1} style={{left: (gameWidth/2)/2, top: 100}}>{player1Score}</div>
-				<div className={theme.scoreP2} style={{left: (gameWidth/2)*1.5, top: 100}}>{player2Score}</div>
-				{!newGame && <div className={theme.title} style={{top: 20}}>Click anywhere to start a New Game</div>}
-				{(gameOver && winner) && <div className={theme.title} style={{left: (gameWidth/2)-350, top: 200}}>{winner} WON!!!</div>}
-				<div className={theme.buttonsLeft} style={{left: ((gameWidth/2)/2)-75}}>
-					<div>UP: W</div>
-					<div>DOWN: S</div>
+			// <Swipe onSwipeStart={this.swipeHandle.bind(this)}>
+				<div className={theme.pongWrapper} id='pongWrapper' onTouchMove={this.swipeHandle.bind(this)}>
+					<CancelIcon className={theme.cancelIcon} onClick={this.props.close}/>
+					<div className={theme.scoreP1} style={{left: (gameWidth/2)/2, top: 100}}>{player1Score}</div>
+					<div className={theme.scoreP2} style={{left: (gameWidth/2)*1.5, top: 100}}>{player2Score}</div>
+					{!newGame && <div className={theme.title} style={{top: 20}}>Click anywhere to start a New Game</div>}
+					{(gameOver && winner) && <div className={theme.title} style={{left: (gameWidth/2)-350, top: 200}}>{winner} WON!!!</div>}
+					{!mobile && <div className={theme.buttonsLeft} style={{left: ((gameWidth/2)/2)-75}}>
+						<div>UP: W</div>
+						<div>DOWN: S</div>
+					</div>}
+					{btnMultiplayer &&
+						<div className={theme.buttonsRight} style={{left: ((gameWidth/2)*1.5)-75}}>
+						<div>UP: up</div>
+						<div>DOWN: down</div>
+					</div>}
+					{(!btnMultiplayer && !mobile) && <div className={theme.btnMult} style={{left: (gameWidth/2)-75}} onClick={this.butt1Click}>vs Computer</div>}
+					{(btnMultiplayer && !mobile) && <div className={theme.btnMult} style={{left: (gameWidth/2)-75}} onClick={this.butt2Click}>2 Players</div>}
+					<div className={theme.gameCanvas} onClick={this.startNewGame} id='gameCanvas'>
+						<div className={theme.middleLine} style={{left: (gameWidth/2)-2}}></div>
+						<div className={theme.paddle1} style={{top: paddle1Y, height: paddleWidth}}></div>
+						<div className={theme.paddle2} style={{top: paddle2Y, height: paddleWidth}}></div>
+						<div className={theme.ball} style={{top: ballY, left: ballX}}></div>
+					</div>
 				</div>
-				{btnMultiplayer &&
-				<div className={theme.buttonsRight} style={{left: ((gameWidth/2)*1.5)-75}}>
-					<div>UP: up</div>
-					<div>DOWN: down</div>
-				</div>}
-				{!btnMultiplayer && <div className={theme.btnMult} style={{left: (gameWidth/2)-75}} onClick={this.butt1Click}>vs Computer</div>}
-				{btnMultiplayer && <div className={theme.btnMult} style={{left: (gameWidth/2)-75}} onClick={this.butt2Click}>2 Players</div>}
-				<div className={theme.gameCanvas} onClick={this.startNewGame} id='gameCanvas'>
-					<div className={theme.middleLine} style={{left: (gameWidth/2)-2}}></div>
-					<div className={theme.paddle1} style={{top: paddle1Y, height: paddleWidth}}></div>
-					<div className={theme.paddle2} style={{top: paddle2Y, height: paddleWidth}}></div>
-					<div className={theme.ball} style={{top: ballY, left: ballX}}></div>
-				</div>
-				</div>
+			// </Swipe>
 		);
 	}
 }
