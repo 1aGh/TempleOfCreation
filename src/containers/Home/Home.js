@@ -11,30 +11,43 @@ export default class App extends Component {
 		this.state = {
 			x: 0,
 			y: 0,
+			pong: false,
 		};
 	}
 
 	mouseHandle = (e) => {
-		this.setState({x: e.pageX, y: e.pageY});
-		// this.moveDiv();
+		if (!this.state.pong) {
+			this.setState({x: e.pageX, y: e.pageY});
+			this.moveDiv();
+		}
 	}
 
-	// moveDiv = () => {
-	// 	let [moveX, moveY] = [(this.state.x / -40), (this.state.y / -60)];
-	// 	let animDiv = this.animContainer;
-	//
-	// 	animDiv.style.transform = `translate3d(${moveX / 2}px, ${moveY}px, 0)`;
-	// 	animDiv.style.transition = 'cubic-bezier(0.4, 0, 0.2, 1)';
-	// }
+	moveDiv = () => {
+		let [moveX, moveY] = [(this.state.x / -40), (this.state.y / -60)];
+		let animDiv = this.animContainer;
+
+		animDiv.style.transform = `translate3d(${moveX / 2}px, ${moveY}px, 0)`;
+		animDiv.style.transition = 'cubic-bezier(0.4, 0, 0.2, 1)';
+	}
+
+	pongHandle = () => {
+		this.setState({pong: !this.state.pong});
+	}
 
 	render() {
+		const { pong } = this.state;
+
 		return (
 			<div className={theme.homeWrapper} onMouseMove={this.mouseHandle.bind(this)}>
-				<Pong/>
-				{/* <div className={theme.animContainer} ref={(div) => { this.animContainer = div; }}>
-					<LogoIcon className={theme.logo}/>
-					<div className={theme.title}>Temple of creation comming soon</div>
-				</div> */}
+
+				{pong && <Pong close={this.pongHandle}/>}
+				{!pong && <div className={theme.homeContainer}>
+					<div className={theme.pongBtn} onClick={this.pongHandle}></div>
+					<div className={theme.animContainer} ref={(div) => { this.animContainer = div; }}>
+						<LogoIcon className={theme.logo}/>
+						<div className={theme.title}>Temple of creation comming soon</div>
+					</div>
+				</div>}
 			</div>
 		);
 	}

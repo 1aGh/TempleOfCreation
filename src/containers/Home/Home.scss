@@ -3,6 +3,12 @@
 	@include flexbox();
 	@include flex(1 1 auto);
 	@include flexCol();
+}
+
+.homeContainer{
+	@include flexbox();
+	@include flex(1 1 auto);
+	@include flexCol();
 	justify-content: center;
 	align-items: center;
 }
@@ -26,4 +32,15 @@
 	justify-content: center;
 	align-items: center;
 	@include animation('fadeIn cubic-bezier(0.0, 0.0, 0.2, 1) 2.375s');
+}
+
+.pongBtn{
+	position: absolute;
+	top: 50px;
+	left: 50px;
+	height: 5px;
+	width: 5px;
+	border-radius: 50%;
+	background-color: $palette-blackolive;
+	cursor: pointer;
 }
