@@ -1,50 +1,60 @@
-canvas{
-	padding: 0;
+.pongWrapper {
+	@include flexbox();
 	@include flex(1 1 auto);
 }
 
-.pongWrapper {
-	@include flexbox();
-	@include flexCol();
-}
-
-.buttons{
-	position: fixed;
-	bottom: 5px;
-	background: rgba(0,0,0,0);
-	color: white;
+.buttonsLeft {
+	width: 100px;
+	height: 50px;
+	position: absolute;
+	bottom: 20px;
 	border-radius: 4px;
 	border: 1px solid #fff;
-	text-align: center;
+	@include flexbox();
+	@include flexCol();
+	align-items: center;
+	padding: 15px;
+	opacity: 0.6;
+	align-self: flex-start;
+}
+
+.buttonsRight {
+	width: 100px;
+	height: 50px;
+	position: absolute;
+	bottom: 20px;
+	border-radius: 4px;
+	border: 1px solid #fff;
+	@include flexbox();
+	@include flexCol();
+	align-items: center;
+	padding: 15px;
 	opacity: 0.6;
 }
 
-.buttonLeft{
-	left: 10px;
-	width: 30px;
-}
-#buttonS{
-	left: 50px;
+.btnMult {
+	width: 150px;
+	padding: 15px;
+	cursor: pointer;
+	bottom: 20px;
+	border-radius: 4px;
+	border: 1px solid #fff;
+	background-color: rgba(255,255,255,0.3);
+	color: $palette-blackolive;
+	@include flexbox();
+	justify-content: center;
+	align-items: center;
+	z-index: 500;
+	position: absolute;
+	bottom: 20;
+
+	&:hover {
+		opacity: 1;
+	}
 }
 
-.buttonRight{
-	right: 10px;
-	padding: 0 5px;
-}
-
-#buttonUp{
-	right: 65px;
-}
-
-button{
-	right: 0;
-	left: 0;
-	width: 100px;
-	height: 45px;
-	margin: 0 auto;
-}
-
-.title{
+.title {
+	width: 700px;
 	color: white;
 	font-size: 2rem;
 	margin: auto;
@@ -52,4 +62,56 @@ button{
 	align-items: center;
 	position: absolute;
 	text-align: center;
+}
+
+.gameCanvas {
+	@include flex(1 1 auto);
+	height: 100%;
+	margin: 0 10px;
+	position: relative;
+}
+
+.paddle1 {
+	position: absolute;
+	width: 12px;
+	left: 0;
+	background-color: white;
+}
+
+.paddle2 {
+	position: absolute;
+	width: 12px;
+	right: 0;
+	background-color: white;
+}
+
+.ball {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background-color: white;
+}
+
+.scoreP1 {
+	position: absolute;
+	color: white;
+	font-size: 2rem;
+}
+
+.scoreP2 {
+	position: absolute;
+	color: white;
+	font-size: 2rem;
+}
+
+.middleLine {
+	position: absolute;
+	// border-left: dashed 4px white;
+	background-image: linear-gradient(white 33%, rgba(255,255,255,0) 0%);
+	background-position: right;
+	background-size: 4px 30px;
+	background-repeat: repeat-y;
+	width: 4px;
+	height: 100%;
 }
