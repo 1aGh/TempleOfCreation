@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import theme from './Pong.scss';
 
+import CancelIcon from 'react-icons/lib/ti/delete-outline';
+
 export default class Pong extends Component {
+	static propTypes = {
+		close: PropTypes.any,
+	};
+
 	constructor(props){
 		super(props);
 		this.state = {
@@ -181,6 +188,7 @@ export default class Pong extends Component {
 		const {ballY, ballX, gameWidth, gameHeight, player1Score, player2Score, paddle1Y, paddle2Y, paddleWidth, ballRadius, ballSpeedX, ballSpeedY, monkey, paddleSpeed, winner, btnMultiplayer, buttonRight, keys, newGame, secondsElapsed, gameOver} = this.state;
 		return(
 			<div className={theme.pongWrapper} id='pongWrapper'>
+				<CancelIcon className={theme.cancelIcon} onClick={this.props.close}/>
 				<div className={theme.scoreP1} style={{left: (gameWidth/2)/2, top: 100}}>{player1Score}</div>
 				<div className={theme.scoreP2} style={{left: (gameWidth/2)*1.5, top: 100}}>{player2Score}</div>
 				{!newGame && <div className={theme.title} style={{top: 20}}>Click anywhere to start a New Game</div>}

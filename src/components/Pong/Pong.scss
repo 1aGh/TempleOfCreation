@@ -9,7 +9,7 @@
 	position: absolute;
 	bottom: 20px;
 	border-radius: 4px;
-	border: 1px solid #fff;
+	border: 1px solid $palette-blackolive;
 	@include flexbox();
 	@include flexCol();
 	align-items: center;
@@ -24,7 +24,7 @@
 	position: absolute;
 	bottom: 20px;
 	border-radius: 4px;
-	border: 1px solid #fff;
+	border: 1px solid $palette-blackolive;
 	@include flexbox();
 	@include flexCol();
 	align-items: center;
@@ -38,7 +38,7 @@
 	cursor: pointer;
 	bottom: 20px;
 	border-radius: 4px;
-	border: 1px solid #fff;
+	border: 1px solid $palette-blackolive;
 	background-color: rgba(255,255,255,0.3);
 	color: $palette-blackolive;
 	@include flexbox();
@@ -55,7 +55,7 @@
 
 .title {
 	width: 700px;
-	color: white;
+	color: $palette-blackolive;
 	font-size: 2rem;
 	margin: auto;
 	justify-content: center;
@@ -66,7 +66,6 @@
 
 .gameCanvas {
 	@include flex(1 1 auto);
-	height: 100%;
 	margin: 0 10px;
 	position: relative;
 }
@@ -75,14 +74,14 @@
 	position: absolute;
 	width: 12px;
 	left: 0;
-	background-color: white;
+	background-color: $palette-blackolive;
 }
 
 .paddle2 {
 	position: absolute;
 	width: 12px;
 	right: 0;
-	background-color: white;
+	background-color: $palette-blackolive;
 }
 
 .ball {
@@ -90,28 +89,40 @@
 	width: 20px;
 	height: 20px;
 	border-radius: 50%;
-	background-color: white;
+	background-color: $palette-blackolive;
 }
 
 .scoreP1 {
 	position: absolute;
-	color: white;
+	color: $palette-blackolive;
 	font-size: 2rem;
 }
 
 .scoreP2 {
 	position: absolute;
-	color: white;
+	color: $palette-blackolive;
 	font-size: 2rem;
 }
 
 .middleLine {
 	position: absolute;
-	// border-left: dashed 4px white;
-	background-image: linear-gradient(white 33%, rgba(255,255,255,0) 0%);
+	background-image: linear-gradient($palette-blackolive 33%, rgba(255,255,255,0) 0%);
 	background-position: right;
 	background-size: 4px 30px;
 	background-repeat: repeat-y;
 	width: 4px;
 	height: 100%;
+}
+
+.cancelIcon{
+	position: absolute;
+	top: 20px;
+	right: 50px;
+	font-size: 2rem;
+	color: $palette-blackolive;
+	cursor: pointer;
+	z-index: 500;
+	&:hover{
+		opacity: 0.6;
+	}
 }
