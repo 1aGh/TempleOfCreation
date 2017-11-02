@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import theme from './Home.scss';
 
 import LogoIcon from 'Icons/Logo';
+import IaghIcon from 'Icons/Iagh';
 
 import Pong from 'Pong/Pong';
 
@@ -43,6 +44,7 @@ export default class App extends Component {
 				{pong && <Pong close={this.pongHandle}/>}
 				{!pong && <div className={theme.homeContainer}>
 					<div className={theme.pongBtn} onClick={this.pongHandle}></div>
+					<IaghIcon className={theme.iagh}/>
 					<div className={theme.animContainer} ref={(div) => { this.animContainer = div; }}>
 						<LogoIcon className={theme.logo}/>
 						<div className={theme.title}>Temple of creation comming soon</div>
