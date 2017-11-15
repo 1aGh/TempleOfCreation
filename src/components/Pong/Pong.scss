@@ -1,6 +1,8 @@
 .pongWrapper {
 	@include flexbox();
 	@include flex(1 1 auto);
+	height: 100%;
+	width: 100%;
 }
 
 .buttonsLeft {

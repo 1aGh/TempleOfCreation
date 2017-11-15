@@ -27,8 +27,13 @@
 @include keyframes (scaleout) {
 	0% { transform: scale(0) }
 	100% {
-		transform: scale(1.5);
-		opacity: 0;
+		transform: scale(1);
+	}
+}
+@include keyframes (scalein) {
+	0% { transform: scale(100) }
+	100% {
+		transform: scale(0);
 	}
 }
 
@@ -41,3 +46,15 @@
 		opacity: 1;
 	}
 }
+
+// Iagh
+@include keyframes (iagh) {
+	0% { transform: rotate(0deg); }
+	70% { transform: rotate(1080deg); }
+	75% { transform: translateY(-25px); }
+	80% { transform: translateY(0px); }
+	85% { transform: translateY(-15px); }
+	90% { transform: translateY(0px); }
+	95% { transform: translateY(-10px); }
+	100% { transform: translateY(0px); }
+};

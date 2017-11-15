@@ -19,13 +19,6 @@
 	width: 150px;
 }
 
-.iagh{
-	position: absolute;
-	top: 50px;
-	left: 50px;
-	width: 100px;
-}
-
 .title{
 	color: $palette-blackolive;
 	font-size: 1rem;
@@ -38,16 +31,5 @@
 	@include flexCol();
 	justify-content: center;
 	align-items: center;
-	@include animation('fadeIn cubic-bezier(0.0, 0.0, 0.2, 1) 2.375s');
-}
-
-.pongBtn{
-	position: absolute;
-	top: 50px;
-	left: 50px;
-	height: 5px;
-	width: 5px;
-	border-radius: 50%;
-	background-color: $palette-blackolive;
-	cursor: pointer;
+	// @include animation('fadeIn cubic-bezier(0.0, 0.0, 0.2, 1) 2.375s');
 }
