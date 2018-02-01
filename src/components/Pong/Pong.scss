@@ -3,6 +3,8 @@
 	@include flex(1 1 auto);
 	height: 100%;
 	width: 100%;
+	overscroll-behavior-y: none;
+	overscroll-behavior-y: contain;
 }
 
 .buttonsLeft {
