@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Link from 'react-router-dom/Link';
 import theme from './Home.scss';
 
 import LogoIcon from 'Icons/Logo';
 
-export default class App extends Component {
+export default class Home extends Component {
 	static propTypes = {
 	};
 
@@ -38,6 +39,7 @@ export default class App extends Component {
 					<div className={theme.animContainer} ref={(div) => { this.animContainer = div; }}>
 						<LogoIcon className={theme.logo}/>
 						<div className={theme.title}>Temple of creation comming soon</div>
+						<Link to="/test">Show sidebar</Link>
 					</div>
 				</div>
 			</div>
