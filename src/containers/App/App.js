@@ -11,6 +11,7 @@ import Kontakty from 'Kontakty/Kontakty';
 import Portfolio from 'Portfolio/Portfolio';
 import Iagh from 'Iagh/Iagh';
 import Pong from 'Pong/Pong';
+import Menu from 'Menu/Menu';
 
 class App extends Component {
 	static propTypes = {
@@ -41,6 +42,7 @@ class App extends Component {
 		const timeout = { enter: 475, exit: 375 };
 		return (
 			<div className={theme.main}>
+				<Menu location={location}/>
 				{/* <Iagh mobile={mobile} pongHandle={this.pongHandle} pong={pong}/> */}
 				{pong && <Pong close={this.pongHandle}/>}
 				{!pong &&

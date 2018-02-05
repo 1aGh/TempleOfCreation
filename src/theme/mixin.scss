@@ -33,3 +33,11 @@
         @content;
     }
 }
+
+// transform
+@mixin transform($par) {
+  -webkit-transform: $par;  // Chrome 1-25, Safari 3.2+
+  -moz-transform: $par;  // Firefox 4-15
+  -o-transform: $par;  // Opera 10.50–12.00
+  transform: $par;  // Chrome 26, Firefox 16+, IE 10+, Opera 12.10+
+}
