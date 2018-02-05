@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import theme from './Potfolio.scss';
+import theme from './Portfolio.scss';
 import Link from 'react-router-dom/Link';
 
 export default class Portfolio extends Component {
