@@ -8,6 +8,7 @@ import MobileDetect from 'mobile-detect';
 
 import Home from 'Home/Home';
 import Projekt from 'Projekt/Projekt';
+import Kontakty from 'Kontakty/Kontakty';
 import Portfolio from 'Portfolio/Portfolio';
 import Iagh from 'Iagh/Iagh';
 import Pong from 'Pong/Pong';
@@ -64,6 +65,7 @@ class App extends Component {
 									<Switch location={location}>
 										<Route exact path='/' component={Home}/>
 										<Route exact path='/projekt' component={Projekt}/>
+										<Route exact path='/kontakty' component={Kontakty}/>
 										<Route exact path='/portfolio' component={Portfolio}/>
 									</Switch>
 								</section>
