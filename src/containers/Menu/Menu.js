@@ -4,6 +4,10 @@ import theme from './Menu.scss';
 import Link from 'react-router-dom/Link';
 
 import MenuIcon from 'react-icons/lib/md/crop-free';
+import Down from 'react-icons/lib/md/keyboard-arrow-down';
+import Up from 'react-icons/lib/md/keyboard-arrow-up';
+import Left from 'react-icons/lib/md/keyboard-arrow-left';
+import Right from 'react-icons/lib/md/keyboard-arrow-right';
 
 export default class Menu extends Component {
 	static propTypes = {
@@ -14,14 +18,40 @@ export default class Menu extends Component {
 		const {location} = this.props;
 console.log('LOCATION: ', location);
 		let content = [];
+		let menu = [];
 
 		if (location) {
 			if (location.pathname === '/') {
-				content.push(<Link key={'link'+content.length} to='/kontakty' className={theme.link + ' ' + theme.kontaktyBtn}>KONTAKTY</Link>);
-				content.push(<Link key={'link'+content.length} to='/projekt' className={theme.link + ' ' + theme.projektBtn}><div className={theme.rotateRt}>PROJEKT</div></Link>);
-				content.push(<Link key={'link'+content.length} to='/menu' className={theme.link + ' ' + theme.menuBtn}><MenuIcon/></Link>);
-				content.push(<Link key={'link'+content.length} to='/portfolio' className={theme.link + ' ' + theme.portfolioBtn}><div className={theme.rotateLf}>PORTFOLIO</div></Link>);
+				menu = ['kontakty', 'projekt', 'menu', 'portfolio'];
 			}
+			menu.map((k) => {
+				let label;
+				let arrow;
+				switch (k) {
+					case 'menu':
+						label = <MenuIcon/>;
+						break;
+					case 'projekt':
+						label = <div className={theme.label + ' ' + theme.rotateRt}><Up className={theme.arrow}/>{k.toUpperCase()}</div>;
+						break;
+					case 'portfolio':
+						label = <div className={theme.label + ' ' +  theme.rotateLf}><Up className={theme.arrow}/>{k.toUpperCase()}</div>;
+						break;
+					case 'kontakty':
+						label = <div className={theme.label}><Up className={theme.arrow}/>{k.toUpperCase()}</div>;
+						break;
+					default:
+						label = k.toUpperCase();
+				}
+				content.push(
+					<Link
+						key={k+content.length}
+						to={'/'+k}
+						className={theme.link + ' ' + theme[k+'Btn']}>
+						{label}
+					</Link>
+				);
+			});
 		}
 
 		return (
