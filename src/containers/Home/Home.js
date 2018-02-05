@@ -39,7 +39,6 @@ export default class Home extends Component {
 					<div className={theme.animContainer} ref={(div) => { this.animContainer = div; }}>
 						<LogoIcon className={theme.logo}/>
 						<div className={theme.title}>Temple of creation comming soon</div>
-						<Link to="/test">Show sidebar</Link>
 					</div>
 				</div>
 			</div>
