@@ -22,23 +22,3 @@
 	height: 100%;
 	z-index: 1;
 }
-
-.in {
-  opacity: 0.01;
-	@include transition(all cubic-bezier(0.4, 0.0, 0.2, 1) .475s);
-}
-
-.inActive {
-  opacity: 1;
-	@include animation('slideLeft cubic-bezier(0.0, 0.0, 0.2, 1) .475s');
-}
-
-.out {
-  opacity: 1;
-	@include transition(all cubic-bezier(0.4, 0.0, 0.2, 1) .375s);
-}
-
-.outActive {
-	opacity: 0.01;
-	@include animation('slideRight cubic-bezier(0.0, 0.0, 0.2, 1) .375s');
-}
