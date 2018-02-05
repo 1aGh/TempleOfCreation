@@ -7,7 +7,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import MobileDetect from 'mobile-detect';
 
 import Home from 'Home/Home';
-import Test from 'Test/Test';
+import Projekt from 'Projekt/Projekt';
 import Iagh from 'Iagh/Iagh';
 import Pong from 'Pong/Pong';
 
@@ -62,7 +62,7 @@ class App extends Component {
 								<section className={theme.pageMainInner}>
 									<Switch location={location}>
 										<Route exact path='/' component={Home}/>
-										<Route exact path='/test' component={Test}/>
+										<Route exact path='/projekt' component={Projekt}/>
 									</Switch>
 								</section>
 							</CSSTransition>
