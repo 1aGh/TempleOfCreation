@@ -1,0 +1,162 @@
+// To Right
+.toRight {
+  opacity: 1;
+	@include transform(translateX(0px));
+	@include transition(all cubic-bezier(0.4, 0.0, 0.2, 1) .475s);
+}
+
+.toRightActive {
+  opacity: 0;
+	@include transform(translateX(100%));
+}
+
+// From Right
+.fromRight {
+  opacity: 0;
+	@include transform(translateX(100%));
+	@include transition(all cubic-bezier(0.4, 0.0, 0.2, 1) .475s);
+}
+
+.fromRightActive {
+  opacity: 1;
+	@include transform(translateX(0px));
+}
+
+// To Left
+.toLeft {
+  opacity: 1;
+	@include transform(translateX(0px));
+	@include transition(all cubic-bezier(0.4, 0.0, 0.2, 1) .375s);
+}
+
+.toLeftActive {
+	opacity: 0;
+	@include transform(translateX(-100%));
+}
+
+// From Left
+.fromLeft {
+  opacity: 0;
+	@include transform(translateX(-100%));
+	@include transition(all cubic-bezier(0.4, 0.0, 0.2, 1) .375s);
+}
+
+.fromLeftActive {
+	opacity: 1;
+	@include transform(translateX(0px));
+}
+
+// To Top
+.toTop {
+  opacity: 1;
+	@include transform(translateY(0px));
+	@include transition(all cubic-bezier(0.4, 0.0, 0.2, 1) .375s);
+}
+
+.toTopActive {
+	opacity: 0;
+	@include transform(translateY(-100%));
+}
+
+// From Top
+.fromTop {
+  opacity: 0;
+	@include transform(translateY(-100%));
+	@include transition(all cubic-bezier(0.4, 0.0, 0.2, 1) .375s);
+}
+
+.fromTopActive {
+	opacity: 1;
+	@include transform(translateY(0px));
+}
+
+// To Bottom
+.toBottom {
+  opacity: 1;
+	@include transform(translateY(0px));
+	@include transition(all cubic-bezier(0.4, 0.0, 0.2, 1) .375s);
+}
+
+.toBottomActive {
+	opacity: 0;
+	@include transform(translateY(100%));
+}
+
+// From Bottom
+.fromBottom {
+  opacity: 0;
+	@include transform(translateY(100%));
+	@include transition(all cubic-bezier(0.4, 0.0, 0.2, 1) .375s);
+}
+
+.fromBottomActive {
+	opacity: 1;
+	@include transform(translateY(0px));
+}
+
+// Fade In
+.fadeIn {
+	opacity: 0;
+	@include transition(all cubic-bezier(0.4, 0.0, 0.2, 1) .375s);
+}
+
+.fadeInActive {
+	opacity: 1;
+}
+
+// Fade Out
+.fadeOut {
+	opacity: 1;
+	@include transition(all cubic-bezier(0.4, 0.0, 0.2, 1) .375s);
+}
+
+.fadeOutActive {
+	opacity: 0;
+}
+
+// Zoom In
+.zoomIn {
+	opacity: 1;
+	@include transform(scale(1,1));
+	@include transition(all cubic-bezier(0.4, 0.0, 0.2, 1) .375s);
+}
+
+.zoomInActive {
+	opacity: 0;
+	@include transform(scale(4,4));
+}
+
+.zoomInFade {
+	opacity: 0;
+	@include transform(scale(0,0));
+	@include transition(all cubic-bezier(0.4, 0.0, 0.2, 1) .375s);
+}
+
+.zoomInFadeActive {
+	opacity: 1;
+	@include transform(scale(1,1));
+}
+
+.zoomOut {
+	opacity: 0;
+	@include transform(scale(4,4));
+	@include transition(all cubic-bezier(0.4, 0.0, 0.2, 1) .375s);
+}
+
+.zoomOutActive {
+	opacity: 1;
+	@include transform(scale(1,1));
+}
+
+// Zoom Out
+.zoomOutFade {
+	opacity: 1;
+	@include transform(scale(1,1));
+	@include transition(all cubic-bezier(0.4, 0.0, 0.2, 1) .375s);
+}
+
+.zoomOutFadeActive {
+	opacity: 0;
+	@include transform(scale(0,0));
+}
+
