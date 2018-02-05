@@ -12,6 +12,7 @@ import Portfolio from 'Portfolio/Portfolio';
 import Iagh from 'Iagh/Iagh';
 import Pong from 'Pong/Pong';
 import Menu from 'Menu/Menu';
+import MenuMap from 'MenuMap/MenuMap';
 
 class App extends Component {
 	static propTypes = {
@@ -68,6 +69,7 @@ class App extends Component {
 										<Route exact path='/projekt' component={Projekt}/>
 										<Route exact path='/kontakty' component={Kontakty}/>
 										<Route exact path='/portfolio' component={Portfolio}/>
+										<Route exact path='/menu' component={MenuMap}/>
 									</Switch>
 								</section>
 							</CSSTransition>
