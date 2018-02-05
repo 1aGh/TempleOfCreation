@@ -42,7 +42,7 @@ class App extends Component {
 		const timeout = { enter: 475, exit: 375 };
 		return (
 			<div className={theme.main}>
-				<Iagh mobile={mobile} pongHandle={this.pongHandle} pong={pong}/>
+				{/* <Iagh mobile={mobile} pongHandle={this.pongHandle} pong={pong}/> */}
 				{pong && <Pong close={this.pongHandle}/>}
 				{!pong &&
 					<TransitionGroup component="main" className={theme.pageRoute}>
