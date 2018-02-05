@@ -25,7 +25,7 @@ export default class Home extends Component {
 	}
 
 	moveDiv = () => {
-		let [moveX, moveY] = [(this.state.x / -40), (this.state.y / -60)];
+		let [moveX, moveY] = [(this.state.x / -20), (this.state.y / -40)];
 		let animDiv = this.animContainer;
 
 		animDiv.style.transform = `translate3d(${moveX / 2}px, ${moveY}px, 0)`;
