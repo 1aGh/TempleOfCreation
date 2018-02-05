@@ -3,7 +3,6 @@ import { withRouter, Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import theme from './App.scss';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-// import TransitionGroup from 'react-transition-group/TransitionGroup';
 import MobileDetect from 'mobile-detect';
 
 import Home from 'Home/Home';
