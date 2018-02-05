@@ -19,26 +19,53 @@ export default class Menu extends Component {
 console.log('LOCATION: ', location);
 		let content = [];
 		let menu = [];
+		let path = location.pathname;
 
 		if (location) {
-			if (location.pathname === '/') {
+			if (path === '/') {
 				menu = ['kontakty', 'projekt', 'menu', 'portfolio'];
+			} else if (path === '/projekt') {
+				menu = ['backLeft', 'menu'];
+			} else if (path === '/portfolio') {
+				menu = ['backRight', 'menu'];
+			} else if (path === '/kontakty') {
+				menu = ['backDown', 'menu'];
 			}
 			menu.map((k) => {
 				let label;
-				let arrow;
+				let href = k;
+				let position;
 				switch (k) {
 					case 'menu':
-						label = <MenuIcon/>;
+						label = <div className={theme.label}><MenuIcon className={theme.arrowActive}/></div>;
+						position = path === '/kontakty' ? 'top' : 'bottom';
 						break;
 					case 'projekt':
 						label = <div className={theme.label + ' ' + theme.rotateRt}><Up className={theme.arrow}/>{k.toUpperCase()}</div>;
+						position = 'right';
 						break;
 					case 'portfolio':
 						label = <div className={theme.label + ' ' +  theme.rotateLf}><Up className={theme.arrow}/>{k.toUpperCase()}</div>;
+						position = 'left';
 						break;
 					case 'kontakty':
 						label = <div className={theme.label}><Up className={theme.arrow}/>{k.toUpperCase()}</div>;
+						position = 'top';
+						break;
+					case 'backLeft':
+						label = <div className={theme.label}><Left className={theme.arrowActive}/></div>;
+						href = '';
+						position = 'left';
+						break;
+					case 'backRight':
+						label = <div className={theme.label}><Right className={theme.arrowActive}/></div>;
+						href = '';
+						position = 'right';
+						break;
+					case 'backDown':
+						label = <div className={theme.label}><Down className={theme.arrowActive}/></div>;
+						href = '';
+						position = 'bottom';
 						break;
 					default:
 						label = k.toUpperCase();
@@ -46,8 +73,8 @@ console.log('LOCATION: ', location);
 				content.push(
 					<Link
 						key={k+content.length}
-						to={'/'+k}
-						className={theme.link + ' ' + theme[k+'Btn']}>
+						to={'/'+href}
+						className={theme.link + ' ' + theme[position+'Btn']}>
 						{label}
 					</Link>
 				);
