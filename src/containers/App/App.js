@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter, Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import theme from './App.scss';
+import animation from './RouteAnimation.scss';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import MobileDetect from 'mobile-detect';
 
@@ -24,12 +25,81 @@ class App extends Component {
 		this.state = {
 			pong: false,
 			mobile: null,
+			animation: {},
 		};
 	}
 
 	componentDidMount = () => {
+		console.log('MOUNT');
 		let mobile = new MobileDetect(window.navigator.userAgent);
-		this.setState({mobile: mobile.mobile()});
+		let anim = this.animSwitcher('fadeIn', 'fadeOut');
+		this.setState({mobile: mobile.mobile(), animation: anim});
+	}
+
+	componentWillReceiveProps = (nextProps) => {
+		if (nextProps.location && nextProps.location.pathname && this.props.location && this.props.location.pathname) {
+			let path = this.props.location.pathname;
+			let nextPath = nextProps.location.pathname;
+			let anim = {...this.state.animation};
+			if (path === '/') {
+				switch (nextPath) {
+					case '/projekt':
+						anim = this.animSwitcher('fromRight', 'zoomOutFade');
+						break;
+					case '/kontakty':
+						anim = this.animSwitcher('fromTop', 'zoomOutFade');
+						break;
+					case '/portfolio':
+						anim = this.animSwitcher('fromLeft', 'zoomOutFade');
+						break;
+					case '/menu':
+						anim = this.animSwitcher('zoomOut', 'zoomIn');
+						break;
+				}
+			} else if (path === '/projekt') {
+				switch (nextPath) {
+					case '/':
+						anim = this.animSwitcher('fromLeft', 'fadeOut');
+						break;
+					case '/menu':
+						anim = this.animSwitcher('zoomOut', 'zoomIn');
+						break;
+				}
+			} else if (path === '/kontakty') {
+				switch (nextPath) {
+					case '/':
+						anim = this.animSwitcher('fromBottom', 'fadeOut');
+						break;
+					case '/menu':
+						anim = this.animSwitcher('zoomOut', 'zoomIn');
+						break;
+				}
+			} else if (path === '/portfolio') {
+				switch (nextPath) {
+					case '/':
+						anim = this.animSwitcher('fromRight', 'fadeOut');
+						break;
+					case '/menu':
+						anim = this.animSwitcher('zoomOut', 'zoomIn');
+						break;
+				}
+			} else if (path === '/menu') {
+				anim = this.animSwitcher('zoomInFade', 'fadeOut');
+			}
+			this.setState({animation: anim});
+		}
+	}
+
+	animSwitcher = (enter, exit) => {
+		let anim = {
+			appear: animation[enter],
+			appearActive: animation[enter+'Active'],
+			enter: animation[enter],
+			enterActive: animation[enter+'Active'],
+			exit: animation[exit],
+			exitActive: animation[exit+'Active'],
+		};
+		return anim;
 	}
 
 	pongHandle = () => {
@@ -37,7 +107,7 @@ class App extends Component {
 	}
 
 	render() {
-		const {pong, anim, animSpeech, iaghCount, iaghSpeech, mobile} = this.state;
+		const {pong, mobile, animation} = this.state;
 		const {location} = this.props;
 		const currentKey = location.pathname.split('/')[1] || '/';
 		const timeout = { enter: 475, exit: 375 };
@@ -52,14 +122,7 @@ class App extends Component {
 							appear
 							key={currentKey}
 							timeout={timeout}
-							classNames={{
-								appear: theme.in,
-								appearActive: theme.inActive,
-								enter: theme.in,
-								enterActive: theme.inActive,
-								exit: theme.out,
-								exitActive: theme.outActive
-							}}
+							classNames={animation}
 							mountOnEnter={true}
 							unmountOnExit={true}
 							>
