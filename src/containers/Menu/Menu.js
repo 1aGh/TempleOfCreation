@@ -16,7 +16,6 @@ export default class Menu extends Component {
 
 	render() {
 		const {location} = this.props;
-console.log('LOCATION: ', location);
 		let content = [];
 		let menu = [];
 		let path = location.pathname;

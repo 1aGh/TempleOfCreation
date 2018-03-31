@@ -30,7 +30,6 @@ class App extends Component {
 	}
 
 	componentDidMount = () => {
-		console.log('MOUNT');
 		let mobile = new MobileDetect(window.navigator.userAgent);
 		let anim = this.animSwitcher('fadeIn', 'fadeOut');
 		this.setState({mobile: mobile.mobile(), animation: anim});
