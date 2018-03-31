@@ -55,6 +55,7 @@ module.exports = {
 					{loader: 'react-hot-loader'},
 					{loader: 'babel-loader',
 					options: {
+						plugins: ['syntax-decorators', 'transform-decorators-legacy', 'transform-class-properties'],
 						presets: [['es2015', { "modules": false }], 'stage-0', 'react'],
 					}
 				},
