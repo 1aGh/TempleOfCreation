@@ -31,6 +31,7 @@ module.exports = {
 			path.resolve('./src/containers'),
 			path.resolve('./src/theme'),
 			path.resolve('./node_modules'),
+			path.resolve('./store'),
 		],
 		extensions: [".tsx", ".ts", ".js", "scss", ".png"],
 	},

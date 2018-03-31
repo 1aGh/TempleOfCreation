@@ -1,4 +1,5 @@
 import update from 'immutability-helper';
+import portfolioStore from 'portfolioStore';
 
 function updateAppState (state, struct){
 	let router = 'main';
@@ -10,7 +11,9 @@ export const Actions = {
 };
 
 export const initialState = {
-	main: {},
+	main: {
+		portfolio: portfolioStore,
+	},
 };
 
 export default function reducer(state = initialState, action = {}) {
