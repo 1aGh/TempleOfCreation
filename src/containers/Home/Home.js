@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import Link from 'react-router-dom/Link';
 import theme from './Home.scss';
+import * as reducer from 'redux/reducer';
 
 import LogoIcon from 'Icons/Logo';
 
+@connect(
+		state => ({
+			main: state.main,
+		})
+)
+
 export default class Home extends Component {
 	static propTypes = {
+		dispatch: PropTypes.any,
 	};
 
 	constructor(props){
@@ -15,6 +24,11 @@ export default class Home extends Component {
 			x: 0,
 			y: 0,
 		};
+	}
+
+	testHandle = () => {
+		console.log('CLICK');
+		this.props.dispatch(reducer.test('hello'));
 	}
 
 	mouseHandle = (e) => {
@@ -37,7 +51,7 @@ export default class Home extends Component {
 			<div className={theme.homeWrapper} onMouseMove={this.mouseHandle.bind(this)}>
 				<div className={theme.homeContainer}>
 					<div className={theme.animContainer} ref={(div) => { this.animContainer = div; }}>
-						<LogoIcon className={theme.logo}/>
+						<LogoIcon className={theme.logo} onClick={this.testHandle}/>
 						<div className={theme.title}>Temple of creation comming soon</div>
 					</div>
 				</div>
