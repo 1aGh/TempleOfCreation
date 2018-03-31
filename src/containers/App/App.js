@@ -15,6 +15,18 @@ import Pong from 'Pong/Pong';
 import Menu from 'Menu/Menu';
 import MenuMap from 'MenuMap/MenuMap';
 
+import { MuiThemeProvider, createGenerateClassName } from 'material-ui/styles';
+import JssProvider from 'react-jss/lib/JssProvider';
+import jssPreset from 'jss-preset-default';
+import { create } from 'jss';
+import themeMui from 'theme/themeMui.js';
+
+const generateClassName = createGenerateClassName({
+	productionPrefix: 'toc',
+});
+
+const jss = create(jssPreset());
+
 class App extends Component {
 	static propTypes = {
 		location: PropTypes.any,
@@ -111,33 +123,37 @@ class App extends Component {
 		const currentKey = location.pathname.split('/')[1] || '/';
 		const timeout = { enter: 475, exit: 375 };
 		return (
-			<div className={theme.main}>
-				<Menu location={location}/>
-				{/* <Iagh mobile={mobile} pongHandle={this.pongHandle} pong={pong}/> */}
-				{pong && <Pong close={this.pongHandle}/>}
-				{!pong &&
-					<TransitionGroup component="main" className={theme.pageRoute}>
-						<CSSTransition
-							appear
-							key={currentKey}
-							timeout={timeout}
-							classNames={animation}
-							mountOnEnter={true}
-							unmountOnExit={true}
-							>
-								<section className={theme.pageMainInner}>
-									<Switch location={location}>
-										<Route exact path='/' component={Home}/>
-										<Route exact path='/projekt' component={Projekt}/>
-										<Route exact path='/kontakty' component={Kontakty}/>
-										<Route exact path='/portfolio' component={Portfolio}/>
-										<Route exact path='/menu' component={MenuMap}/>
-									</Switch>
-								</section>
-							</CSSTransition>
-					</TransitionGroup>
-				}
-			</div>
+			<JssProvider jss={jss} generateClassName={generateClassName}>
+				<MuiThemeProvider theme={themeMui}>
+					<div className={theme.main}>
+						<Menu location={location}/>
+						{/* <Iagh mobile={mobile} pongHandle={this.pongHandle} pong={pong}/> */}
+						{pong && <Pong close={this.pongHandle}/>}
+						{!pong &&
+							<TransitionGroup component="main" className={theme.pageRoute}>
+								<CSSTransition
+									appear
+									key={currentKey}
+									timeout={timeout}
+									classNames={animation}
+									mountOnEnter={true}
+									unmountOnExit={true}
+									>
+										<section className={theme.pageMainInner}>
+											<Switch location={location}>
+												<Route exact path='/' component={Home}/>
+												<Route exact path='/projekt' component={Projekt}/>
+												<Route exact path='/kontakty' component={Kontakty}/>
+												<Route exact path='/portfolio' component={Portfolio}/>
+												<Route exact path='/menu' component={MenuMap}/>
+											</Switch>
+										</section>
+									</CSSTransition>
+								</TransitionGroup>
+							}
+						</div>
+					</MuiThemeProvider>
+			</JssProvider>
 		);
 	}
 }
