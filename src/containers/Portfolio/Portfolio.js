@@ -5,14 +5,6 @@ import { withStyles } from 'material-ui/styles';
 import theme from './PortfolioTheme.js';
 import MasonryLayout from 'react-masonry-layout';
 
-function importAll(r) {
-  let images = {};
-  r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
-  return images;
-}
-
-const images = importAll(require.context('images', false, /\.(png|jpe?g|svg)$/));
-
 @connect(
 		state => ({
 			portfolio: state.main.portfolio,
@@ -32,13 +24,14 @@ export default class Portfolio extends Component {
 		const {classes, portfolio} = this.props;
 		let masonry = [];
 		Object.keys(portfolio).map((k, i) => {
-			let height = i % 2 === 0 ? 200 : 100;
+			let height = i % 2 === 0 ? Math.floor(Math.random() * (200 + 1) + 300) : Math.floor(Math.random() * (200 + 1) + 100);
 			let mainImg = k+'_1.png';
-			console.log('K: ', k, mainImg);
-			console.log('images: ', images);
+			let title = portfolio[k].title;
+			let image = '/store/images/'+mainImg;
 			masonry.push(
-				<div key={k+masonry.length} className={classes.masonryContainer}>
-					<img src={images[mainImg]} width={'100%'}/>
+				<div key={k+masonry.length} className={classes.masonryContainer} style={{height: `${height}px`}}>
+					<div style={{height: '100%', width: '100%', background: 'url('+image+') center/cover'}}/>
+					<div className={classes.infoHover}>{title}</div>
 				</div>
 			);
 		});
@@ -49,10 +42,17 @@ export default class Portfolio extends Component {
 		const {classes, portfolio} = this.props;
 console.log('portfolio: ', this.props.portfolio);
 		return (
-			<div className={classes.testWrapper}>
+			<div className={classes.pageWrapper}>
 				<MasonryLayout
 					id="masonry-layout"
-					infiniteScroll={this.loadItems}>
+					infiniteScroll={this.loadItems}
+					sizes = {[
+						{ columns: 1, gutter: 10 },
+						{ mq: '768px', columns: 2, gutter: 15 },
+						{ mq: '1024px', columns: 3, gutter: 20 },
+						{ mq: '1440px', columns: 4, gutter: 20 },
+						{ mq: '1900px', columns: 5, gutter: 20 }
+					]}>
 					{this.getMasonry()}
 				</MasonryLayout>
 			</div>
