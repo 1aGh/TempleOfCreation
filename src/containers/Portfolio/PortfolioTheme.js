@@ -1,9 +1,10 @@
 const theme = theme => ({
 	pageWrapper: {
 		flex: '1 1 auto',
-		padding: '50px',
+		// padding: '50px',
 		display: 'flex',
 		justifyContent: 'center',
+		overflow: 'scroll',
 	},
 	infoHover: {
 		position: 'absolute',
