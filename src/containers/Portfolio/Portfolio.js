@@ -31,8 +31,8 @@ export default class Portfolio extends Component {
 			let title = portfolio[k].title;
 			let image = '/store/images/'+mainImg;
 			masonry.push(
-				<Zoom in={true} style={{transitionDelay: i*20}}>
-					<div key={k+masonry.length} className={classes.masonryContainer} style={{height: `${height}px`}}>
+				<Zoom key={k+masonry.length} in={true} style={{transitionDelay: i*20}}>
+					<div className={classes.masonryContainer} style={{height: `${height}px`}}>
 						<div style={{height: '100%', width: '100%', background: 'url('+image+') center/cover'}}/>
 						<div className={classes.infoHover}>{title}</div>
 					</div>
