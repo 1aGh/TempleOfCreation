@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import { withStyles } from 'material-ui/styles';
 import theme from './PortfolioTheme.js';
 import MasonryLayout from 'react-masonry-layout';
+import Zoom from 'material-ui/transitions/Zoom';
 
 @connect(
 		state => ({
@@ -24,15 +25,18 @@ export default class Portfolio extends Component {
 		const {classes, portfolio} = this.props;
 		let masonry = [];
 		Object.keys(portfolio).map((k, i) => {
-			let height = i % 2 === 0 ? Math.floor(Math.random() * (200 + 1) + 300) : Math.floor(Math.random() * (200 + 1) + 100);
+			// let height = i % 2 === 0 ? Math.floor(Math.random() * (200 + 1) + 300) : Math.floor(Math.random() * (200 + 1) + 100);
+			let height = i % 2 === 0 ? 200 : 300;
 			let mainImg = k+'_1.png';
 			let title = portfolio[k].title;
 			let image = '/store/images/'+mainImg;
 			masonry.push(
-				<div key={k+masonry.length} className={classes.masonryContainer} style={{height: `${height}px`}}>
-					<div style={{height: '100%', width: '100%', background: 'url('+image+') center/cover'}}/>
-					<div className={classes.infoHover}>{title}</div>
-				</div>
+				<Zoom in={true} style={{transitionDelay: i*20}}>
+					<div key={k+masonry.length} className={classes.masonryContainer} style={{height: `${height}px`}}>
+						<div style={{height: '100%', width: '100%', background: 'url('+image+') center/cover'}}/>
+						<div className={classes.infoHover}>{title}</div>
+					</div>
+				</Zoom>
 			);
 		});
 		return masonry;
