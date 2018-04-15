@@ -38,7 +38,7 @@ export default class Portfolio extends Component {
 		let masonry = [];
 		portfolio.map((obj, i) => {
 			// let height = i % 2 === 0 ? Math.floor(Math.random() * (200 + 1) + 300) : Math.floor(Math.random() * (200 + 1) + 100);
-			console.log('obj: ', obj, i);
+
 			let height = i % 2 === 0 ? 200 : 300;
 			let id = obj.id;
 			let mainImg = id+'_1.png';
@@ -71,7 +71,7 @@ export default class Portfolio extends Component {
 	render() {
 		const {classes, portfolio} = this.props;
 		const {dialog, project} = this.state;
-console.log('portfolio: ', this.props.portfolio);
+
 		return (
 			<Scrollbars>
 				<div className={classes.pageWrapper}>

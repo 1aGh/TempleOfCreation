@@ -17,7 +17,7 @@ const portfolioStore = [
 		id: 'kuchynskyKartac',
 		title: 'Kuchyňský kartáč',
 		autor: 'Petr Mojžíšek',
-		year: '201ř',
+		year: '2015',
 		description: 'Paní Salvetová nás oslovila s prosbou o zpracování designu kuchyňského kartáče. Design měl být hravý, přičemž se měl podřizovat funkci. Po prvotních skicách a konzultacích jsme se dopracovali k finální podobě.',
 	},
 ];

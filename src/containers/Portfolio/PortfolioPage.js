@@ -25,6 +25,7 @@ export default class PortfolioPage extends Component {
 		let year = project && project.year ? project.year : '';
 		let description = project && project.description ? project.description : '';
 		let id = project && project.id ? project.id : '';
+
 		return (
 			<div className={classes.dialogWrapper} style={{backgroundImage: 'url(src/containers/App/pattern.png)'}}>
 				<div className={classes.dialogBar}>

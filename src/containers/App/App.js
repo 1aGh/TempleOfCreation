@@ -122,6 +122,7 @@ class App extends Component {
 		const {location} = this.props;
 		const currentKey = location.pathname.split('/')[1] || '/';
 		const timeout = { enter: 475, exit: 375 };
+
 		return (
 			<JssProvider jss={jss} generateClassName={generateClassName}>
 				<MuiThemeProvider theme={themeMui}>
