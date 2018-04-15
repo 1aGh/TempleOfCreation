@@ -4,7 +4,7 @@ const theme = theme => ({
 		// padding: '50px',
 		display: 'flex',
 		justifyContent: 'center',
-		overflow: 'scroll',
+		// overflow: 'scroll',
 	},
 	infoHover: {
 		position: 'absolute',

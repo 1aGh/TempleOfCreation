@@ -5,6 +5,7 @@ import { withStyles } from 'material-ui/styles';
 import theme from './PortfolioTheme.js';
 import MasonryLayout from 'react-masonry-layout';
 import Zoom from 'material-ui/transitions/Zoom';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 @connect(
 		state => ({
@@ -46,6 +47,8 @@ export default class Portfolio extends Component {
 		const {classes, portfolio} = this.props;
 console.log('portfolio: ', this.props.portfolio);
 		return (
+			<Scrollbars>
+				<div className={classes.pageWrapper}>
 			<div className={classes.pageWrapper}>
 				<MasonryLayout
 					id="masonry-layout"
@@ -60,6 +63,20 @@ console.log('portfolio: ', this.props.portfolio);
 					{this.getMasonry()}
 				</MasonryLayout>
 			</div>
+						<MasonryLayout
+							id="masonry-layout"
+							infiniteScroll={this.loadItems}
+							sizes = {[
+								{ columns: 1, gutter: 10 },
+								{ mq: '768px', columns: 2, gutter: 15 },
+								{ mq: '1024px', columns: 3, gutter: 20 },
+								{ mq: '1440px', columns: 4, gutter: 20 },
+								{ mq: '1900px', columns: 5, gutter: 20 }
+							]}>
+							{this.getMasonry()}
+						</MasonryLayout>
+				</div>
+			</Scrollbars>
 		);
 	}
 }
