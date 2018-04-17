@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import theme from './Menu.scss';
 import Link from 'react-router-dom/Link';
+import Tooltip from 'material-ui/Tooltip';
 
 import MenuIcon from 'react-icons/lib/md/crop-free';
 import Down from 'react-icons/lib/md/keyboard-arrow-down';
@@ -36,7 +37,7 @@ export default class Menu extends Component {
 				let position;
 				switch (k) {
 					case 'menu':
-						label = <div className={theme.label}><MenuIcon className={theme.arrowActive}/></div>;
+						label = <Tooltip id="tooltip-icon" title="Menu"><div className={theme.label}><MenuIcon className={theme.arrowActive}/></div></Tooltip>;
 						position = path === '/kontakty' ? 'top' : 'bottom';
 						break;
 					case 'projekt':
@@ -52,17 +53,17 @@ export default class Menu extends Component {
 						position = 'top';
 						break;
 					case 'backLeft':
-						label = <div className={theme.label}><Left className={theme.arrowActive}/></div>;
+						label = <Tooltip id="tooltip-back" title="Back"><div className={theme.label}><Left className={theme.arrowActive}/></div></Tooltip>;
 						href = '';
 						position = 'left';
 						break;
 					case 'backRight':
-						label = <div className={theme.label}><Right className={theme.arrowActive}/></div>;
+						label = <Tooltip id="tooltip-back" title="Back"><div className={theme.label}><Right className={theme.arrowActive}/></div></Tooltip>;
 						href = '';
 						position = 'right';
 						break;
 					case 'backDown':
-						label = <div className={theme.label}><Down className={theme.arrowActive}/></div>;
+						label = <Tooltip id="tooltip-back" title="Back"><div className={theme.label}><Down className={theme.arrowActive}/></div></Tooltip>;
 						href = '';
 						position = 'bottom';
 						break;
