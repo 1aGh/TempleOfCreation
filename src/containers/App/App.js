@@ -126,7 +126,7 @@ class App extends Component {
 		return (
 			<JssProvider jss={jss} generateClassName={generateClassName}>
 				<MuiThemeProvider theme={themeMui}>
-					<div className={theme.main}>
+					<div className={theme.main} style={{backgroundImage: 'url(/store/static/pattern.png)'}}>
 						<Menu location={location}/>
 						{/* <Iagh mobile={mobile} pongHandle={this.pongHandle} pong={pong}/> */}
 						{pong && <Pong close={this.pongHandle}/>}
