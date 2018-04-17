@@ -25,9 +25,28 @@ export default class PortfolioPage extends Component {
 		let year = project && project.year ? project.year : '';
 		let description = project && project.description ? project.description : '';
 		let id = project && project.id ? project.id : '';
+		let photo;
+
+		if (project && id) {
+			photo = (
+				<div>
+					<div className={classes.photoRow}>
+						<div className={classes.photo} style={{background: 'url(/store/images/'+id+'_1.png) center/cover'}}/>
+						<div className={classes.photo} style={{background: 'url(/store/images/'+id+'_2.png) center/cover'}}/>
+					</div>
+					<div className={classes.photo}>
+						<img height='100%' width='100%' src={'/store/images/'+id+'_3.png'}/>
+					</div>
+					<div className={classes.photoRow}>
+						<div className={classes.photo} style={{background: 'url(/store/images/'+id+'_4.png) center/cover'}}/>
+						<div className={classes.photo} style={{background: 'url(/store/images/'+id+'_5.png) center/cover'}}/>
+					</div>
+				</div>
+			);
+		}
 
 		return (
-			<div className={classes.dialogWrapper} style={{backgroundImage: 'url(src/containers/App/pattern.png)'}}>
+			<div className={classes.dialogWrapper} style={{backgroundImage: 'url(/store/static/pattern.png)'}}>
 				<div className={classes.dialogBar}>
 					<Typography variant='title' align='center' color='textSecondary'>{title}</Typography>
 					<IconButton className={classes.cancelBtn} onClick={handleClose}>
@@ -51,17 +70,7 @@ export default class PortfolioPage extends Component {
 									<div className={classes.desc}>{description}</div>
 								</div>
 							</div>
-							<div className={classes.photoRow}>
-								<div className={classes.photo} style={{background: 'url(/store/images/'+id+'_1.png) center/cover'}}/>
-								<div className={classes.photo} style={{background: 'url(/store/images/'+id+'_2.png) center/cover'}}/>
-							</div>
-							<div className={classes.photo}>
-								<img height='100%' width='100%' src={'/store/images/'+id+'_3.png'}/>
-							</div>
-							<div className={classes.photoRow}>
-								<div className={classes.photo} style={{background: 'url(/store/images/'+id+'_4.png) center/cover'}}/>
-								<div className={classes.photo} style={{background: 'url(/store/images/'+id+'_5.png) center/cover'}}/>
-							</div>
+							{photo}
 					</div>
 			</Scrollbars>
 			</div>
