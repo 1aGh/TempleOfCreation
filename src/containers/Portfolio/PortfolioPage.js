@@ -31,15 +31,15 @@ export default class PortfolioPage extends Component {
 			photo = (
 				<div>
 					<div className={classes.photoRow}>
-						<div className={classes.photo} style={{background: 'url(/store/images/'+id+'_1.png) center/cover'}}/>
-						<div className={classes.photo} style={{background: 'url(/store/images/'+id+'_2.png) center/cover'}}/>
+						<div className={classes.photo} style={{background: 'url(/store/images/'+id+'_1.jpeg) center/cover'}}/>
+						<div className={classes.photo} style={{background: 'url(/store/images/'+id+'_2.jpeg) center/cover'}}/>
 					</div>
 					<div className={classes.photo}>
-						<img height='100%' width='100%' src={'/store/images/'+id+'_3.png'}/>
+						<img height='100%' width='100%' src={'/store/images/'+id+'_3.jpeg'}/>
 					</div>
 					<div className={classes.photoRow}>
-						<div className={classes.photo} style={{background: 'url(/store/images/'+id+'_4.png) center/cover'}}/>
-						<div className={classes.photo} style={{background: 'url(/store/images/'+id+'_5.png) center/cover'}}/>
+						<div className={classes.photo} style={{background: 'url(/store/images/'+id+'_4.jpeg) center/cover'}}/>
+						<div className={classes.photo} style={{background: 'url(/store/images/'+id+'_5.jpeg) center/cover'}}/>
 					</div>
 				</div>
 			);

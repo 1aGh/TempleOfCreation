@@ -41,7 +41,7 @@ export default class Portfolio extends Component {
 
 			let height = i % 2 === 0 ? 200 : 300;
 			let id = obj.id;
-			let mainImg = id+'_1.png';
+			let mainImg = id+'_1.jpeg';
 			let title = obj.title;
 			let image = '/store/images/'+mainImg;
 			masonry.push(
