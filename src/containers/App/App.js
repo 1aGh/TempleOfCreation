@@ -13,6 +13,7 @@ import Iagh from 'Iagh/Iagh';
 import Pong from 'Pong/Pong';
 import Menu from 'Menu/Menu';
 import MenuMap from 'MenuMap/MenuMap';
+import Footer from 'Footer/Footer';
 
 import { MuiThemeProvider, createGenerateClassName, withStyles } from 'material-ui/styles';
 import JssProvider from 'react-jss/lib/JssProvider';
@@ -156,7 +157,8 @@ console.log('THEME: ', themeMui);
 									</CSSTransition>
 								</TransitionGroup>
 							}
-							<Particles className={classes.main} params={particlesParams}/>
+							<Footer/>
+							<Particles className={classes.particles} params={particlesParams}/>
 						</div>
 					</MuiThemeProvider>
 			</JssProvider>

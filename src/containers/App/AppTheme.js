@@ -7,7 +7,6 @@ const theme = theme => ({
 	main: {
 		width: '100%',
 		height: '100%',
-		backgroundColor: 'rgb(49, 47, 47)',
 		// backgroundImage: 'url(/store/static/pattern.svg)',
 		// backgroundRepeat: 'no-repeat',
 		// backgroundSize: 'contain',
@@ -17,6 +16,7 @@ const theme = theme => ({
 		overflow: 'hidden',
 		height: '100%',
 		width: '100%',
+		zIndex: 1,
 	},
 	pageMainInner: {
 		position: 'absolute',
@@ -28,6 +28,13 @@ const theme = theme => ({
 		zIndex: '1',
 		padding: '50px',
 	},
+	particles: {
+		backgroundColor: 'rgb(49, 47, 47)',
+		position: 'fixed',
+		width: '100vw',
+		height: '100vh',
+		zIndex: 0,
+	}
 });
 
 export default theme;

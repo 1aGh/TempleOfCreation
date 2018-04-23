@@ -27,13 +27,13 @@ export default class Menu extends Component {
 
 		if (location) {
 			if (path === '/') {
-				menu = ['kontakty', 'projekt', 'menu', 'portfolio'];
+				menu = ['kontakty', 'projekt', 'portfolio'];
 			} else if (path === '/projekt') {
-				menu = ['backLeft', 'menu'];
+				menu = ['backLeft'];
 			} else if (path === '/portfolio') {
-				menu = ['backRight', 'menu'];
+				menu = ['backRight'];
 			} else if (path === '/kontakty') {
-				menu = ['backDown', 'menu'];
+				menu = ['backDown'];
 			}
 			menu.map((k) => {
 				let label;
