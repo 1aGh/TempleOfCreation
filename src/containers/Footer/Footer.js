@@ -6,6 +6,7 @@ import theme from './FooterTheme.js';
 import { withStyles } from 'material-ui/styles';
 import * as reducer from 'redux/reducer';
 import Typography from 'material-ui/Typography';
+import Collapse from 'material-ui/transitions/Collapse';
 
 import LogoIcon from 'Icons/Logo';
 
@@ -26,8 +27,7 @@ export default class Footer extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			x: 0,
-			y: 0,
+			menu: false,
 		};
 	}
 
@@ -36,12 +36,17 @@ export default class Footer extends Component {
 		this.props.dispatch(reducer.test('hello'));
 	}
 
+	openMenu = () => {
+		this.setState({menu: !this.state.menu});
+	}
+
 	render() {
 		const {classes} = this.props;
 
 		return (
-			<div className={classes.footerWrapper}>
-			</div>
+			<Collapse classes={{container: classes.footerWrapper, entered: classes.footerWrapperEntered}} in={this.state.menu}>
+					<div className={classes.btn} onClick={this.openMenu}>hello</div>
+			</Collapse>
 		);
 	}
 }
