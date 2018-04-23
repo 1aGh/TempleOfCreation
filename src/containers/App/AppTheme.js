@@ -1,8 +1,12 @@
 const theme = theme => ({
+	'@global': {
+		body: {
+			fontFamily: "'Roboto Mono', monospace",
+		}
+	},
 	main: {
 		width: '100%',
 		height: '100%',
-		fontFamily: ['Roboto Mono', 'monospace'],
 		backgroundColor: 'rgb(49, 47, 47)',
 		// backgroundImage: 'url(/store/static/pattern.svg)',
 		// backgroundRepeat: 'no-repeat',

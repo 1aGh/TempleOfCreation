@@ -54,10 +54,11 @@ const theme = createMuiTheme({
 		text: {
 			secondary: sunset,
 			primary: sand,
+			disabled: cinereous,
 		},
 	},
 	typography: {
-		fontFamily: "'Roboto Mono', 'monospace'",
+		fontFamily: "'Roboto Mono', monospace",
 		fontSize: 14,
 		htmlFontSize: 10,
 		fontWeightLight: 300,
