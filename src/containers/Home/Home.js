@@ -5,6 +5,7 @@ import Link from 'react-router-dom/Link';
 import theme from './HomeTheme.js';
 import { withStyles } from 'material-ui/styles';
 import * as reducer from 'redux/reducer';
+import Typography from 'material-ui/Typography';
 
 import LogoIcon from 'Icons/Logo';
 
@@ -58,7 +59,7 @@ export default class Home extends Component {
 				<div className={classes.homeContainer}>
 					<div className={classes.animContainer} ref={(div) => { this.animContainer = div; }}>
 						<LogoIcon className={classes.logo} onClick={this.testHandle}/>
-						<div className={classes.title}>Temple of creation comming soon</div>
+						<Typography>Temple of creation comming soon</Typography>
 					</div>
 				</div>
 			</div>
