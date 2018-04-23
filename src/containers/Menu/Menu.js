@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import theme from './Menu.scss';
+import theme from './MenuTheme.js';
+import { withStyles } from 'material-ui/styles';
 import Link from 'react-router-dom/Link';
 import Tooltip from 'material-ui/Tooltip';
 
@@ -10,13 +11,16 @@ import Up from 'react-icons/lib/md/keyboard-arrow-up';
 import Left from 'react-icons/lib/md/keyboard-arrow-left';
 import Right from 'react-icons/lib/md/keyboard-arrow-right';
 
+@withStyles(theme)
+
 export default class Menu extends Component {
 	static propTypes = {
 		location: PropTypes.any,
+		classes: PropTypes.any,
 	};
 
 	render() {
-		const {location} = this.props;
+		const {location, classes} = this.props;
 		let content = [];
 		let menu = [];
 		let path = location.pathname;
@@ -37,33 +41,33 @@ export default class Menu extends Component {
 				let position;
 				switch (k) {
 					case 'menu':
-						label = <Tooltip id="tooltip-icon" title="Menu"><div className={theme.label}><MenuIcon className={theme.arrowActive}/></div></Tooltip>;
+						label = <Tooltip id="tooltip-icon" title="Menu"><div className={classes.label}><MenuIcon className={classes.arrowActive}/></div></Tooltip>;
 						position = path === '/kontakty' ? 'top' : 'bottom';
 						break;
 					case 'projekt':
-						label = <div className={theme.label + ' ' + theme.rotateRt}><Up className={theme.arrow}/>{k.toUpperCase()}</div>;
+						label = <div className={classes.label + ' ' + classes.rotateRt}><Up className={classes.arrow}/>{k.toUpperCase()}</div>;
 						position = 'right';
 						break;
 					case 'portfolio':
-						label = <div className={theme.label + ' ' +  theme.rotateLf}><Up className={theme.arrow}/>{k.toUpperCase()}</div>;
+						label = <div className={classes.label + ' ' +  classes.rotateLf}><Up className={classes.arrow}/>{k.toUpperCase()}</div>;
 						position = 'left';
 						break;
 					case 'kontakty':
-						label = <div className={theme.label}><Up className={theme.arrow}/>{k.toUpperCase()}</div>;
+						label = <div className={classes.label}><Up className={classes.arrow}/>{k.toUpperCase()}</div>;
 						position = 'top';
 						break;
 					case 'backLeft':
-						label = <Tooltip id="tooltip-back" title="Back"><div className={theme.label}><Left className={theme.arrowActive}/></div></Tooltip>;
+						label = <Tooltip id="tooltip-back" title="Back"><div className={classes.label}><Left className={classes.arrowActive}/></div></Tooltip>;
 						href = '';
 						position = 'left';
 						break;
 					case 'backRight':
-						label = <Tooltip id="tooltip-back" title="Back"><div className={theme.label}><Right className={theme.arrowActive}/></div></Tooltip>;
+						label = <Tooltip id="tooltip-back" title="Back"><div className={classes.label}><Right className={classes.arrowActive}/></div></Tooltip>;
 						href = '';
 						position = 'right';
 						break;
 					case 'backDown':
-						label = <Tooltip id="tooltip-back" title="Back"><div className={theme.label}><Down className={theme.arrowActive}/></div></Tooltip>;
+						label = <Tooltip id="tooltip-back" title="Back"><div className={classes.label}><Down className={classes.arrowActive}/></div></Tooltip>;
 						href = '';
 						position = 'bottom';
 						break;
@@ -74,7 +78,7 @@ export default class Menu extends Component {
 					<Link
 						key={k+content.length}
 						to={'/'+href}
-						className={theme.link + ' ' + theme[position+'Btn']}>
+						className={classes.link + ' ' + classes[position+'Btn']}>
 						{label}
 					</Link>
 				);
