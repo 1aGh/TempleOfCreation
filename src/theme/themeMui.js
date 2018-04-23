@@ -1,9 +1,9 @@
 import { createMuiTheme } from 'material-ui/styles';
 
-let sand = 'rgb(233, 197, 121)';
-let blackoliveDark = 'rgb(36, 34, 42)';
-let blackolive = 'rgb(68, 66, 77)';
-let blackolive80 = 'rgb(121, 117, 138)';
+let sand = 'rgb(234, 181, 67)';
+let blackoliveDark = 'rgb(26, 25, 25)';
+let blackolive = 'rgb(49, 47, 47)';
+let blackolive80 = 'rgb(65, 62, 62)';
 let burntorange = 'rgb(215, 128, 59)';
 let burntorange80 ='rgb(213, 151, 90)';
 let cinereous = 'rgb(192, 186, 150)';
@@ -52,8 +52,8 @@ const theme = createMuiTheme({
 			contrastText: white,
 		},
 		text: {
-			secondary: sand,
-			primary: blackolive,
+			secondary: sunset,
+			primary: sand,
 		},
 	},
 	typography: {
