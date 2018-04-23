@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Link from 'react-router-dom/Link';
-import theme from './Home.scss';
+import theme from './HomeTheme.js';
+import { withStyles } from 'material-ui/styles';
 import * as reducer from 'redux/reducer';
 
 import LogoIcon from 'Icons/Logo';
@@ -13,9 +14,12 @@ import LogoIcon from 'Icons/Logo';
 		})
 )
 
+@withStyles(theme)
+
 export default class Home extends Component {
 	static propTypes = {
 		dispatch: PropTypes.any,
+		classes: PropTypes.any,
 	};
 
 	constructor(props){
@@ -47,12 +51,14 @@ export default class Home extends Component {
 	}
 
 	render() {
+		const {classes} = this.props;
+
 		return (
-			<div className={theme.homeWrapper} onMouseMove={this.mouseHandle.bind(this)}>
-				<div className={theme.homeContainer}>
-					<div className={theme.animContainer} ref={(div) => { this.animContainer = div; }}>
-						<LogoIcon className={theme.logo} onClick={this.testHandle}/>
-						<div className={theme.title}>Temple of creation comming soon</div>
+			<div className={classes.homeWrapper} onMouseMove={this.mouseHandle.bind(this)}>
+				<div className={classes.homeContainer}>
+					<div className={classes.animContainer} ref={(div) => { this.animContainer = div; }}>
+						<LogoIcon className={classes.logo} onClick={this.testHandle}/>
+						<div className={classes.title}>Temple of creation comming soon</div>
 					</div>
 				</div>
 			</div>
