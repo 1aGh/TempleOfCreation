@@ -157,7 +157,7 @@ console.log('THEME: ', themeMui);
 									</CSSTransition>
 								</TransitionGroup>
 							}
-							<Footer/>
+							<Footer location={location}/>
 							<Particles className={classes.particles} params={particlesParams}/>
 						</div>
 					</MuiThemeProvider>

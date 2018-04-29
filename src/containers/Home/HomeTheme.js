@@ -4,6 +4,7 @@ const theme = theme => ({
 		display: 'flex',
 		flex: '1 1 auto',
 		flexDirection: 'column',
+		zIndex: 9,
 	},
 	homeContainer: {
 		display: 'flex',
