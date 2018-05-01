@@ -1,7 +1,7 @@
 import { createMuiTheme } from 'material-ui/styles';
 
 let sand = 'rgb(234, 181, 67)';
-let blackoliveDark = 'rgb(26, 25, 25)';
+let blackoliveDark = 'rgb(40, 38, 38)';
 let blackolive = 'rgb(49, 47, 47)';
 let blackolive80 = 'rgb(65, 62, 62)';
 let burntorange = 'rgb(215, 128, 59)';
