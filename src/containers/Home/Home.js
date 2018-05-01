@@ -36,12 +36,12 @@ export default class Home extends Component {
 		this.props.dispatch(reducer.test('hello'));
 	}
 
-	mouseHandle = (e) => {
-		if (!this.state.pong) {
-			this.setState({x: e.pageX, y: e.pageY});
-			this.moveDiv();
-		}
-	}
+	// mouseHandle = (e) => {
+	// 	if (!this.state.pong) {
+	// 		this.setState({x: e.pageX, y: e.pageY});
+	// 		this.moveDiv();
+	// 	}
+	// }
 
 	moveDiv = () => {
 		let [moveX, moveY] = [(this.state.x / -20), (this.state.y / -40)];
@@ -56,6 +56,7 @@ export default class Home extends Component {
 
 		return (
 			<div className={classes.homeWrapper} onMouseMove={this.mouseHandle.bind(this)}>
+				// onMouseMove={this.mouseHandle.bind(this)}
 				<div className={classes.homeContainer}>
 					<div className={classes.animContainer} ref={(div) => { this.animContainer = div; }}>
 						<LogoIcon className={classes.logo} onClick={this.testHandle}/>
