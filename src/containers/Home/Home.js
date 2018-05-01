@@ -8,6 +8,7 @@ import * as reducer from 'redux/reducer';
 import Typography from 'material-ui/Typography';
 
 import LogoIcon from 'Icons/Logo';
+import PinIcon from 'Icons/PinIcon';
 
 @connect(
 		state => ({
@@ -51,16 +52,40 @@ export default class Home extends Component {
 		animDiv.style.transition = 'cubic-bezier(0.4, 0, 0.2, 1)';
 	}
 
+	mouseEnter = (type) => {
+		if (!this.state[type]) {
+			this.setState({[type]: true});
+			setTimeout(() => { this.setState({[type]: false}); }, 2000);
+		}
+	}
+
 	render() {
 		const {classes} = this.props;
 
 		return (
-			<div className={classes.homeWrapper} onMouseMove={this.mouseHandle.bind(this)}>
+			<div className={classes.homeWrapper}
 				// onMouseMove={this.mouseHandle.bind(this)}
+				>
 				<div className={classes.homeContainer}>
-					<div className={classes.animContainer} ref={(div) => { this.animContainer = div; }}>
+					<div className={classes.animContainer + ' ' + classes.logoContainer} ref={(div) => { this.animContainer = div; }}>
 						<LogoIcon className={classes.logo} onClick={this.testHandle}/>
-						<Typography>Temple of creation comming soon</Typography>
+						<Typography variant='caption' color='primary'>Temple of creation</Typography>
+					</div>
+					<div className={classes.infoWrapper}>
+						<div className={classes.infoContainer + ' ' + (this.state.pujcovna ? classes.animInfoContainer : '')} onMouseEnter={this.mouseEnter.bind(this,'pujcovna')}>
+							<PinIcon className={classes.pinIcon}/>
+							<Typography align='center'>Půjčovna</Typography>
+							<div className={classes.animIconContainer}>
+								<div className={classes.animIcon} style={{backgroundImage: 'url(\'/store/static/camera_sprite.png\')'}}/>
+							</div>
+						</div>
+						<div className={classes.infoContainer + ' ' + (this.state.kontakt ? classes.animInfoContainer : '')} onMouseEnter={this.mouseEnter.bind(this,'kontakt')}>
+							<PinIcon className={classes.pinIcon}/>
+							<Typography align='center'>Kontakty</Typography>
+							<div className={classes.animIconContainer}>
+								<div className={classes.animIcon} style={{backgroundImage: 'url(\'/store/static/phone_sprite.png\')'}}/>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
