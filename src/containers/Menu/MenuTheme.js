@@ -9,32 +9,32 @@ const theme = theme => ({
 		alignItems: 'center',
 		zIndex: '10',
 		transition: theme.transitions.create(),
-		// @include transition(all cubic-bezier(0.4, 0.0, 0.2, 1) .475s),
-		overflow: 'hidden',
+		overflow: 'visible',
 		arrow: {
 			fontSize: '0rem',
 			transition: theme.transitions.create(),
-			// @include transition(all cubic-bezier(0.4, 0.0, 0.2, 1) .475s),
 		},
 		arrowActive: {
 			fontSize: '2rem',
 			transition: theme.transitions.create(),
-			// @include transition(all cubic-bezier(0.4, 0.0, 0.2, 1) .475s),
 		},
 		'&:visited': {
 			color: theme.colors.sand,
 		},
 		'&:hover': {
-			letterSpacing: '5rem',
-			fontSize: '0.8rem',
-			color: theme.colors.sunset,
-			backgroundColor: 'rgba(0, 0, 0, 0.2)',
+			letterSpacing: '2rem',
+			color: theme.colors.sand,
+			// backgroundColor: 'rgba(0, 0, 0, 0.2)',
 			arrow: {
 				fontSize: '2rem',
 			},
 			arrowActive: {
 				fontSize: '3rem',
-			}
+			},
+			'& $horArrow, & $verArrow': {
+				opacity: 0,
+				transform: 'translate(0px, 0px) !important',
+			},
 		}
 	},
 	label: {
@@ -51,7 +51,7 @@ const theme = theme => ({
 		padding: '10px 0 10px 0',
 	},
 	bottomBtn: {
-		bottom: '0',
+		bottom: '50px',
 		left: '0',
 		width: '100%',
 		height: '30px',
@@ -76,7 +76,63 @@ const theme = theme => ({
 	},
 	rotateLf: {
 		transform: 'rotate(-90deg)',
-	}
+	},
+	verArrow: {
+		position: 'absolute',
+		height: '60px',
+		transition: theme.transitions.create(),
+	},
+	horArrow: {
+		position: 'absolute',
+		width: '60px',
+		transition: theme.transitions.create(),
+	},
+	backVerArrow: {
+		height: '100px',
+	},
+	animBackLeft: {
+		animation: 'leftarrow 3000ms cubic-bezier(0.4, 0.0, 0.2, 1) infinite',
+	},
+	animBackRight: {
+		animation: 'rightarrow 3000ms cubic-bezier(0.4, 0.0, 0.2, 1) infinite',
+	},
+	backHorArrow: {
+		width: '100px',
+		animation: 'downarrow 3000ms cubic-bezier(0.4, 0.0, 0.2, 1) infinite',
+	},
+	'@keyframes downarrow': {
+		'0%': {
+			transform: 'translateY(10px)',
+		},
+		'50%': {
+			transform: 'translateY(0px)',
+		},
+		'100%': {
+			transform: 'translateY(10px)',
+		},
+	},
+	'@keyframes leftarrow': {
+		'0%': {
+			transform: 'translateX(10px)',
+		},
+		'50%': {
+			transform: 'translateX(0px)',
+		},
+		'100%': {
+			transform: 'translateX(10px)',
+		},
+	},
+	'@keyframes rightarrow': {
+		'0%': {
+			transform: 'translateX(-10px)',
+		},
+		'50%': {
+			transform: 'translateX(0px)',
+		},
+		'100%': {
+			transform: 'translateX(-10px)',
+		},
+	},
 });
 
 export default theme;
