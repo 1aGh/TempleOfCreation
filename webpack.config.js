@@ -33,7 +33,7 @@ module.exports = {
 			path.resolve('./node_modules'),
 			path.resolve('./store'),
 		],
-		extensions: [".tsx", ".ts", ".js", "scss", ".png"],
+		extensions: [".tsx", ".ts", ".js", "scss", ".png", ".jpeg"],
 	},
 	output: {
 		path: path.resolve(__dirname, "dist"),
