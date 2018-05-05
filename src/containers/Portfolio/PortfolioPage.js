@@ -1,78 +1,101 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import * as reducer from 'redux/reducer';
 import theme from './PortfolioPageTheme.js';
 import { withStyles } from 'material-ui/styles';
 import { Scrollbars } from 'react-custom-scrollbars';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
+import Slider from 'Slider/Slider';
 
 import CancelIcn from '@material-ui/icons/Clear';
 
 @withStyles(theme)
+
+@connect(
+		state => ({
+			portfolioImg: state.main.portfolioImg,
+		})
+)
 
 export default class PortfolioPage extends Component {
 	static propTypes = {
 		classes: PropTypes.any,
 		project: PropTypes.any,
 		handleClose: PropTypes.any,
+		portfolioImg: PropTypes.any,
+		dispatch: PropTypes.any,
 	};
 
+	componentDidMount = () => {
+		const {portfolioImg} = this.props;
+		let id = this.props.project.id;
+		let req;
+		if (portfolioImg && !portfolioImg[id]) {
+			switch (id) {
+				case 'kuchynskyKartac':
+				req = this.requireAll(require.context('../../../store/images/kuchynskyKartac', true, /.*\.jpeg|.png$/));
+				break;
+				case 'motylekSurf':
+				req = this.requireAll(require.context('../../../store/images/motylekSurf', true, /.*\.jpeg|.png$/));
+				break;
+				case 'studentContainer':
+				req = this.requireAll(require.context('../../../store/images/studentContainer', true, /.*\.jpeg|.png$/));
+				break;
+			}
+			this.props.dispatch(reducer.addImages(id, req));
+		}
+	}
+
+	requireAll = (requireContext) => {
+		return requireContext.keys().map(requireContext);
+	}
+
 	render() {
-		const {classes, project, handleClose} = this.props;
+		const {classes, project, handleClose, portfolioImg} = this.props;
 
 		let title = project && project.title ? project.title : '';
 		let autor = project && project.autor ? project.autor : '';
 		let year = project && project.year ? project.year : '';
 		let description = project && project.description ? project.description : '';
 		let id = project && project.id ? project.id : '';
-		let photo;
+		let type = project && project.type ? project.type : '';
+		let photo = [];
+		let video;
+		let slider;
 
-		if (project && id) {
-			photo = (
-				<div>
-					<div className={classes.photoRow}>
-						<div className={classes.photo} style={{background: 'url(/store/images/'+id+'_1.jpeg) center/cover'}}/>
-						<div className={classes.photo} style={{background: 'url(/store/images/'+id+'_2.jpeg) center/cover'}}/>
-					</div>
-					<div className={classes.photo}>
-						<img height='100%' width='100%' src={'/store/images/'+id+'_3.jpeg'}/>
-					</div>
-					<div className={classes.photoRow}>
-						<div className={classes.photo} style={{background: 'url(/store/images/'+id+'_4.jpeg) center/cover'}}/>
-						<div className={classes.photo} style={{background: 'url(/store/images/'+id+'_5.jpeg) center/cover'}}/>
-					</div>
-				</div>
-			);
-		}
+		// if (portfolioImg && portfolioImg[id]) {
+		// 	portfolioImg[id].map((img, index) => {
+		// 		photo.push(
+		// 			<div key={id+index} className={classes.image}>
+		// 				<img src={img}/>
+		// 			</div>
+		// 		);
+		// 	});
+		// }
+
+		let settings = {
+			dots: false,
+			infinite: true,
+			speed: 500,
+			slidesToShow: 1,
+			slidesToScroll: 1
+		};
+		let src = type === 'img' ? (portfolioImg && portfolioImg[id] ? portfolioImg[id] : []) : video;
+		slider = (
+			<Slider type={type} src={src}/>
+		);
 
 		return (
 			<div className={classes.dialogWrapper} style={{backgroundImage: 'url(/store/static/pattern.png)'}}>
-				<div className={classes.dialogBar}>
+				{/* <div className={classes.dialogBar}>
 					<Typography variant='title' align='center' color='textSecondary'>{title}</Typography>
 					<IconButton className={classes.cancelBtn} onClick={handleClose}>
 						<CancelIcn/>
 					</IconButton>
-				</div>
-				<Scrollbars>
-					<div className={classes.contentContainer}>
-							<div className={classes.infoWrapper}>
-								<div className={classes.titleWr + ' ' + classes.border}>{title}</div>
-								<div className={classes.row}>
-									<div className={classes.thCell}>{'Autor: '}</div>
-									<div className={classes.cell}>{autor}</div>
-								</div>
-								<div className={classes.row}>
-									<div className={classes.thCell}>{'Rok: '}</div>
-									<div className={classes.cell}>{year}</div>
-								</div>
-								<div className={classes.description + ' ' + classes.border}>
-									<div className={classes.descTitle}>{'Popis:'}</div>
-									<div className={classes.desc}>{description}</div>
-								</div>
-							</div>
-							{photo}
-					</div>
-			</Scrollbars>
+				</div> */}
+				{slider}
 			</div>
 		);
 	}

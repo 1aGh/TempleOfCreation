@@ -90,7 +90,7 @@ const theme = theme => ({
 		flex: '1 1 auto',
 		margin: '10px',
 		overflow: 'hidden',
-	}
+	},
 });
 
 export default theme;
