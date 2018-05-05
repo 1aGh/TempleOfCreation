@@ -81,14 +81,17 @@ const theme = theme => ({
 		position: 'absolute',
 		height: '60px',
 		transition: theme.transitions.create(),
+		fill: theme.colors.sand,
 	},
 	horArrow: {
 		position: 'absolute',
 		width: '60px',
 		transition: theme.transitions.create(),
+		fill: theme.colors.sand,
 	},
 	backVerArrow: {
 		height: '100px',
+		fill: theme.colors.sand,
 	},
 	animBackLeft: {
 		animation: 'leftarrow 3000ms cubic-bezier(0.4, 0.0, 0.2, 1) infinite',
