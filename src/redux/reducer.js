@@ -7,28 +7,30 @@ function updateAppState (state, struct){
 }
 
 export const Actions = {
-	'TEST': 'toc/app/TEST',
+	'ADDIMAGES': 'toc/app/ADDIMAGES',
 };
 
 export const initialState = {
 	main: {
 		portfolio: portfolioStore,
+		portfolioImg: {},
 	},
 };
 
 export default function reducer(state = initialState, action = {}) {
 	switch (action.type) {
-		case Actions.TEST:
+		case Actions.ADDIMAGES:
 		console.log('action', action);
-			return updateAppState(state, {test: {$set: action.value}});
+			return updateAppState(state, {portfolioImg: {$set: {[action.id]: action.value}}});
 		default:
 			return state;
 	}
 }
 
-export function test (value) {
+export function addImages (id, images) {
 	return {
-		type: Actions.TEST,
-		value: value,
+		type: Actions.ADDIMAGES,
+		value: images,
+		id: id,
 	};
 }
