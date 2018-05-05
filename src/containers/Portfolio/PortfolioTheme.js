@@ -8,20 +8,20 @@ const theme = theme => ({
 	},
 	infoHover: {
 		position: 'absolute',
-		width: '100%',
-		height: '100%',
+		width: '80%',
+		height: '80%',
+		padding: '10px',
+		margin: '-10px',
 		opacity: 0,
 		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center',
-		top: 0,
-		left: 0,
-		color: theme.colors.white,
+		top: '10%',
+		left: '10%',
+		color: theme.colors.sand,
 		cursor: 'pointer',
 		transition: theme.transitions.create(),
 		'&:hover': {
 			opacity: 1,
-			background: 'rgba(0,0,0,0.7)',
+			background: 'rgba(49, 47, 47, 0.95)',
 		}
 	},
 	masonryContainer: {

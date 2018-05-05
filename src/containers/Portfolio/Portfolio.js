@@ -43,12 +43,14 @@ export default class Portfolio extends Component {
 			let id = obj.id;
 			let mainImg = id+'_1.jpeg';
 			let title = obj.title;
-			let image = '/store/images/'+mainImg;
+			let category = obj.category;
+			let year = obj.year;
+			let image = '/store/images/'+id+'/'+mainImg;
 			masonry.push(
 				<Zoom key={id+masonry.length} in={true} style={{transitionDelay: i*20}}>
 					<div className={classes.masonryContainer} style={{height: `${height}px`}} onClick={this.openDialog.bind(this, obj, i)}>
 						<div style={{height: '100%', width: '100%', background: 'url('+image+') center/cover'}}/>
-						<div className={classes.infoHover}>{title}</div>
+						<div className={classes.infoHover}>{title}<br/>{category}<br/>{year}</div>
 					</div>
 				</Zoom>
 			);
