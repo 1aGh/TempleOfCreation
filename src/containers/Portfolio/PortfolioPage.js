@@ -9,7 +9,7 @@ import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import Slider from 'Slider/Slider';
 
-import CancelIcn from '@material-ui/icons/Clear';
+import CancelIcn from 'Icons/Close';
 
 @withStyles(theme)
 
@@ -89,12 +89,12 @@ export default class PortfolioPage extends Component {
 
 		return (
 			<div className={classes.dialogWrapper} style={{backgroundImage: 'url(/store/static/pattern.png)'}}>
-				{/* <div className={classes.dialogBar}>
-					<Typography variant='title' align='center' color='textSecondary'>{title}</Typography>
+				<div className={classes.dialogBar}>
+					<div className={classes.title}>{title}</div>
 					<IconButton className={classes.cancelBtn} onClick={handleClose}>
-						<CancelIcn/>
+						<CancelIcn className={classes.closeIcn}/>
 					</IconButton>
-				</div> */}
+				</div>
 				{slider}
 			</div>
 		);

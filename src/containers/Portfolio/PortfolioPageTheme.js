@@ -2,95 +2,59 @@ const theme = theme => ({
 	dialogWrapper: {
 		display: 'flex',
 		height: '100%',
-		backgroundColor: '#E7C88F',
+		backgroundColor: theme.colors.blackolive,
 		flexDirection: 'column',
 	},
 	dialogBar: {
-		width: '100vw',
-		height: '100px',
-		flex: '0 0 100px',
-		background: theme.colors.blackolive,
-		position: 'relative',
-		color: theme.colors.sand,
+		width: '250px',
+		height: '50px',
+		background: theme.colors.sand,
+		position: 'absolute',
+		color: theme.colors.blackolive,
 		display: 'flex',
 		justifyContent: 'center',
-		alignItems: 'flex-end',
+		alignItems: 'center',
+		left: 0,
+		top: 0,
+		zIndex: 10,
 		'&:after': {
 			content: '""',
 			position: 'absolute',
-			bottom: '-100px',
+			bottom: '-50px',
 			left: '0',
 			width: '0',
 			height: '0',
-			borderLeft: '50vw solid transparent',
-			borderRight: '50vw solid transparent',
-			borderTop: ['100px', 'solid', theme.colors.blackolive],
-			zIndex: '999',
+			// borderLeft: '75px solid transparent',
+			borderRight: '250px solid transparent',
+			borderTop: ['50px', 'solid', theme.colors.sand],
+			zIndex: 10,
 		},
 	},
 	cancelBtn: {
 		position: 'absolute',
-		top: '20px',
-		left: '20px',
+		top: '10px',
+		left: '10px',
 		fontSize: '2rem',
 		cursor: 'pointer',
-		color: theme.colors.sand,
+		color: theme.colors.blackolive,
 		transition: theme.transitions.create(),
+		zIndex: 11,
 		'&:hover': {
-			opacity: '0.5',
+			transform: 'rotate(360deg)'
 		}
 	},
-	contentContainer: {
-		flex: '1 1 auto',
-		paddingTop: '100px',
+	closeIcn: {
+		stroke: theme.colors.blackolive,
+		height: '100%',
+		width: '100%',
 	},
-	infoWrapper: {
-		color: theme.colors.blackolive,
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		padding: '40px 0 20px 0',
-	},
-	border: {
-		border: ['solid', '2px', theme.colors.blackolive],
-		margin: '-1px',
-		padding: '10px',
-	},
-	titleWr: {
-		width: '400px',
-	},
-	row: {
-		display: 'flex',
-		flexDirection: 'row',
-		width: '400px',
-		border: ['solid', '2px', theme.colors.blackolive],
-		padding: '0 10px',
-		margin: '-1px 0',
-	},
-	thCell: {
-		flex: '0 0 100px',
-		borderRight: ['solid', '2px', theme.colors.blackolive],
-		padding: '10px 0',
-	},
-	cell: {
-		flex: '1 1 auto',
-		padding: '10px',
-	},
-	description: {
-		width: '400px',
-	},
-	descTitle: {
-		paddingBottom: '5px',
-	},
-	photoRow: {
-		minHeight: '400px',
-		display: 'flex',
-	},
-	photo: {
-		flex: '1 1 auto',
-		margin: '10px',
-		overflow: 'hidden',
-	},
+	title: {
+		marginLeft: '3rem',
+		paddingLeft: '20px',
+		paddingRight: '20px',
+		fontSize: '1.2rem',
+		textWrap: 'wrap',
+	}
 });
 
 export default theme;

@@ -22,6 +22,7 @@ const theme = theme => ({
 		left: '20px',
 		cursor: 'pointer',
 		transition: theme.transitions.create(),
+		zIndex: 10,
 		'&:hover': {
 			transform: 'translateX(-10px)',
 		}
@@ -29,6 +30,19 @@ const theme = theme => ({
 	arrow: {
 		height: '100%',
 		fill: theme.colors.blackolive,
+	},
+	transition: {
+		flex: '1 1 auto'
+	},
+	counter: {
+		position: 'absolute',
+		left: 20,
+		bottom: 20,
+		color: theme.colors.sand,
+		fontSize: '2rem',
+	},
+	counterIndex: {
+
 	}
 });
 

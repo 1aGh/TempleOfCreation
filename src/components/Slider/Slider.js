@@ -55,6 +55,7 @@ export default class Slider extends Component {
 		const {next} = this.state;
 console.log('PROPSS::: ', this.props);
 		let carousel = [];
+		let counter = src && src.length ? src.length : 0;
 		if (type === 'img') {
 			src.map((img, index) => {
 				carousel.push(
@@ -70,7 +71,7 @@ console.log('PROPSS::: ', this.props);
 							exitActive: animation[next ? 'toLeftActive' : 'toRightActive'],
 						}}
 						>
-							<div>hello{index}</div>
+							<div style={{height: '100%', width: '100%', background: 'url('+img+') center/cover'}}/>
 						</CSSTransition>
 				);
 			});
@@ -86,6 +87,11 @@ console.log('PROPSS::: ', this.props);
 					})}
 				</TransitionGroup>
 				<div className={classes.forward} onClick={this.sliderHandle.bind(this, 'next')}><Right className={classes.arrow}/></div>
+				<div className={classes.counter}>
+					<div className={classes.counterIndex}>{this.state.index+1}</div>
+					<div className={classes.counterLine}>/</div>
+					<div className={classes.counterLength}>{counter}</div>
+				</div>
 			</div>
 		);
 	}
