@@ -102,6 +102,7 @@ const theme = theme => ({
 	backHorArrow: {
 		width: '100px',
 		animation: 'downarrow 3000ms cubic-bezier(0.4, 0.0, 0.2, 1) infinite',
+		fill: theme.colors.sand,
 	},
 	'@keyframes downarrow': {
 		'0%': {
