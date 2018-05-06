@@ -32,17 +32,35 @@ const theme = theme => ({
 		fill: theme.colors.blackolive,
 	},
 	transition: {
-		flex: '1 1 auto'
+		flex: '1 1 auto',
+		overflow: 'hidden',
 	},
 	counter: {
 		position: 'absolute',
 		left: 20,
 		bottom: 20,
 		color: theme.colors.sand,
-		fontSize: '2rem',
+		fontSize: '3.5rem',
+		fontWeight: '300',
+		width: '100px',
+		height: '100px',
 	},
 	counterIndex: {
-
+		top: 0,
+		position: 'absolute',
+	},
+	counterLine: {
+		position: 'absolute',
+		top: -30,
+		left: 10,
+		transform: 'rotate(20deg)',
+		fontSize: '120px',
+		fontWeight: '100',
+	},
+	counterLength: {
+		position: 'absolute',
+		right: 0,
+		bottom: 0,
 	}
 });
 
