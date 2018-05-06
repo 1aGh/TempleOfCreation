@@ -76,6 +76,9 @@ export default class Portfolio extends Component {
 
 		return (
 			<Scrollbars>
+				<div className={classes.dialogBar}>
+					<div className={classes.title}>PORTFOLIO</div>
+				</div>
 				<div className={classes.pageWrapper}>
 						<MasonryLayout
 							id="masonry-layout"

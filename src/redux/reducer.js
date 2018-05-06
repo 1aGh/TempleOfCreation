@@ -1,5 +1,6 @@
 import update from 'immutability-helper';
 import portfolioStore from 'portfolioStore';
+import pudorysText from 'pudorysText';
 
 function updateAppState (state, struct){
 	let router = 'main';
@@ -14,6 +15,7 @@ export const initialState = {
 	main: {
 		portfolio: portfolioStore,
 		portfolioImg: {},
+		pudorysText: pudorysText,
 	},
 };
 

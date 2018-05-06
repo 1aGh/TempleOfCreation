@@ -29,6 +29,34 @@ const theme = theme => ({
 		padding: '5px',
 		border: ['2px', 'dashed', theme.colors.blackolive],
 	},
+	dialogBar: {
+		width: '250px',
+		height: '50px',
+		background: theme.colors.sand,
+		position: 'fixed',
+		color: theme.colors.blackolive,
+		display: 'flex',
+		alignItems: 'center',
+		left: 0,
+		top: 0,
+		zIndex: 10,
+		'&:after': {
+			content: '""',
+			position: 'absolute',
+			bottom: '-50px',
+			left: '0',
+			width: '0',
+			height: '0',
+			borderRight: '250px solid transparent',
+			borderTop: ['50px', 'solid', theme.colors.sand],
+			zIndex: 10,
+		},
+	},
+	title: {
+		fontSize: '1.4rem',
+		textWrap: 'wrap',
+		paddingLeft: '20px',
+	}
 });
 
 export default theme;
