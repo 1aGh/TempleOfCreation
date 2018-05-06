@@ -53,7 +53,6 @@ export default class Slider extends Component {
 	render() {
 		const {classes, type, src} = this.props;
 		const {next} = this.state;
-console.log('PROPSS::: ', this.props);
 		let carousel = [];
 		let counter = src && src.length ? src.length : 0;
 		if (type === 'img') {

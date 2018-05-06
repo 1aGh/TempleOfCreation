@@ -20,7 +20,6 @@ export const initialState = {
 export default function reducer(state = initialState, action = {}) {
 	switch (action.type) {
 		case Actions.ADDIMAGES:
-		console.log('action', action);
 			return updateAppState(state, {portfolioImg: {$set: {[action.id]: action.value}}});
 		default:
 			return state;

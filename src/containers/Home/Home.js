@@ -32,11 +32,6 @@ export default class Home extends Component {
 		};
 	}
 
-	testHandle = () => {
-		console.log('CLICK');
-		this.props.dispatch(reducer.test('hello'));
-	}
-
 	// mouseHandle = (e) => {
 	// 	if (!this.state.pong) {
 	// 		this.setState({x: e.pageX, y: e.pageY});
