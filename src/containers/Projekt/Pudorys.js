@@ -9,7 +9,12 @@ export default class Pudorys extends Component {
 	static propTypes = {
 		classes: PropTypes.any,
 		data: PropTypes.any,
+		clickHandle: PropTypes.any,
 	};
+
+	handleChange = (id, index) => {
+		this.props.clickHandle(id, index);
+	}
 
 	render() {
 		const {classes, data} = this.props;
@@ -25,78 +30,78 @@ export default class Pudorys extends Component {
 			let clas;
 			switch (id) {
 				case 'kavarna':
-					h = 110;
-					w = 230;
+					h = 106;
+					w = 226;
 					t = 490;
 					l = 370;
 					clas = classes.orange;
 					break;
 				case 'satna':
-					h = 120;
-					w = 140;
+					h = 116;
+					w = 136;
 					t = 370;
 					l = 460;
 					clas = classes.blue;
 					break;
 				case 'pcUcebna':
-					h = 170;
-					w = 140;
+					h = 166;
+					w = 136;
 					t = 200;
 					l = 460;
 					clas = classes.blue;
 					break;
 				case 'atelier':
-					h = 200;
-					w = 140;
+					h = 196;
+					w = 136;
 					t = 0;
 					l = 460;
 					clas = classes.blue;
 					break;
 				case 'sklad':
-					h = 110;
-					w = 240;
+					h = 106;
+					w = 236;
 					t = 490;
 					l = 130;
 					clas = classes.orange;
 					break;
 				case 'grafDilna':
-					h = 290;
-					w = 200;
+					h = 286;
+					w = 196;
 					t = 200;
 					l = 260;
 					clas = classes.orange;
 					break;
 				case 'drevrucDilna':
-					h = 290;
-					w = 130;
+					h = 286;
+					w = 126;
 					t = 200;
 					l = 130;
 					clas = classes.yellow;
 					break;
 				case 'drevstrojDilna':
-					h = 200;
-					w = 330;
+					h = 196;
+					w = 326;
 					t = 0;
 					l = 130;
 					clas = classes.yellow;
 					break;
 				case 'kovoDilna':
-					h = 200;
-					w = 130;
+					h = 196;
+					w = 126;
 					t = 0;
 					l = 0;
 					clas = classes.yellow;
 					break;
 				case 'siciDilna':
-					h = 200;
-					w = 130;
+					h = 196;
+					w = 126;
 					t = 200;
 					l = 0;
 					clas = classes.yellow;
 					break;
 				case 'lakovna':
-					h = 200;
-					w = 130;
+					h = 196;
+					w = 126;
 					t = 400;
 					l = 0;
 					clas = classes.yellow;
@@ -109,8 +114,8 @@ export default class Pudorys extends Component {
 				left: l,
 			};
 			content.push(
-				<div key={id} className={classes.item + ' ' + clas} style={style}>
-					<div className={classes.num}>{index}</div>
+				<div key={id} className={classes.item + ' ' + clas} style={style} onClick={this.handleChange.bind(this, id, index+1)}>
+					<div className={classes.num}>{index+1}</div>
 					<div className={classes.title}>{title}</div>
 				</div>
 			);

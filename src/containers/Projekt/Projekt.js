@@ -28,6 +28,10 @@ export default class Projekt extends Component {
 		};
 	}
 
+	pudorysHandle = (id, index) => {
+		this.setState({actualPudorys: index, actualPudorysId: id});
+	}
+
 	render() {
 		const {classes, pudorysText} = this.props;
 		const {actualPudorys, actualPudorysId} = this.state;
@@ -61,7 +65,7 @@ export default class Projekt extends Component {
 								{pudorys.desc}
 							</div>
 						</div>
-						<div className={classes.pudorysMap}><Pudorys data={pudorysText}/></div>
+						<div className={classes.pudorysMap}><Pudorys data={pudorysText} clickHandle={this.pudorysHandle}/></div>
 					</div>
 				);
 		}
