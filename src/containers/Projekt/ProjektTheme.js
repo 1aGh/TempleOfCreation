@@ -110,13 +110,39 @@ const theme = theme => ({
 		top: '2rem',
 		fontSize: '0.8rem',
 	},
+	timeline: {
+		padding: '20px',
+		marginTop: '50px',
+		display: 'flex',
+		flexDirection: 'row',
+	},
+	legend: {
+		flex: '0 0 400px',
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		color: theme.colors.sand,
+		animation: 'fadeIn 275ms cubic-bezier(0.4, 0.0, 0.2, 1)',
+	},
 	svgClass: {
-		height: '100%',
-		width: '100%',
+		position: 'absolute',
+		top: '0',
+		left: '0',
+		animation: 'fadeIn 275ms cubic-bezier(0.4, 0.0, 0.2, 1)',
 	},
 	svgWrapper: {
 		height: '400px',
-	}
+		position: 'relative',
+		flex: '1 1 auto',
+	},
+	'@keyframes fadeIn': {
+		'0%': {
+			opacity: 0,
+		},
+		'100%': {
+			opacity: 1,
+		},
+	},
 });
 
 export default theme;

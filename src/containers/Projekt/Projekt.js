@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import { withStyles } from 'material-ui/styles';
 import { Scrollbars } from 'react-custom-scrollbars';
-import Timeline from 'Illustration/timeline_anim.svg';
+import TimelineAnim from 'Illustration/timeline_anim.svg';
+import Timeline from 'Illustration/timeline.svg';
 
 import Pudorys from './Pudorys';
 
@@ -26,6 +27,8 @@ export default class Projekt extends Component {
 		this.state = {
 			actualPudorys: 1,
 			actualPudorysId: 'kavarna',
+			anim: false,
+			showSvg: false,
 		};
 	}
 
@@ -33,9 +36,22 @@ export default class Projekt extends Component {
 		this.setState({actualPudorys: index, actualPudorysId: id});
 	}
 
+	scrollHandle = (e) => {
+		if (e.scrollTop <= 750 && !this.state.showSvg) {
+			Promise.resolve(this.setState({anim: true})).then(
+				setTimeout(() => {
+					this.setState({anim: false});
+				}, 11000),
+				setTimeout(() => {
+					this.setState({showSvg: true});
+				}, 10500)
+			);
+		}
+	}
+
 	render() {
 		const {classes, pudorysText} = this.props;
-		const {actualPudorys, actualPudorysId} = this.state;
+		const {actualPudorys, actualPudorysId, anim, showSvg} = this.state;
 
 		let introduction = (
 			<div className={classes.introduction}>
@@ -71,14 +87,30 @@ export default class Projekt extends Component {
 				);
 		}
 
+		let timelineIcon;
+		if (anim) {
+			timelineIcon = <TimelineAnim/>;
+		}
 		let timeline = (
-			<div className={classes.svgWrapper}>
-				<Timeline/>
+			<div className={classes.timeline}>
+				<div className={classes.svgWrapper}>
+					{timelineIcon}
+					<Timeline className={classes.svgClass} style={{animationPlayState: showSvg ? 'running' : 'paused'}}/>
+				</div>
+				<div className={classes.legend} style={{animationPlayState: showSvg ? 'running' : 'paused'}}>
+					<p>
+						Fáze #1 -  Nalezení vhodných prostor<br/>
+						Fáze #2 - Regenerace prostor<br/>
+						Fáze #3 - Vybavení prostor dle priorit<br/>
+						Fáze #4 - Zahájení provozu<br/>
+						Fáze #5 - Rozvoj
+					</p>
+				</div>
 			</div>
 		);
 
 		return (
-			<Scrollbars>
+			<Scrollbars onScrollFrame={this.scrollHandle.bind(this)}>
 				<div className={classes.dialogBar}>
 					<div className={classes.title}>PROJEKT</div>
 				</div>
