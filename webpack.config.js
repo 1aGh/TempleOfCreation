@@ -32,8 +32,9 @@ module.exports = {
 			path.resolve('./src/theme'),
 			path.resolve('./node_modules'),
 			path.resolve('./store'),
+			path.resolve('./store/static'),
 		],
-		extensions: [".tsx", ".ts", ".js", "scss", ".png", ".jpeg"],
+		extensions: [".tsx", ".ts", ".js", "scss", ".png", ".jpeg", ".svg"],
 	},
 	output: {
 		path: path.resolve(__dirname, "dist"),
@@ -98,13 +99,17 @@ module.exports = {
 					}
 				]
 			},
-			{ test: /\.(jpe?g|png|gif|svg)$/i,
+			{
+				test: /\.svg$/,
+				loader: 'babel-loader!svg-react-loader'
+			},
+			{ test: /\.(jpe?g|png|gif)$/i,
 				use: [
 					'url-loader',
 					'img-loader'
 				]
 			},
-			{ test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+			{ test: /\.(png|woff|woff2|eot|ttf)$/,
 				loader: 'url-loader?limit=100000'
 			}
 		]
