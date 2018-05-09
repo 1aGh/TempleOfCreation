@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import { withStyles } from 'material-ui/styles';
 import { Scrollbars } from 'react-custom-scrollbars';
+import Timeline from 'Illustration/timeline_anim.svg';
 
 import Pudorys from './Pudorys';
 
@@ -70,6 +71,12 @@ export default class Projekt extends Component {
 				);
 		}
 
+		let timeline = (
+			<div className={classes.svgWrapper}>
+				<Timeline/>
+			</div>
+		);
+
 		return (
 			<Scrollbars>
 				<div className={classes.dialogBar}>
@@ -78,6 +85,7 @@ export default class Projekt extends Component {
 				<div className={classes.pageWrapper}>
 					{introduction}
 					{pudorysContent}
+					{timeline}
 				</div>
 			</Scrollbars>
 		);

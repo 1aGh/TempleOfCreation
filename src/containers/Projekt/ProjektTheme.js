@@ -109,6 +109,13 @@ const theme = theme => ({
 		left: 60,
 		top: '2rem',
 		fontSize: '0.8rem',
+	},
+	svgClass: {
+		height: '100%',
+		width: '100%',
+	},
+	svgWrapper: {
+		height: '400px',
 	}
 });
 
