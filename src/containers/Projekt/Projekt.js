@@ -32,6 +32,7 @@ export default class Projekt extends Component {
 			actualPudorysId: 'kavarna',
 			anim: false,
 			showSvg: false,
+			showNetwork: false,
 		};
 	}
 
@@ -40,7 +41,7 @@ export default class Projekt extends Component {
 	}
 
 	scrollHandle = (e) => {
-		if (e.scrollTop <= 750 && !this.state.showSvg) {
+		if (e.scrollTop >= 700 && !this.state.showSvg) {
 			Promise.resolve(this.setState({anim: true})).then(
 				setTimeout(() => {
 					this.setState({anim: false});
@@ -50,11 +51,14 @@ export default class Projekt extends Component {
 				}, 10500)
 			);
 		}
+		if (e.scrollTop >= 1100 && !this.state.showNetwork) {
+			this.setState({showNetwork: true});
+		}
 	}
 
 	render() {
 		const {classes, pudorysText, network} = this.props;
-		const {actualPudorys, actualPudorysId, anim, showSvg} = this.state;
+		const {actualPudorys, actualPudorysId, anim, showSvg, showNetwork} = this.state;
 
 		let introduction = (
 			<div className={classes.introduction}>
@@ -121,7 +125,7 @@ export default class Projekt extends Component {
 					{introduction}
 					{pudorysContent}
 					{timeline}
-					<Network graph={network}/>
+					<Network graph={network} show={showNetwork}/>
 				</div>
 			</Scrollbars>
 		);

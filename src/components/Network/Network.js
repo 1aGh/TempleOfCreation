@@ -10,6 +10,7 @@ export default class Network extends Component {
 	static propTypes = {
 		classes: PropTypes.any,
 		graph: PropTypes.any,
+		show: PropTypes.any,
 	};
 
 	constructor(props){
@@ -94,7 +95,7 @@ export default class Network extends Component {
 	}
 
 	render() {
-		const {classes, graph} = this.props;
+		const {classes, graph, show} = this.props;
 		let width = 600;
 		let height = 600;
 		let options = {
@@ -143,7 +144,9 @@ export default class Network extends Component {
 		return (
 			<div className={classes.container}>
 				<div className={classes.headline}>{'Přehled činností'}</div>
-				<Graph style={{width: '80%', height: '100%', border: '2px dashed rgba(234, 181, 67, 0.5)'}} graph={graph} options={options} events={events} getNetwork={this.setNetworkInstance}/>
+					<div className={classes.graph}>
+						{show && <Graph graph={graph} options={options} events={events} getNetwork={this.setNetworkInstance}/>}
+					</div>
 			</div>
 		);
 	}

@@ -128,10 +128,12 @@ const theme = theme => ({
 		position: 'absolute',
 		top: '0',
 		left: '0',
+		maxWidth: '1000px',
 		animation: 'fadeIn 275ms cubic-bezier(0.4, 0.0, 0.2, 1)',
 	},
 	svgWrapper: {
 		height: '400px',
+		maxWidth: '1000px',
 		position: 'relative',
 		flex: '1 1 auto',
 	},
