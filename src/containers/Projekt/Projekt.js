@@ -8,10 +8,12 @@ import TimelineAnim from 'Illustration/timeline_anim.svg';
 import Timeline from 'Illustration/timeline.svg';
 
 import Pudorys from './Pudorys';
+import Network from 'Network/Network';
 
 @connect(
 		state => ({
 			pudorysText: state.main.pudorysText,
+			network: state.main.network,
 		})
 )
 @withStyles(theme)
@@ -20,6 +22,7 @@ export default class Projekt extends Component {
 	static propTypes = {
 		classes: PropTypes.any,
 		pudorysText: PropTypes.any,
+		network: PropTypes.any,
 	};
 
 	constructor(props){
@@ -50,7 +53,7 @@ export default class Projekt extends Component {
 	}
 
 	render() {
-		const {classes, pudorysText} = this.props;
+		const {classes, pudorysText, network} = this.props;
 		const {actualPudorys, actualPudorysId, anim, showSvg} = this.state;
 
 		let introduction = (
@@ -118,6 +121,7 @@ export default class Projekt extends Component {
 					{introduction}
 					{pudorysContent}
 					{timeline}
+					<Network graph={network}/>
 				</div>
 			</Scrollbars>
 		);
