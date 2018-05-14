@@ -1,7 +1,7 @@
 const theme = theme => ({
 	'@global': {
 		body: {
-			fontFamily: "'Roboto Mono', monospace",
+			fontFamily: "'IBM Plex Mono', monospace",
 		}
 	},
 	main: {

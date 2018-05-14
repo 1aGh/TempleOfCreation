@@ -58,7 +58,7 @@ const theme = createMuiTheme({
 		},
 	},
 	typography: {
-		fontFamily: "'Roboto Mono', monospace",
+		fontFamily: "'IBM Plex Mono', monospace",
 		fontSize: 14,
 		htmlFontSize: 10,
 		fontWeightLight: 300,

@@ -8,6 +8,7 @@ import reducer from 'redux/reducer';
 
 import { HashRouter } from 'react-router-dom';
 import 'typeface-roboto-mono';
+import 'typeface-ibm-plex-mono';
 
 const dest = document.getElementById('app');
 const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
