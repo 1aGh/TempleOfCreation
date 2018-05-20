@@ -10,7 +10,7 @@ const theme = theme => ({
 	graph: {
 		width: '80%',
 		height: '100%',
-		border: '2px dashed rgba(234, 181, 67, 0.5)'
+		// border: '2px dashed rgba(234, 181, 67, 0.5)'
 	},
 	headline: {
 		textAlign: 'center',

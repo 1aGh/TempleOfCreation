@@ -1,7 +1,7 @@
 import update from 'immutability-helper';
 import portfolioStore from 'portfolioStore';
 import pudorysText from 'pudorysText';
-import network from 'network';
+import {network} from 'network';
 
 function updateAppState (state, struct){
 	let router = 'main';
