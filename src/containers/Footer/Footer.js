@@ -65,7 +65,7 @@ export default class Footer extends Component {
 					<ul className={classes.menu}>
 						<li><Link to='/' onClick={this.openMenu} className={classes.link}>HOME</Link></li>
 						<li><Link to='/portfolio' onClick={this.openMenu} className={classes.link}>PORTFOLIO</Link></li>
-						<li><Link to='/kontakt' onClick={this.openMenu} className={classes.link}>KONTAKT</Link></li>
+						<li><Link to='/kontakty' onClick={this.openMenu} className={classes.link}>KONTAKT</Link></li>
 						<li><Link to='/projekt' onClick={this.openMenu} className={classes.link}>PROJEKT</Link></li>
 					</ul>
 				</div>
