@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import theme from './PortfolioTheme.js';
 import MasonryLayout from 'react-masonry-layout';
-import Zoom from 'material-ui/transitions/Zoom';
-import Slide from 'material-ui/transitions/Slide';
-import Dialog from 'material-ui/Dialog';
+import Zoom from '@material-ui/core/Zoom';
+import Slide from '@material-ui/core/Slide';
+import Dialog from '@material-ui/core/Dialog';
 import { Scrollbars } from 'react-custom-scrollbars';
 import PortfolioPage from './PortfolioPage';
 

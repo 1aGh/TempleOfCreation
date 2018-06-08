@@ -16,7 +16,7 @@ import Menu from 'Menu/Menu';
 import MenuMap from 'MenuMap/MenuMap';
 import Footer from 'Footer/Footer';
 
-import { MuiThemeProvider, createGenerateClassName, withStyles } from 'material-ui/styles';
+import { MuiThemeProvider, createGenerateClassName, withStyles } from '@material-ui/core/styles';
 import JssProvider from 'react-jss/lib/JssProvider';
 import jssPreset from 'jss-preset-default';
 import { create } from 'jss';
@@ -53,7 +53,7 @@ class App extends Component {
 		this.setState({mobile: mobile.mobile(), animation: anim});
 	}
 
-	componentWillReceiveProps = (nextProps) => {
+	UNSAFE_componentWillReceiveProps = (nextProps) => {
 		if (nextProps.location && nextProps.location.pathname && this.props.location && this.props.location.pathname) {
 			let path = this.props.location.pathname;
 			let nextPath = nextProps.location.pathname;

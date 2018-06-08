@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Link from 'react-router-dom/Link';
 import theme from './HomeTheme.js';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import * as reducer from 'redux/reducer';
-import Typography from 'material-ui/Typography';
+import Typography from '@material-ui/core/Typography';
 
 import LogoIcon from 'Icons/Logo';
 import PinIcon from 'Icons/PinIcon';

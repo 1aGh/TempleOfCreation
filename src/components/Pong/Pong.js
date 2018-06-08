@@ -38,7 +38,7 @@ export default class Pong extends Component {
 		};
 	}
 
-	componentWillMount(){
+	UNSAFE_componentWillMount(){
 		this.setState({gameHeight: window.innerHeight});
 	}
 
@@ -198,7 +198,7 @@ export default class Pong extends Component {
 
 	render() {
 		const {ballY, ballX, gameWidth, gameHeight, player1Score, player2Score, paddle1Y, paddle2Y, paddleWidth, ballRadius, ballSpeedX, ballSpeedY, monkey, paddleSpeed, winner, btnMultiplayer, buttonRight, keys, newGame, secondsElapsed, gameOver, mobile} = this.state;
-		return(
+		return (
 			<div className={theme.pongWrapper} id='pongWrapper' onTouchMove={this.swipeHandle.bind(this)}>
 				<CancelIcon className={theme.cancelIcon} onClick={this.props.close}/>
 				<div className={theme.scoreP1} style={{left: (gameWidth/2)/2, top: 100}}>{player1Score}</div>

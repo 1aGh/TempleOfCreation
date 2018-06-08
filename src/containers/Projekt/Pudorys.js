@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import theme from './PudorysTheme.js';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 @withStyles(theme)
 

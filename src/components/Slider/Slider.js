@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import * as reducer from 'redux/reducer';
 import theme from './SliderTheme.js';
 import animation from 'App/RouteAnimation.scss';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 

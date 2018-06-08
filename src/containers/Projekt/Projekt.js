@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import theme from './ProjektTheme.js';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import { Scrollbars } from 'react-custom-scrollbars';
 import TimelineAnim from 'Illustration/timeline_anim.svg';
 import Timeline from 'Illustration/timeline.svg';

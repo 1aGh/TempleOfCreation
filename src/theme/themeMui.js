@@ -1,4 +1,4 @@
-import { createMuiTheme } from 'material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 let sand = 'rgb(234, 181, 67)';
 let blackoliveDark = 'rgb(40, 38, 38)';

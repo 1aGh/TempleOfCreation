@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import theme from './NetworkTheme.js';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Graph from 'react-graph-vis';
 import {kavarnag, sdilnag, studiog, rekvg, coworkg, cdilnag} from 'network';
 

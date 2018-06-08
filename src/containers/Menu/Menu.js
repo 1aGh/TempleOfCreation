@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import theme from './MenuTheme.js';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Link from 'react-router-dom/Link';
-import Tooltip from 'material-ui/Tooltip';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import MenuIcon from 'react-icons/lib/md/crop-free';
 import Down from 'Icons/Down';
@@ -35,7 +35,7 @@ export default class Menu extends Component {
 			} else if (path === '/team') {
 				menu = ['backDown'];
 			}
-			menu.map((k) => {
+			menu.map((k, index) => {
 				let label;
 				let href = k;
 				let position;
@@ -61,17 +61,17 @@ export default class Menu extends Component {
 						position = 'top';
 						break;
 					case 'backLeft':
-						label = <Tooltip id="tooltip-back" title="Back"><div className={classes.label}><Left className={classes.backVerArrow + ' ' + classes.animBackLeft}/></div></Tooltip>;
+						label = <div className={classes.label}><Left className={classes.backVerArrow + ' ' + classes.animBackLeft}/></div>;
 						href = '';
 						position = 'left';
 						break;
 					case 'backRight':
-						label = <Tooltip id="tooltip-back" title="Back"><div className={classes.label}><Right className={classes.backVerArrow + ' ' + classes.animBackRight}/></div></Tooltip>;
+						label = <div className={classes.label}><Right className={classes.backVerArrow + ' ' + classes.animBackRight}/></div>;
 						href = '';
 						position = 'right';
 						break;
 					case 'backDown':
-						label = <Tooltip id="tooltip-back" title="Back"><div className={classes.label}><Down className={classes.backHorArrow}/></div></Tooltip>;
+						label = <div className={classes.label}><Down className={classes.backHorArrow}/></div>;
 						href = '';
 						position = 'bottom';
 						break;
@@ -80,7 +80,7 @@ export default class Menu extends Component {
 				}
 				content.push(
 					<Link
-						key={k+content.length}
+						key={k+index}
 						to={'/'+href}
 						className={classes.link + ' ' + classes[position+'Btn']}>
 						{label}
@@ -91,9 +91,7 @@ export default class Menu extends Component {
 		}
 
 		return (
-			<section>
-				{content}
-			</section>
+			<div>{content}</div>
 		);
 	}
 }

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Link from 'react-router-dom/Link';
 import theme from './FooterTheme.js';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import * as reducer from 'redux/reducer';
-import Typography from 'material-ui/Typography';
-import Collapse from 'material-ui/transitions/Collapse';
+import Typography from '@material-ui/core/Typography';
+import Collapse from '@material-ui/core/Collapse';
 import MiniLogo from 'Icons/MiniLogo';
 import MenuIcon from 'Icons/MenuIcon';
 
