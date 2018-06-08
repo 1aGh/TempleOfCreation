@@ -27,12 +27,12 @@ export default class Menu extends Component {
 
 		if (location) {
 			if (path === '/') {
-				menu = ['kontakty', 'projekt', 'portfolio'];
+				menu = ['team', 'projekt', 'portfolio'];
 			} else if (path === '/projekt') {
 				menu = ['backLeft'];
 			} else if (path === '/portfolio') {
 				menu = ['backRight'];
-			} else if (path === '/kontakty') {
+			} else if (path === '/team') {
 				menu = ['backDown'];
 			}
 			menu.map((k) => {
@@ -55,7 +55,7 @@ export default class Menu extends Component {
 						icon = <Left className={classes.verArrow} style={{transform: 'translateX(30px)'}}/>;
 						position = 'left';
 						break;
-					case 'kontakty':
+					case 'team':
 						label = <div className={classes.label}>{k.toUpperCase()}</div>;
 						icon = <Up className={classes.horArrow} style={{transform: 'translateY(30px)'}}/>;
 						position = 'top';

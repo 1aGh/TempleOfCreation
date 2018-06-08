@@ -9,6 +9,7 @@ import Home from 'Home/Home';
 import Projekt from 'Projekt/Projekt';
 import Kontakty from 'Kontakty/Kontakty';
 import Portfolio from 'Portfolio/Portfolio';
+import Team from 'Team/Team';
 import Iagh from 'Iagh/Iagh';
 import Pong from 'Pong/Pong';
 import Menu from 'Menu/Menu';
@@ -151,6 +152,7 @@ console.log('THEME: ', themeMui);
 												<Route exact path='/projekt' component={Projekt}/>
 												<Route exact path='/kontakty' component={Kontakty}/>
 												<Route exact path='/portfolio' component={Portfolio}/>
+												<Route exact path='/team' component={Team}/>
 												<Route exact path='/menu' component={MenuMap}/>
 											</Switch>
 										</section>

@@ -67,20 +67,20 @@ export default class Home extends Component {
 						<Typography variant='caption' color='primary'>Temple of creation</Typography>
 					</div>
 					<div className={classes.infoWrapper}>
-						<div className={classes.infoContainer + ' ' + (this.state.pujcovna ? classes.animInfoContainer : '')} onMouseEnter={this.mouseEnter.bind(this,'pujcovna')}>
+						<Link to={'/'} className={classes.infoContainer + ' ' + (this.state.pujcovna ? classes.animInfoContainer : '')} onMouseEnter={this.mouseEnter.bind(this,'pujcovna')}>
 							<PinIcon className={classes.pinIcon}/>
 							<Typography align='center'>Půjčovna</Typography>
 							<div className={classes.animIconContainer}>
 								<div className={classes.animIcon} style={{backgroundImage: 'url(\'/store/static/camera_sprite.png\')'}}/>
 							</div>
-						</div>
-						<div className={classes.infoContainer + ' ' + (this.state.kontakt ? classes.animInfoContainer : '')} onMouseEnter={this.mouseEnter.bind(this,'kontakt')}>
+						</Link>
+						<Link to={'/kontakty'} className={classes.infoContainer + ' ' + (this.state.kontakt ? classes.animInfoContainer : '')} onMouseEnter={this.mouseEnter.bind(this,'kontakt')}>
 							<PinIcon className={classes.pinIcon}/>
 							<Typography align='center'>Kontakty</Typography>
 							<div className={classes.animIconContainer}>
 								<div className={classes.animIcon} style={{backgroundImage: 'url(\'/store/static/phone_sprite.png\')'}}/>
 							</div>
-						</div>
+						</Link>
 					</div>
 				</div>
 			</div>
