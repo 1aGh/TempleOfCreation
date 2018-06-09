@@ -83,6 +83,10 @@ const theme = theme => ({
 		'&>svg': {
 			width: '110px',
 		}
+	},
+	button: {
+		marginTop: '20px',
+		border: ['2px', 'dashed', theme.colors.blackolive],
 	}
 });
 

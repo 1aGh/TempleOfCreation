@@ -10,6 +10,7 @@ function updateAppState (state, struct){
 
 export const Actions = {
 	'ADDIMAGES': 'toc/app/ADDIMAGES',
+	'MESSAGEHANDLE': 'toc/app/MESSAGEHANDLE',
 };
 
 export const initialState = {
@@ -18,6 +19,7 @@ export const initialState = {
 		portfolioImg: {},
 		pudorysText: pudorysText,
 		network: network,
+		draft: {},
 	},
 };
 
@@ -25,6 +27,8 @@ export default function reducer(state = initialState, action = {}) {
 	switch (action.type) {
 		case Actions.ADDIMAGES:
 			return updateAppState(state, {portfolioImg: {$set: {[action.id]: action.value}}});
+		case Actions.MESSAGEHANDLE:
+			return updateAppState(state, {draft: {$merge: {[action.kind]: action.value}}});
 		default:
 			return state;
 	}
@@ -36,4 +40,13 @@ export function addImages (id, images) {
 		value: images,
 		id: id,
 	};
+}
+
+export function messageHandle (type, value) {
+	return {
+		type: Actions.MESSAGEHANDLE,
+		kind: type,
+		value: value,
+	};
+}
 }
