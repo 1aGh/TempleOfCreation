@@ -58,7 +58,7 @@ const theme = theme => ({
 	message: {
 		backgroundColor: theme.colors.sand,
 		minHeight: '150px',
-		margin: '0 99px -20px 100px',
+		margin: '0 7.45% -20px 7.5%',
 		padding: '20px',
 	},
 	textField: {
