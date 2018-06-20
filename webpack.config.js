@@ -54,10 +54,10 @@ module.exports = {
 				test: /\.jsx?$/,
 				exclude: /node_modules/,
 				use: [
-					{loader: 'react-hot-loader'},
+					// {loader: 'react-hot-loader/babel'},
 					{loader: 'babel-loader',
 					options: {
-						plugins: ['syntax-decorators', 'transform-decorators-legacy', 'transform-class-properties'],
+						plugins: ['syntax-decorators', 'transform-decorators-legacy', 'transform-class-properties','react-hot-loader/babel'],
 						presets: [['es2015', { "modules": false }], 'stage-0', 'react'],
 					}
 				},

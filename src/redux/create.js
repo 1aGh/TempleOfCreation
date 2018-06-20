@@ -1,6 +1,6 @@
 import { createStore as _createStore, applyMiddleware, compose } from 'redux';
 
-import rootReducer from './reducer';
+import rootReducer from './combine';
 import ReduxThunk from './middleware/thunk';
 import combineActionsMiddleware from './middleware/combineActionsMiddleware';
 import createMiddleware from './middleware/clientMiddleware';
@@ -33,12 +33,12 @@ export default function createStore (history, client, data) {
 
 //  if (window.devToolsExtension) window.devToolsExtension.updateStore(store);
 
-	// if (module.hot) {
-	// 	module.hot.accept('./modules/reducer', () => {
-	// 		const nextReducer = require('./modules/reducer').default;
-	// 		store.replaceReducer(nextReducer);
-	// 	});
-	// }
+	if (module.hot) {
+		module.hot.accept('./combine', () => {
+			const nextReducer = require('./combine').default;
+			store.replaceReducer(nextReducer);
+		});
+	}
 
 	return store;
 }

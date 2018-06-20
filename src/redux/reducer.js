@@ -23,13 +23,11 @@ export const Actions = {
 };
 
 export const initialState = {
-	main: {
-		portfolio: portfolioStore,
-		portfolioImg: {},
-		pudorysText: pudorysText,
-		network: network,
-		draft: {},
-	},
+	portfolio: portfolioStore,
+	portfolioImg: {},
+	pudorysText: pudorysText,
+	network: network,
+	draft: {},
 };
 
 export default function reducer(state = initialState, action = {}) {
