@@ -10,8 +10,9 @@ function updateAppState (state, struct){
 	return update(state, {[router]: struct});
 }
 
+// const auth = 'wBMGd8RShfqoixI9KcKcBQ5q';
 const auth = 'AIzaSyDdxc-DZdxxTKTzUlasS4qdOpKj_uUrzBA';
-const authId = '590908524683-ncecj6627jqghc1c20f3e8gfnbk34ou8.apps.googleusercontent.com';
+const authId = '590908524683-khma2hd3hka18m9gjnoanb1m5r2jrtb7.apps.googleusercontent.com';
 
 export const Actions = {
 	'ADDIMAGES': 'toc/app/ADDIMAGES',
@@ -19,7 +20,11 @@ export const Actions = {
 
 	'SENDEMAIL': 'toc/app/SENDEMAIL',
 	'SENDEMAIL_SUCCESS': 'toc/app/SENDEMAIL_SUCCESS',
-	'SENDEMAIL_FAIL': 'toc/app/SENDEMAIL_FAIL'
+	'SENDEMAIL_FAIL': 'toc/app/SENDEMAIL_FAIL',
+
+	'GETFOLDER': 'toc/app/GETFOLDER',
+	'GETFOLDER_SUCCESS': 'toc/app/GETFOLDER_SUCCESS',
+	'GETFOLDER_FAIL': 'toc/app/GETFOLDER_FAIL'
 };
 
 export const initialState = {
@@ -31,6 +36,7 @@ export const initialState = {
 };
 
 export default function reducer(state = initialState, action = {}) {
+	console.log('STATE:: ', state);
 	switch (action.type) {
 		case Actions.ADDIMAGES:
 			return updateAppState(state, {portfolioImg: {$set: {[action.id]: action.value}}});
@@ -40,6 +46,9 @@ export default function reducer(state = initialState, action = {}) {
 			console.log('ACTION::: ', action);
 			return state;
 		case Actions.SENDEMAIL_SUCCESS:
+			console.log('SUCCESS::: ', action);
+			return state;
+		case Actions.GETFOLDER_SUCCESS:
 			console.log('SUCCESS::: ', action);
 			return state;
 		default:
@@ -79,12 +88,9 @@ export function HttpClient () {
 
 export function sendEmail () {
 	console.log('SEND');
-	return (dispatch, state) => {
-		console.log('STATE::: ', state());
-		// return {
-		// 	types: [Actions.SENDEMAIL, Actions.SENDEMAIL_SUCCESS, Actions.SENDEMAIL_FAIL],
-		// 	promise: Email.send('info@templeofcreation.cz', 'dovrtel@templeofcreation.cz', 'Test', 'Hello', {token: '040471b8-81df-4840-9707-0d6fdad0c3a8'}),
-		// };
+	return {
+		types: [Actions.SENDEMAIL, Actions.SENDEMAIL_SUCCESS, Actions.SENDEMAIL_FAIL],
+		promise: Email.send('info@templeofcreation.cz', 'dovrtel@templeofcreation.cz', 'Test', 'Hello', {token: '040471b8-81df-4840-9707-0d6fdad0c3a8'}),
 	};
 	// let client = new HttpClient();
 	// let url = 'https://www.googleapis.com/calendar/v3/calendars/80fj4anc8ouf5ssdfl9i5cg77o%40group.calendar.google.com/events?alwaysIncludeEmail=true&key='+auth;
@@ -123,6 +129,14 @@ export function sendEmail () {
 		// 	// )
 		// 	data:
 		// };
+}
+
+export function getFolder () {
+	let url = 'http://dev.templeofcreation.cz/store/images/motylekSurf/motylekSurf_1.jpeg';
+	return {
+		types: [Actions.GETFOLDER, Actions.GETFOLDER_SUCCESS, Actions.GETFOLDER_FAIL],
+		promise: (client) => client.get(url, {header: [['Content-Type', 'data:image/jpeg;bas64']]}),
+	};
 }
 
 export function saveCal (data) {

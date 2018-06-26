@@ -34,8 +34,8 @@ export default class Kontakty extends Component {
 		this.props.dispatch(reducer.messageHandle(type, e.target.value));
 	}
 
-	sendEmail = () => {
-		this.props.dispatch(reducer.sendEmail());
+	sendEmail = (e) => {
+		this.props.dispatch(reducer.getFolder(e));
 	}
 
 	render() {
@@ -125,7 +125,7 @@ export default class Kontakty extends Component {
 								margin='normal'
 							/>
 							<Grid container justify='center'>
-								<Button onClick={this.sendEmail} color='secondary' size='large' variant="outlined" classes={{outlined: classes.button}}>
+								<Button onClick={this.sendEmail.bind(this)} color='secondary' size='large' variant="outlined" classes={{outlined: classes.button}}>
 									Odeslat
 								</Button>
 							</Grid>
