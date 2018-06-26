@@ -2,6 +2,11 @@ var path = require('path');
 
 const precss = require('precss');
 const autoprefixer = require('autoprefixer');
+var webpack = require('webpack');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+
+const outputDirectory = "dist";
 
 var cssLoader = {
 	loader: "css-loader",
@@ -22,7 +27,7 @@ module.exports = {
 	context: __dirname + '/',
 	entry: {
 		main: './src/index.js',
-		index: './index.html',
+		// index: './index.html',
 	},
 	resolve: {
 		modules: [
@@ -37,7 +42,7 @@ module.exports = {
 		extensions: [".tsx", ".ts", ".js", "scss", ".png", ".jpeg", ".svg"],
 	},
 	output: {
-		path: path.resolve(__dirname, "dist"),
+		path: path.resolve(__dirname, outputDirectory),
 		filename: '[name].js',
 		chunkFilename: '[name].js',
 	},
@@ -113,5 +118,29 @@ module.exports = {
 				loader: 'url-loader?limit=100000'
 			}
 		]
-	}
+	},
+	devServer: {
+		// historyApiFallback: true,
+		// hot: true,
+		// inline: true,
+		// compress: true,
+		// disableHostCheck: true,
+		// headers: { "X-Custom-Header": "yes" },
+		// host: 'localhost', // Defaults to `localhost`
+		port: 8080, // Defaults to 8080
+		proxy: {
+			'^/api/*': {
+				target: 'http://localhost:4001/api/',
+				secure: false
+			}
+		}
+	},
+	plugins: [
+		// new CleanWebpackPlugin([outputDirectory]),
+		new HtmlWebpackPlugin({
+			title: 'Temple Of Creation',
+			template: "./index.html",
+			favicon: "./store/static/favicon.png"
+		})
+	]
 };

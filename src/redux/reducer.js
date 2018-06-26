@@ -132,10 +132,15 @@ export function sendEmail () {
 }
 
 export function getFolder () {
-	let url = 'http://dev.templeofcreation.cz/store/images/motylekSurf/motylekSurf_1.jpeg';
+	// let url = 'http://dev.templeofcreation.cz/store/images/motylekSurf/motylekSurf_1.jpeg';
+	// return {
+	// 	types: [Actions.GETFOLDER, Actions.GETFOLDER_SUCCESS, Actions.GETFOLDER_FAIL],
+	// 	promise: (client) => client.get(url, {header: [['Content-Type', 'data:image/jpeg;bas64']]}),
+	// };
+	let url = 'http://localhost:8080/api/1';
 	return {
 		types: [Actions.GETFOLDER, Actions.GETFOLDER_SUCCESS, Actions.GETFOLDER_FAIL],
-		promise: (client) => client.get(url, {header: [['Content-Type', 'data:image/jpeg;bas64']]}),
+		promise: (client) => client.get(url),
 	};
 }
 
