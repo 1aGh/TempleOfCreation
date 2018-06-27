@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import * as reducer from 'redux/reducer';
 import {connect} from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import theme from './PortfolioTheme.js';
@@ -41,11 +42,11 @@ export default class Portfolio extends Component {
 
 			let height = i % 2 === 0 ? 200 : 300;
 			let id = obj.id;
-			let mainImg = id+'_1.jpeg';
+			let mainImg = id+'_1.jpg';
 			let title = obj.title;
 			let category = obj.category;
 			let year = obj.year;
-			let image = '/store/images/'+id+'/'+mainImg;
+			let image = '/api/store/images/'+id+'/'+mainImg;
 			masonry.push(
 				<Zoom key={id+masonry.length} in={true} style={{transitionDelay: i*20}}>
 					<div className={classes.masonryContainer} style={{height: `${height}px`}} onClick={this.openDialog.bind(this, obj, i)}>
@@ -64,6 +65,7 @@ export default class Portfolio extends Component {
 
 	openDialog = (obj, i) => {
 		this.setState({dialog: true, project: obj, index: i});
+		this.props.dispatch(reducer.getFolder(obj.id));
 	}
 
 	handleClose = () => {
@@ -96,7 +98,7 @@ export default class Portfolio extends Component {
 							fullScreen
 							open={dialog}
 							onClose={this.handleClose}
-							transition={this.transition}
+							TransitionComponent={this.transition}
 							>
 								<PortfolioPage project={project} handleClose={this.handleClose}/>
 							</Dialog>

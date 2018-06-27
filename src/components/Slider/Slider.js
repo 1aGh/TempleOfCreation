@@ -18,6 +18,7 @@ export default class Slider extends Component {
 		classes: PropTypes.any,
 		type: PropTypes.any,
 		src: PropTypes.any,
+		id: PropTypes.any,
 	};
 
 	constructor(props){
@@ -51,12 +52,13 @@ export default class Slider extends Component {
 	}
 
 	render() {
-		const {classes, type, src} = this.props;
+		const {classes, type, src, id} = this.props;
 		const {next} = this.state;
 		let carousel = [];
 		let counter = src && src.length ? src.length : 0;
 		if (type === 'img') {
 			src.map((img, index) => {
+				let image = '/api/store/images/'+id+'/'+img;
 				carousel.push(
 					<CSSTransition
 						key={index}
@@ -70,14 +72,16 @@ export default class Slider extends Component {
 							exitActive: animation[next ? 'toLeftActive' : 'toRightActive'],
 						}}
 						>
-							<div style={{height: '100%', width: '100%', background: 'url('+img+') center/cover'}}/>
+							<div style={{height: '100%', width: '100%', background: 'url('+image+') center/cover'}}/>
 						</CSSTransition>
 				);
 			});
 		}
 		return (
 			<div className={classes.slider}>
-				<div className={classes.backward} onClick={this.sliderHandle.bind(this, 'back')}><Left className={classes.arrow}/></div>
+				<div className={classes.arrBtnLeft} onClick={this.sliderHandle.bind(this, 'back')}>
+					<div className={classes.backward}><Left className={classes.arrow}/></div>
+				</div>
 				<TransitionGroup className={classes.transition}>
 					{carousel.map((item, index) => {
 						if (index === this.state.index) {
@@ -85,7 +89,9 @@ export default class Slider extends Component {
 						}
 					})}
 				</TransitionGroup>
-				<div className={classes.forward} onClick={this.sliderHandle.bind(this, 'next')}><Right className={classes.arrow}/></div>
+				<div className={classes.arrBtnRight} onClick={this.sliderHandle.bind(this, 'next')}>
+					<div className={classes.forward}><Right className={classes.arrow}/></div>
+				</div>
 				<div className={classes.counter}>
 					<div className={classes.counterIndex}>{this.state.index+1}</div>
 					<div className={classes.counterLine}>/</div>

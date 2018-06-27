@@ -49,8 +49,8 @@ export default function reducer(state = initialState, action = {}) {
 			console.log('SUCCESS::: ', action);
 			return state;
 		case Actions.GETFOLDER_SUCCESS:
-			console.log('SUCCESS::: ', action);
-			return state;
+			console.log('SUCCESS::: ', action, state);
+			return update(state, {portfolioImg: {$merge: {[action.id]: action.result}}});
 		default:
 			return state;
 	}
@@ -92,54 +92,13 @@ export function sendEmail () {
 		types: [Actions.SENDEMAIL, Actions.SENDEMAIL_SUCCESS, Actions.SENDEMAIL_FAIL],
 		promise: Email.send('info@templeofcreation.cz', 'dovrtel@templeofcreation.cz', 'Test', 'Hello', {token: '040471b8-81df-4840-9707-0d6fdad0c3a8'}),
 	};
-	// let client = new HttpClient();
-	// let url = 'https://www.googleapis.com/calendar/v3/calendars/80fj4anc8ouf5ssdfl9i5cg77o%40group.calendar.google.com/events?alwaysIncludeEmail=true&key='+auth;
-	// return {
-	// 	type: 'LOCAL:SENDEMAIL',
-	// 	promise: client.get(url,
-	// 		(response) => {
-	// 			console.log('REPONSE:: ', response);
-	// 			saveCal(response);
-	// 		}
-	// 	)
-	// };
-		// return {
-		// 	type: Actions.SENDEMAIL,
-		// 	// promise: gapi().then(
-		// 	// 	g.load('client')
-		// 	// 	(g) => {
-		// 	// 		g.client.init({
-		// 	// 			'apiKey': auth,
-		// 	// 			'clientId': authId,
-		// 	// 			'scope': 'profile',
-		// 	// 			// 'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/translate/v2/rest'],
-		// 	// 		}).then((r) => {
-		// 	// 			console.log('R:: ', r);
-		// 	// 			// Executes an API request, and returns a Promise.
-		// 	// 			// The method name `language.translations.list` comes from the API discovery.
-		// 	// 			return g.client.request({
-		// 	// 				'path': 'http://people.googleapis.com/v1/people/me?requestMask.includeField=person.names',
-		// 	// 			});
-		// 	// 		}).then((response) => {
-		// 	// 			console.log('TRANSLATE',response.result);
-		// 	// 		}, (reason) => {
-		// 	// 			console.log('Error: ' + reason);
-		// 	// 		});
-		// 	// 	}
-		// 	// )
-		// 	data:
-		// };
 }
 
-export function getFolder () {
-	// let url = 'http://dev.templeofcreation.cz/store/images/motylekSurf/motylekSurf_1.jpeg';
-	// return {
-	// 	types: [Actions.GETFOLDER, Actions.GETFOLDER_SUCCESS, Actions.GETFOLDER_FAIL],
-	// 	promise: (client) => client.get(url, {header: [['Content-Type', 'data:image/jpeg;bas64']]}),
-	// };
-	let url = '/api/v1';
+export function getFolder (id) {
+	let url = '/api/getFolder/'+id;
 	return {
 		types: [Actions.GETFOLDER, Actions.GETFOLDER_SUCCESS, Actions.GETFOLDER_FAIL],
+		id: id,
 		promise: (client) => client.get(url),
 	};
 }

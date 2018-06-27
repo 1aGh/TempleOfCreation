@@ -28,30 +28,6 @@ export default class PortfolioPage extends Component {
 		dispatch: PropTypes.any,
 	};
 
-	componentDidMount = () => {
-		const {portfolioImg} = this.props;
-		let id = this.props.project.id;
-		let req;
-		if (portfolioImg && !portfolioImg[id]) {
-			switch (id) {
-				case 'kuchynskyKartac':
-				req = this.requireAll(require.context('../../../store/images/kuchynskyKartac', true, /.*\.jpeg|.png$/));
-				break;
-				case 'motylekSurf':
-				req = this.requireAll(require.context('../../../store/images/motylekSurf', true, /.*\.jpeg|.png$/));
-				break;
-				case 'studentContainer':
-				req = this.requireAll(require.context('../../../store/images/studentContainer', true, /.*\.jpeg|.png$/));
-				break;
-			}
-			this.props.dispatch(reducer.addImages(id, req));
-		}
-	}
-
-	requireAll = (requireContext) => {
-		return requireContext.keys().map(requireContext);
-	}
-
 	render() {
 		const {classes, project, handleClose, portfolioImg} = this.props;
 
@@ -84,11 +60,11 @@ export default class PortfolioPage extends Component {
 		};
 		let src = type === 'img' ? (portfolioImg && portfolioImg[id] ? portfolioImg[id] : []) : video;
 		slider = (
-			<Slider type={type} src={src}/>
+			<Slider type={type} id={id} src={src}/>
 		);
 
 		return (
-			<div className={classes.dialogWrapper} style={{backgroundImage: 'url(/store/static/pattern.png)'}}>
+			<div className={classes.dialogWrapper} style={{backgroundImage: 'url(/api/store/static/pattern.png)'}}>
 				<div className={classes.dialogBar}>
 					<div className={classes.title}>{title}</div>
 					<IconButton className={classes.cancelBtn} onClick={handleClose}>

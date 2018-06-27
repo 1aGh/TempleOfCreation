@@ -20,10 +20,22 @@ const theme = theme => ({
 		position: 'absolute',
 		top: '50%',
 		left: '20px',
-		cursor: 'pointer',
 		transition: theme.transitions.create(),
-		zIndex: 10,
-		'&:hover': {
+	},
+	arrBtnLeft: {
+		position: 'absolute',
+		width: '50%',
+		height: '100%',
+		cursor: 'pointer',
+		zIndex: 5,
+		'&:hover > $backward': {
+			transform: 'translateX(-10px)',
+		}
+	},
+	arrBtnRight: {
+		extend: 'arrBtnLeft',
+		right: 0,
+		'&:hover > $forward': {
 			transform: 'translateX(-10px)',
 		}
 	},
