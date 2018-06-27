@@ -6,7 +6,7 @@
   "scripts": {
     "test": "test",
     "dev": "webpack-dev-server --hot --inline --history-api-fallback",
-    "server": "node ./server/app.js",
+    "server": "nodemon ./server/app.js",
     "build": "node ./node_modules/webpack/bin/webpack.js"
   },
   "repository": {
