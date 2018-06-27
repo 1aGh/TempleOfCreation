@@ -137,7 +137,7 @@ export function getFolder () {
 	// 	types: [Actions.GETFOLDER, Actions.GETFOLDER_SUCCESS, Actions.GETFOLDER_FAIL],
 	// 	promise: (client) => client.get(url, {header: [['Content-Type', 'data:image/jpeg;bas64']]}),
 	// };
-	let url = 'http://localhost:8080/api/1';
+	let url = '/api/v1';
 	return {
 		types: [Actions.GETFOLDER, Actions.GETFOLDER_SUCCESS, Actions.GETFOLDER_FAIL],
 		promise: (client) => client.get(url),

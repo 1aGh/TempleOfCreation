@@ -16,6 +16,7 @@ export default class ApiClient {
 		methods.forEach((method) => (
 			this[method] = (path, { params, data, header } = {}) => new Promise((resolve, reject) => {
 				const request = superagent[method](formatUrl(path));
+				console.log('REQUEST: ', request);
 				request.use(noCache);
 				request.withCredentials();
 				request.set('Accept', 'application/json');
