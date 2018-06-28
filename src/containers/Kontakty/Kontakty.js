@@ -34,8 +34,8 @@ export default class Kontakty extends Component {
 		this.props.dispatch(reducer.messageHandle(type, e.target.value));
 	}
 
-	sendEmail = (e) => {
-		this.props.dispatch(reducer.getFolder(e));
+	sendEmail = () => {
+		this.props.dispatch(reducer.sendEmail());
 	}
 
 	render() {

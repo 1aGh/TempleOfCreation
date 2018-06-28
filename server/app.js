@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const fs = require('fs');
-var compression = require('compression')
+const compression = require('compression');
+const mailer = require('express-mailer');
 
 const PORT = process.env.PORT || 4001;
 
@@ -11,6 +12,22 @@ app.use(compression({
     return true;
   }
 }));
+app.use(express.json());
+
+app.set('views', __dirname + '/templates');
+app.set('view engine', 'jade');
+
+mailer.extend(app, {
+  from: 'info@templeofcreation.cz',
+  host: 'smtp.templeofcreation.cz', // hostname
+  secureConnection: false, // use SSL
+  port: 587, // port for secure SMTP
+  transportMethod: 'SMTP', // default is SMTP. Accepts anything that nodemailer accepts
+  auth: {
+    user: 'info@templeofcreation.cz',
+    pass: 'TemplePVPAM.6'
+  }
+});
 
 app.get('/api/:id', (req, res) => {
   res.send(['Hello World!'+req.params.id]);
@@ -36,6 +53,25 @@ app.get('/api/store/images/:folder_id/:img_id', function (req, res, next) {
   let iid = req.params.img_id;
   let filepath = './store/images/'+fid+'/'+iid;
   res.sendFile(filepath, { root : './' });
+});
+
+app.post('/api/sendMail', function (req, res, next) {
+  console.log('SENDMAIL:: ', req.body);
+  let msg = req.body;
+  app.mailer.send('email', {
+    to: 'info@templeofcreation.cz', // REQUIRED. This can be a comma delimited string just like a normal email to field.
+    subject: msg.subject, // REQUIRED.
+    replyTo: msg.email,
+    otherProperty: 'Other Property' // All additional properties are also passed to the template as local variables.
+  }, function (err) {
+    if (err) {
+      // handle error
+      console.log(err);
+      res.send('There was an error sending the email');
+      return;
+    }
+    res.status(200).send('Email sent');
+  });
 });
 
 app.listen(PORT, () => {

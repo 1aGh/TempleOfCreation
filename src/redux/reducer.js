@@ -39,9 +39,9 @@ export default function reducer(state = initialState, action = {}) {
 	console.log('STATE:: ', state);
 	switch (action.type) {
 		case Actions.ADDIMAGES:
-			return updateAppState(state, {portfolioImg: {$set: {[action.id]: action.value}}});
+			return update(state, {portfolioImg: {$set: {[action.id]: action.value}}});
 		case Actions.MESSAGEHANDLE:
-			return updateAppState(state, {draft: {$merge: {[action.kind]: action.value}}});
+			return update(state, {draft: {$merge: {[action.kind]: action.value}}});
 		case Actions.SENDEMAIL:
 			console.log('ACTION::: ', action);
 			return state;
@@ -65,6 +65,7 @@ export function addImages (id, images) {
 }
 
 export function messageHandle (type, value) {
+	console.log('TYPE:: ', type, value);
 	return {
 		type: Actions.MESSAGEHANDLE,
 		kind: type,
@@ -87,10 +88,18 @@ export function HttpClient () {
 }
 
 export function sendEmail () {
-	console.log('SEND');
-	return {
-		types: [Actions.SENDEMAIL, Actions.SENDEMAIL_SUCCESS, Actions.SENDEMAIL_FAIL],
-		promise: Email.send('info@templeofcreation.cz', 'dovrtel@templeofcreation.cz', 'Test', 'Hello', {token: '040471b8-81df-4840-9707-0d6fdad0c3a8'}),
+	return (dispatch, state) => {
+		let st = state();
+		let draft = st.main.draft;
+		let url = '/api/sendMail';
+		console.log('SEND', draft);
+		return {
+			types: [Actions.SENDEMAIL, Actions.SENDEMAIL_SUCCESS, Actions.SENDEMAIL_FAIL],
+			promise: (client) => client.post(url, {
+				data: JSON.stringify(draft),
+				header: [['Content-Type', 'application/json'],['charset','UTF-8']],
+			}),
+		};
 	};
 }
 
