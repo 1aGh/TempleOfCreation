@@ -64,7 +64,7 @@ export default class Home extends Component {
 				<div className={classes.homeContainer}>
 					<div className={classes.animContainer + ' ' + classes.logoContainer} ref={(div) => { this.animContainer = div; }}>
 						<LogoIcon className={classes.logo} onClick={this.testHandle}/>
-						<Typography variant='caption' color='primary'>Temple of creation</Typography>
+						<Typography variant='caption' color='primary'>Temple of Creation</Typography>
 					</div>
 					<div className={classes.infoWrapper}>
 						{/* <Link to={'/'} className={classes.infoContainer + ' ' + (this.state.pujcovna ? classes.animInfoContainer : '')} onMouseEnter={this.mouseEnter.bind(this,'pujcovna')}>
