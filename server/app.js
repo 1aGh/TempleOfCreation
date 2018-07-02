@@ -69,10 +69,10 @@ app.post('/api/sendMail', function (req, res, next) {
     if (err) {
       // handle error
       console.log(err);
-      res.status(400).send('There was an error sending the email');
+      res.status(400).send(['There was an error sending the email']);
       return;
     }
-    res.status(200).send('Email sent');
+    res.status(200).send(['Email sent']);
   });
 });
 
