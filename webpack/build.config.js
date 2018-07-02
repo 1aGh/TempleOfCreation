@@ -113,13 +113,13 @@ module.exports = {
 			},
 			{ test: /\.(png|woff|woff2|eot|ttf)$/,
 				loader: 'url-loader?limit=100000'
-			}
+			},
 			// { test: /\.woff2?$(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
 			// { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=10000&mimetype=application/octet-stream" },
 			// { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
 			// { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=10000&mimetype=image/svg+xml" },
 			// { test: /\.(jpe?g|png|gif|ico)$/i, loader: 'file-loader?name=[name].[ext]'},
-			// { test: webpackIsomorphicToolsPlugin.regular_expression('images'), loader: 'url-loader?limit=10240' }
+			{ test: webpackIsomorphicToolsPlugin.regular_expression('images'), loader: 'url-loader?limit=10240' }
 		],
 		noParse: /node_modules\/dist/
 	},

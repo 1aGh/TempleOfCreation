@@ -3,6 +3,9 @@ var path = require('path');
 const precss = require('precss');
 const autoprefixer = require('autoprefixer');
 var webpack = require('webpack');
+var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
+var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'));
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var cssLoader = {
 	loader: "css-loader",
@@ -23,7 +26,7 @@ module.exports = {
 	context: path.resolve(__dirname, '..'),
 	entry: {
 		main: './src/index.js',
-		index: './index.html',
+		// index: './index.html',
 	},
 	resolve: {
 		modules: [
@@ -42,6 +45,7 @@ module.exports = {
 		filename: '[name].js',
 		chunkFilename: '[name].js',
 	},
+	node: { fs: "empty" },
 	stats: {
 		// Configure the console output
 		errorDetails: true, //this does show errors
@@ -58,17 +62,17 @@ module.exports = {
 					// {loader: 'react-hot-loader/babel'},
 					{loader: 'babel-loader',
 					options: {
-						plugins: ['syntax-decorators', 'transform-decorators-legacy', 'transform-class-properties','react-hot-loader/babel'],
+						plugins: ['transform-runtime', 'syntax-decorators', 'transform-decorators-legacy', 'transform-class-properties','react-hot-loader/babel'],
 						presets: [['es2015', { "modules": false }], 'stage-0', 'react'],
 					}
 				},
 				{loader: 'eslint-loader'},
 				]
 			},
-			{
-				test: /\.html$/,
-				loader: 'file-loader?name=[name].[ext]',
-			},
+			// {
+			// 	test: /\.html$/,
+			// 	loader: 'file-loader?name=[name].[ext]',
+			// },
 			{ test: /\.css$/,
 				use: [styleLoader, cssLoader],
 			},
@@ -112,9 +116,32 @@ module.exports = {
 			},
 			{ test: /\.(png|woff|woff2|eot|ttf)$/,
 				loader: 'url-loader?limit=100000'
-			}
-		]
+			},
+			{ test: webpackIsomorphicToolsPlugin.regular_expression('images'), loader: 'url-loader?limit=10240' }
+		],
+		noParse: /node_modules\/dist/
 	},
+	plugins: [
+		webpackIsomorphicToolsPlugin.development(),
+		new webpack.DefinePlugin({
+			'process.env': {
+				'NODE_ENV': JSON.stringify('development')
+			},
+			__DEV__: true
+		}),
+		new webpack.optimize.CommonsChunkPlugin({
+			name: 'vendor', // Specify the common bundle's name.
+			minChunks: function (module) {
+				// this assumes your vendor imports exist in the node_modules directory
+				return module.context && module.context.indexOf('node_modules') !== -1;
+			}
+		}),
+		new HtmlWebpackPlugin({
+				title: 'Temple of Creation',
+				template: 'index.html',
+				favicon: 'store/static/favicon.ico'
+		})
+	],
 	devServer: {
 		compress: true,
 		disableHostCheck: true,
