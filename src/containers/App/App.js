@@ -133,8 +133,8 @@ console.log('THEME: ', themeMui);
 			<JssProvider jss={jss} generateClassName={generateClassName}>
 				<MuiThemeProvider theme={themeMui}>
 					<div>
-						<Menu location={location}/>
-						{/* <Iagh mobile={mobile} pongHandle={this.pongHandle} pong={pong}/> */}
+						{!pong && <Menu location={location}/>}
+						{currentKey==='/' && <Iagh mobile={mobile} pongHandle={this.pongHandle} pong={pong}/>}
 						{pong && <Pong close={this.pongHandle}/>}
 						{!pong &&
 							<TransitionGroup component="main" className={classes.pageRoute}>
@@ -159,7 +159,7 @@ console.log('THEME: ', themeMui);
 									</CSSTransition>
 								</TransitionGroup>
 							}
-							<Footer location={location}/>
+							{!pong && <Footer location={location}/>}
 							<Particles className={classes.particles} params={particlesParams}/>
 						</div>
 					</MuiThemeProvider>

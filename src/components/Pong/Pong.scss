@@ -1,6 +1,7 @@
 .pongWrapper {
 	@include flexbox();
-	@include flex(1 1 auto);
+	// @include flex(1 1 auto);
+	position: fixed;
 	height: 100%;
 	width: 100%;
 	overscroll-behavior-y: none;
@@ -13,7 +14,7 @@
 	position: absolute;
 	bottom: 20px;
 	border-radius: 4px;
-	border: 1px solid $palette-blackolive;
+	border: 1px solid $palette-sand;
 	@include flexbox();
 	@include flexCol();
 	align-items: center;
@@ -28,7 +29,7 @@
 	position: absolute;
 	bottom: 20px;
 	border-radius: 4px;
-	border: 1px solid $palette-blackolive;
+	border: 1px solid $palette-sand;
 	@include flexbox();
 	@include flexCol();
 	align-items: center;
@@ -42,9 +43,9 @@
 	cursor: pointer;
 	bottom: 20px;
 	border-radius: 4px;
-	border: 1px solid $palette-blackolive;
+	border: 1px solid $palette-sand;
 	background-color: rgba(255,255,255,0.3);
-	color: $palette-blackolive;
+	color: $palette-sand;
 	@include flexbox();
 	justify-content: center;
 	align-items: center;
@@ -59,7 +60,7 @@
 
 .title {
 	width: 700px;
-	color: $palette-blackolive;
+	color: $palette-sand;
 	font-size: 2rem;
 	margin: auto;
 	justify-content: center;
@@ -72,20 +73,21 @@
 	@include flex(1 1 auto);
 	margin: 0 10px;
 	position: relative;
+	z-index: 10;
 }
 
 .paddle1 {
 	position: absolute;
 	width: 12px;
 	left: 0;
-	background-color: $palette-blackolive;
+	background-color: $palette-sand;
 }
 
 .paddle2 {
 	position: absolute;
 	width: 12px;
 	right: 0;
-	background-color: $palette-blackolive;
+	background-color: $palette-sand;
 }
 
 .ball {
@@ -93,24 +95,24 @@
 	width: 20px;
 	height: 20px;
 	border-radius: 50%;
-	background-color: $palette-blackolive;
+	background-color: $palette-sand;
 }
 
 .scoreP1 {
 	position: absolute;
-	color: $palette-blackolive;
+	color: $palette-sand;
 	font-size: 2rem;
 }
 
 .scoreP2 {
 	position: absolute;
-	color: $palette-blackolive;
+	color: $palette-sand;
 	font-size: 2rem;
 }
 
 .middleLine {
 	position: absolute;
-	background-image: linear-gradient($palette-blackolive 33%, rgba(255,255,255,0) 0%);
+	background-image: linear-gradient($palette-sand 33%, rgba(255,255,255,0) 0%);
 	background-position: right;
 	background-size: 4px 30px;
 	background-repeat: repeat-y;
@@ -123,7 +125,7 @@
 	top: 20px;
 	right: 50px;
 	font-size: 2rem;
-	color: $palette-blackolive;
+	color: $palette-sand;
 	cursor: pointer;
 	z-index: 500;
 	&:hover{
