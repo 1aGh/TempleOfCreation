@@ -31,6 +31,7 @@ export default class Portfolio extends Component {
 		this.state = {
 			dialog: false,
 			project: '',
+			filter: 'all',
 		};
 	}
 
@@ -72,38 +73,61 @@ export default class Portfolio extends Component {
 		this.setState({dialog: false, project: ''});
 	}
 
+	filter = (type) => {
+		console.log('filter: ', type);
+		this.setState({filter: type});
+	}
+
 	render() {
 		const {classes, portfolio} = this.props;
-		const {dialog, project} = this.state;
+		const {dialog, project, filter} = this.state;
+
+		let filterArray = ['all', 'Branding', 'Grafika', 'Web', 'Foto', 'Industrial Design', 'Product Design'];
+		let filterContent = [];
+
+		filterArray.map((k, i) => {
+			let title = k === 'all' ? 'Zobrazit vše' : k;
+			filterContent.push(
+				<div key={k+filterContent} className={classes.filterBtn + ' ' + (k === filter ? classes.fSelected : '')} onClick={this.filter.bind(this, k)}>{title}</div>
+			);
+			if (i < filterArray.length-1) {
+				filterContent.push(<div key={i+filterContent} className={classes.divider}>/</div>);
+			}
+		});
 
 		return (
-			<Scrollbars>
+			<div className={classes.pageWrapper}>
 				<div className={classes.dialogBar}>
 					<div className={classes.title}>PORTFOLIO</div>
 				</div>
-				<div className={classes.pageWrapper}>
-						<MasonryLayout
-							id="masonry-layout"
-							infiniteScroll={this.loadItems}
-							sizes = {[
-								{ columns: 1, gutter: 10 },
-								{ mq: '768px', columns: 2, gutter: 15 },
-								{ mq: '1024px', columns: 3, gutter: 20 },
-								{ mq: '1440px', columns: 4, gutter: 20 },
-								{ mq: '1900px', columns: 5, gutter: 20 }
-							]}>
-							{this.getMasonry()}
-						</MasonryLayout>
-						<Dialog
-							fullScreen
-							open={dialog}
-							onClose={this.handleClose}
-							TransitionComponent={this.transition}
-							>
-								<PortfolioPage project={project} handleClose={this.handleClose}/>
-							</Dialog>
+				<div className={classes.filter}>
+					{filterContent}
 				</div>
-			</Scrollbars>
+				<Scrollbars>
+					<div className={classes.pageWrapperR}>
+							<MasonryLayout
+								id="masonry-layout"
+								infiniteScroll={this.loadItems}
+								sizes = {[
+									{ columns: 1, gutter: 10 },
+									{ mq: '768px', columns: 2, gutter: 15 },
+									{ mq: '1024px', columns: 3, gutter: 20 },
+									{ mq: '1440px', columns: 4, gutter: 20 },
+									{ mq: '1900px', columns: 5, gutter: 20 }
+								]}>
+								{this.getMasonry()}
+							</MasonryLayout>
+							<Dialog
+								fullScreen
+								open={dialog}
+								onClose={this.handleClose}
+								TransitionComponent={this.transition}
+								>
+									<PortfolioPage project={project} handleClose={this.handleClose}/>
+								</Dialog>
+					</div>
+				</Scrollbars>
+			</div>
 		);
 	}
 }

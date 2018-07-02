@@ -4,6 +4,14 @@ const theme = theme => ({
 		// padding: '50px',
 		display: 'flex',
 		justifyContent: 'center',
+		flexDirection: 'column',
+		// overflow: 'scroll',
+	},
+	pageWrapperR: {
+		flex: '1 1 auto',
+		// padding: '50px',
+		display: 'flex',
+		justifyContent: 'center',
 		// overflow: 'scroll',
 	},
 	infoHover: {
@@ -56,6 +64,28 @@ const theme = theme => ({
 		fontSize: '1.4rem',
 		textWrap: 'wrap',
 		paddingLeft: '20px',
+	},
+	filter: {
+		display: 'flex',
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
+		height: '40px',
+		color: theme.colors.sand,
+	},
+	divider: {
+		margin: '0 5px',
+	},
+	filterBtn: {
+		cursor: 'pointer',
+		transition: theme.transitions.create(),
+		padding: '5px',
+		'&:hover': {
+			opacity: 0.8,
+		}
+	},
+	fSelected: {
+		border: ['1px', 'solid', theme.colors.sand],
 	}
 });
 
