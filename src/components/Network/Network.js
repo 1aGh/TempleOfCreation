@@ -64,6 +64,17 @@ export default class Network extends Component {
 			this.network = nw;
 	}
 
+	moveCanvas = (e) => {
+		let position = this.network.getViewPosition();
+		let velx = e.event.velocityX;
+		let vely = e.event.velocityY;
+		let posx = velx*10;
+		let posy = vely*10;
+		let x = position.x-posx;
+		let y = position.y-posy;
+		this.network.moveTo({position: {x: x, y: y}});
+	}
+
 	groupsOption = (type) => {
 		let color = 'rgb(234, 181, 67)';
 		let bgcolor = 'rgb(49, 47, 47)';
@@ -175,9 +186,14 @@ export default class Network extends Component {
 		let events = {
 			click: (event) => {
 				let {nodes, edges} = event;
-				console.log('EVENT::: ', event);
 				this.getPosition(nodes);
-			}
+			},
+			dragging: (e) => {
+				let {nodes, event} = e;
+				if (nodes && nodes.length && nodes[0] === 2) {
+					this.moveCanvas(e);
+				}
+			},
 		};
 
 		let g = {...graph};

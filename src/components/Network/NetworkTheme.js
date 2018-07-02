@@ -8,7 +8,7 @@ const theme = theme => ({
 		margin: '50px 10px',
 	},
 	graph: {
-		width: '80%',
+		width: '50%',
 		height: '100%',
 		// border: '2px dashed rgba(234, 181, 67, 0.5)'
 	},
