@@ -79,7 +79,7 @@ export default class Home extends Component {
 							<PinIcon className={classes.pinIcon}/>
 							<Typography align='center'>Kontakty</Typography>
 							<div className={classes.animIconContainer}>
-								<div className={classes.animIcon} style={{backgroundImage: 'url(\'/store/static/phone_sprite.png\')'}}/>
+								<div className={classes.animIcon} style={{backgroundImage: 'url(\'/api/store/static/phone_sprite.png\')'}}/>
 							</div>
 						</Link>
 					</div>

@@ -55,6 +55,12 @@ app.get('/api/store/images/:folder_id/:img_id', function (req, res, next) {
   res.sendFile(filepath, { root : './' });
 });
 
+app.get('/api/store/static/:img_id', function (req, res, next) {
+  let iid = req.params.img_id;
+  let filepath = './store/static/'+iid;
+  res.sendFile(filepath, { root : './' });
+});
+
 app.post('/api/sendMail', function (req, res, next) {
   console.log('SENDMAIL:: ', req.body);
   let msg = req.body;
