@@ -4,7 +4,7 @@ const fs = require('fs');
 const compression = require('compression');
 const mailer = require('express-mailer');
 
-const PORT = process.env.PORT || 4001;
+const PORT = process.env.PORT || 5111;
 
 app.use(express.static('dist'));
 app.use(compression({
@@ -59,7 +59,7 @@ app.post('/api/sendMail', function (req, res, next) {
   console.log('SENDMAIL:: ', req.body);
   let msg = req.body;
   app.mailer.send('email', {
-    to: 'dovrtel@templeofcreation.cz',
+    to: 'info@templeofcreation.cz',
     subject: msg.subject,
     replyTo: msg.email,
     name: msg.name,

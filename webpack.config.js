@@ -121,7 +121,7 @@ module.exports = {
 		headers: { "X-Custom-Header": "yes" },
 		proxy: {
 			'/api/*': {
-				target: 'http://localhost:4001',
+				target: 'http://localhost:5111',
 				secure: false
 			}
 		}
