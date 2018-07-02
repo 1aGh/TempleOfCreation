@@ -67,13 +67,13 @@ export default class Home extends Component {
 						<Typography variant='caption' color='primary'>Temple of creation</Typography>
 					</div>
 					<div className={classes.infoWrapper}>
-						<Link to={'/'} className={classes.infoContainer + ' ' + (this.state.pujcovna ? classes.animInfoContainer : '')} onMouseEnter={this.mouseEnter.bind(this,'pujcovna')}>
+						{/* <Link to={'/'} className={classes.infoContainer + ' ' + (this.state.pujcovna ? classes.animInfoContainer : '')} onMouseEnter={this.mouseEnter.bind(this,'pujcovna')}>
 							<PinIcon className={classes.pinIcon}/>
 							<Typography align='center'>Půjčovna</Typography>
 							<div className={classes.animIconContainer}>
 								<div className={classes.animIcon} style={{backgroundImage: 'url(\'/store/static/camera_sprite.png\')'}}/>
 							</div>
-						</Link>
+						</Link> */}
 						<Link to={'/kontakty'} className={classes.infoContainer + ' ' + (this.state.kontakt ? classes.animInfoContainer : '')} onMouseEnter={this.mouseEnter.bind(this,'kontakt')}>
 							<PinIcon className={classes.pinIcon}/>
 							<Typography align='center'>Kontakty</Typography>
