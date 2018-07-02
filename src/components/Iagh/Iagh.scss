@@ -1,7 +1,7 @@
 .iaghContainer {
 	position: absolute;
 	top: 100px;
-	left: 50px;
+	left: 100px;
 	z-index: 2;
 	@include flexbox();
 	@include flexRow();
@@ -19,7 +19,7 @@
 }
 
 .iagh{
-	opacity: 0.01;
+	opacity: 0;
 	width: 0px;
 	// display: none;
 	cursor: pointer;
@@ -28,7 +28,7 @@
 }
 
 .enter {
-  opacity: 0.01;
+  opacity: 0;
   width: 0px;
 	@include transition(all cubic-bezier(0.4, 0.0, 0.2, 1) 1s);
 }
@@ -36,12 +36,14 @@
 .enter-active {
   opacity: 1;
   width: 100px;
+	height: 100px;
 	@include animation('iagh cubic-bezier(0.0, 0.0, 0.2, 1) 1.675s');
 }
 
 .leave {
   opacity: 1;
   width: 100px;
+	height: 100px;
 	@include transition(all cubic-bezier(0.4, 0.0, 0.2, 1) 1s);
 }
 
