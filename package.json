@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "dev": "webpack-dev-server -w --inline --hot --config webpack/webpack.config.js --host 0.0.0.0 --port 8080",
+    "dev": "webpack-dev-server --hot --inline --history-api-fallback",
     "server": "nodemon ./server/app.js",
-    "build": "webpack --progress --config webpack/build.config.js"
+    "build": "node ./node_modules/webpack/bin/webpack.js"
   },
   "repository": {
     "type": "git",
