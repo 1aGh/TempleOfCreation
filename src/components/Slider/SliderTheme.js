@@ -54,7 +54,7 @@ const theme = theme => ({
 		color: theme.colors.sand,
 		fontSize: '3.5rem',
 		fontWeight: '300',
-		width: '100px',
+		width: '150px',
 		height: '100px',
 	},
 	counterIndex: {
@@ -64,7 +64,7 @@ const theme = theme => ({
 	counterLine: {
 		position: 'absolute',
 		top: -30,
-		left: 10,
+		left: 40,
 		transform: 'rotate(20deg)',
 		fontSize: '120px',
 		fontWeight: '100',
