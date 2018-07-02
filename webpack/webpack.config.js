@@ -20,7 +20,7 @@ var styleLoader = {
 
 module.exports = {
 	devtool: 'cheap-module-eval-source-map',
-	context: __dirname + '/',
+	context: path.resolve(__dirname, '..'),
 	entry: {
 		main: './src/index.js',
 		index: './index.html',
@@ -95,7 +95,7 @@ module.exports = {
 							outputStyle: 'expanded',
 							sourceMap: true,
 							sourceMapContents: true,
-							data: '@import "' + path.resolve(__dirname, 'src/theme/_config.scss') + '";',
+							data: '@import "' + path.resolve(__dirname, '../src/theme/_config.scss') + '";',
 						}
 					}
 				]

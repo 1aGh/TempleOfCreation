@@ -7,7 +7,7 @@ export const network = {
 				fixed: { x:true, y:true },
 				size: 60,
 				shape: 'circularImage',
-				image: 'store/static/network_icon.svg',
+				image: '/api/store/static/network_icon.svg',
 				physics: false,
 				borderWidth: 8,
 				borderWidthSelected: 8,
