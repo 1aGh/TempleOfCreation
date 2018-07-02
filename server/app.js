@@ -59,15 +59,17 @@ app.post('/api/sendMail', function (req, res, next) {
   console.log('SENDMAIL:: ', req.body);
   let msg = req.body;
   app.mailer.send('email', {
-    to: 'info@templeofcreation.cz', // REQUIRED. This can be a comma delimited string just like a normal email to field.
-    subject: msg.subject, // REQUIRED.
+    to: 'dovrtel@templeofcreation.cz',
+    subject: msg.subject,
     replyTo: msg.email,
-    otherProperty: 'Other Property' // All additional properties are also passed to the template as local variables.
+    name: msg.name,
+    email: msg.email,
+    message: msg.message,
   }, function (err) {
     if (err) {
       // handle error
       console.log(err);
-      res.send('There was an error sending the email');
+      res.status(400).send('There was an error sending the email');
       return;
     }
     res.status(200).send('Email sent');
