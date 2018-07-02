@@ -66,10 +66,8 @@ export default class Projekt extends Component {
 					<div className={classes.title}>ÚVOD</div>
 				</div>
 				<div className={classes.text}>
-					Hlavním cílem projektu je vytvořit veřejný prostor pro osobní i kreativní rozvoj návštěvníků z řad kutilů, studentů,
-					profesionálů ale i komerční sféry. Naše vize je vytvořit systém individuálních dílen, organizovaných workshopů
-					nebo rekvalifikačních kurzů. Součástí myšlenky je i eshop, který nabízí další možnost propagace výrobků vzniklých
-					v kreativním centru a kavárna s diskuzním prostorem určeným k přednáškám.
+					<p>Hlavním cílem projektu Temple of Creation je vytvořit veřejný prostor pro osobní i kreativní rozvoj návštěvníků z řad kutilů, studentů, profesionálů ale i komerční sféry. Naše vize je spustit systém individuálních dílen, organizovaných workshopů nebo rekvalifikačních kurzů.</p>
+					<p>Součástí myšlenky je i e-shop, který nabízí možnost propagace výrobků vzniklých v kreativním centru a také kavárna s diskusním prostorem určeným k přednáškám.</p>
 				</div>
 			</div>
 		);
