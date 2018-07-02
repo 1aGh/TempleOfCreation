@@ -9,6 +9,9 @@ import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
 import MiniLogo from 'Icons/MiniLogo';
 import MenuIcon from 'Icons/MenuIcon';
+import FacebookIcon from 'Icons/Facebook';
+import InstagramIcon from 'Icons/Instagram';
+import MailIcon from 'Icons/Mail';
 
 import LogoIcon from 'Icons/Logo';
 
@@ -34,11 +37,6 @@ export default class Footer extends Component {
 		};
 	}
 
-	testHandle = () => {
-		console.log('CLICK');
-		this.props.dispatch(reducer.test('hello'));
-	}
-
 	openMenu = () => {
 		this.setState({menu: !this.state.menu});
 	}
@@ -56,8 +54,12 @@ export default class Footer extends Component {
 						<MenuIcon className={classes.iconMenu}/>
 					</div>
 					<div className={classes.footer}>
-						<div className={classes.copyright}>2018 <br/>Temple of Creation</div>
-						<div className={classes.social}></div>
+						<div className={classes.copyright}>{'\u00A9'+'2018'} <br/>Temple of Creation</div>
+						<a className={classes.socialBtn} href="https://www.facebook.com/templeofcreation" target="blank"><FacebookIcon className={classes.icn}/></a>
+						<a className={classes.socialBtn} href="https://www.instagram.com/temple_of_creation/" target="blank"><InstagramIcon className={classes.icn}/></a>
+						<Link className={classes.socialBtn} to="/kontakty"><MailIcon className={classes.icn}/></Link>
+						<div className={classes.social}>
+						</div>
 					</div>
 					<div className={classes.location}>{actualLocation}</div>
 				</div>

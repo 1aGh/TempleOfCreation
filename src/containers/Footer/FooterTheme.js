@@ -76,6 +76,7 @@ const theme = theme => ({
 	},
 	copyright: {
 		fontSize: '0.8rem',
+		marginRight: '15px',
 	},
 	menu: {
 		textAlign: 'center',
@@ -92,6 +93,28 @@ const theme = theme => ({
 		'&:hover': {
 			border: ['2px', 'solid', theme.colors.sand]
 		}
+	},
+	social: {
+		flex: '1 1 auto',
+	},
+	socialBtn: {
+		width: '25px',
+		height: '25px',
+		borderRadius: '50%',
+		backgroundColor: theme.colors.sand,
+		fill: theme.colors.blackolive,
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		margin: '0 5px',
+		cursor: 'pointer',
+		transition: theme.transitions.create(),
+		'&:hover':{
+			opacity: 0.8,
+		}
+	},
+	icn: {
+		width: '16px',
 	}
 });
 
