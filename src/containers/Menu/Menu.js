@@ -27,7 +27,7 @@ export default class Menu extends Component {
 
 		if (location) {
 			if (path === '/') {
-				menu = ['team', 'projekt', 'portfolio'];
+				menu = ['projekt', 'portfolio'];
 			} else if (path === '/projekt') {
 				menu = ['backLeft'];
 			} else if (path === '/portfolio') {

@@ -107,6 +107,19 @@ const theme = theme => ({
 		top: '-30px',
 		left: '50%',
 		position: 'absolute',
+	},
+	introduction: {
+		position: 'absolute',
+		left: '50%',
+		bottom: '50px',
+		marginLeft: '-95px',
+	},
+	startTitle: {
+		color: theme.colors.sand,
+		marginLeft: '-90px',
+	},
+	arrow: {
+		width: '100px',
 	}
 });
 

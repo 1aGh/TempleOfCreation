@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 
 import LogoIcon from 'Icons/Logo';
 import PinIcon from 'Icons/PinIcon';
+import ArrowFIcon from 'Icons/ArrowF';
 
 @connect(
 		state => ({
@@ -82,6 +83,10 @@ export default class Home extends Component {
 							</div>
 						</Link>
 					</div>
+				</div>
+				<div className={classes.introduction}>
+					<div className={classes.startTitle}>{'Začni zde'}</div>
+					<ArrowFIcon className={classes.arrow}/>
 				</div>
 			</div>
 		);
