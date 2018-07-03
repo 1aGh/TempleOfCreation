@@ -13,6 +13,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
 var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'));
+var CompressionPlugin = require("compression-webpack-plugin");
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -105,26 +106,18 @@ module.exports = {
 				test: /\.svg$/,
 				loader: 'babel-loader!svg-react-loader'
 			},
-			{ test: /\.(jpe?g|png|gif|ico)$/i,
-				use: [
-					'url-loader',
-					'img-loader'
-				]
-			},
-			{ test: /\.(png|woff|woff2|eot|ttf)$/,
-				loader: 'url-loader?limit=100000'
-			},
-			// { test: /\.woff2?$(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
-			// { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=10000&mimetype=application/octet-stream" },
-			// { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
-			// { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=10000&mimetype=image/svg+xml" },
-			// { test: /\.(jpe?g|png|gif|ico)$/i, loader: 'file-loader?name=[name].[ext]'},
+			{ test: /\.woff2?$(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
+			{ test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=10000&mimetype=application/octet-stream" },
+			{ test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
+			{ test: /\.(jpe?g|png|gif|ico)$/i, loader: 'file-loader?name=[name].[ext]'},
 			{ test: webpackIsomorphicToolsPlugin.regular_expression('images'), loader: 'url-loader?limit=10240' }
 		],
 		noParse: /node_modules\/dist/
 	},
 	plugins: [
 		new CleanPlugin([assetsPath], { root: projectRootPath }),
+
+		new webpack.NoErrorsPlugin(),
 
 		new webpack.LoaderOptionsPlugin({
 			minimize: true
@@ -157,16 +150,31 @@ module.exports = {
 
 		// optimizations
 		new webpack.optimize.UglifyJsPlugin({
+			mangle: true,
 			compress: {
-				warnings: false
+				warnings: false, // Suppress uglification warnings
+				pure_getters: true,
+				unsafe: true,
+				unsafe_comps: true,
+				screw_ie8: true
 			},
-			sourceMap: false
+			output: {
+				comments: false,
+			},
+			exclude: [/\.min\.js$/gi] // skip pre-minified libs
 		}),
 		webpackIsomorphicToolsPlugin,
 		new HtmlWebpackPlugin({
 				title: 'Temple of Creation',
 				template: 'index.html',
 				favicon: 'store/static/favicon.ico'
+		}),
+		new CompressionPlugin({
+			asset: "[path].gz[query]",
+			algorithm: "gzip",
+			test: /\.js$|\.css$|\.html$/,
+			threshold: 10240,
+			minRatio: 0
 		})
 	]
 };
