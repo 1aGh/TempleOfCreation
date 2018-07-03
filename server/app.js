@@ -83,7 +83,7 @@ app.post('/api/sendMail', function (req, res, next) {
 });
 
 app.get('*', function(req, res) {
-    res.sendFile('./dist/index.html');
+    res.sendFile('./dist/index.html', {root: './'});
 });
 
 app.listen(PORT, () => {
