@@ -4,14 +4,10 @@ import PropTypes from 'prop-types';
 import animation from './RouteAnimation.scss';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import MobileDetect from 'mobile-detect';
+import Loadable from 'react-loadable';
 
 import Home from 'Home/Home';
-import Projekt from 'Projekt/Projekt';
-import Kontakty from 'Kontakty/Kontakty';
-import Portfolio from 'Portfolio/Portfolio';
 import Team from 'Team/Team';
-import Iagh from 'Iagh/Iagh';
-import Pong from 'Pong/Pong';
 import Menu from 'Menu/Menu';
 import Footer from 'Footer/Footer';
 
@@ -23,6 +19,46 @@ import themeMui from 'theme/themeMui.js';
 import theme from './AppTheme.js';
 import Particles from 'react-particles-js';
 import particlesParams from './particlesParams.js';
+
+function Loading(props) {
+	if (props.error) {
+		return <div>Error! <button onClick={ props.retry }>Retry</button></div>;
+	} else if (props.pastDelay) {
+		return <div>Loading...</div>;
+	} else {
+		return null;
+	}
+}
+
+const Projekt = Loadable({
+	loader: () => import('Projekt/Projekt'),
+	loading: Loading,
+	delay: 300,
+});
+
+const Kontakty = Loadable({
+	loader: () => import('Kontakty/Kontakty'),
+	loading: Loading,
+	delay: 300,
+});
+
+const Portfolio = Loadable({
+	loader: () => import('Portfolio/Portfolio'),
+	loading: Loading,
+	delay: 300,
+});
+
+const Pong = Loadable({
+	loader: () => import('Pong/Pong'),
+	loading: Loading,
+	delay: 300,
+});
+
+const Iagh = Loadable({
+	loader: () => import('Iagh/Iagh'),
+	loading: Loading,
+	delay: 300,
+});
 
 const generateClassName = createGenerateClassName({
 	productionPrefix: 'toc',

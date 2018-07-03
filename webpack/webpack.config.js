@@ -44,7 +44,7 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, "dist"),
 		filename: '[name].js',
-		chunkFilename: '[name].js',
+		chunkFilename: '[name].chunk.js',
 	},
 	node: { fs: "empty" },
 	stats: {

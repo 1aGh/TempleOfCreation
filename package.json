@@ -79,6 +79,7 @@
     "react-event-listener": "^0.6.0",
     "react-graph-vis": "^1.0.2",
     "react-icons": "^2.2.7",
+    "react-loadable": "^5.4.0",
     "react-move": "^2.6.0",
     "react-particles-js": "^2.1.2",
     "react-popper": "^0.10.4",
