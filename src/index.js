@@ -11,7 +11,6 @@ import App from 'App/App';
 import reducer from 'redux/reducer';
 
 import { Router, browserHistory, hashHistory } from 'react-router';
-import 'typeface-roboto-mono';
 import 'typeface-ibm-plex-mono';
 
 // const _browserHistory = hashHistory;
