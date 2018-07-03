@@ -2,8 +2,6 @@ import update from 'immutability-helper';
 import portfolioStore from 'portfolioStore';
 import pudorysText from 'pudorysText';
 import {network} from 'network';
-import gapi from 'google-client-api';
-import Email from '../../store/smtp.js';
 
 function updateAppState (state, struct){
 	let router = 'main';
@@ -71,20 +69,6 @@ export function messageHandle (type, value) {
 		kind: type,
 		value: value,
 	};
-}
-
-export function HttpClient () {
-		this.get = function(aUrl, aCallback) {
-				var anHttpRequest = new XMLHttpRequest();
-				anHttpRequest.onreadystatechange = function() {
-						if (anHttpRequest.readyState === 4 && anHttpRequest.status === 200) {
-							aCallback(anHttpRequest.responseText);
-						}
-				};
-
-				anHttpRequest.open( 'GET', aUrl, true );
-				anHttpRequest.send( null );
-		};
 }
 
 export function sendEmail () {
