@@ -6,6 +6,7 @@ var webpack = require('webpack');
 var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'));
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 var cssLoader = {
 	loader: "css-loader",
@@ -123,6 +124,7 @@ module.exports = {
 	},
 	plugins: [
 		webpackIsomorphicToolsPlugin.development(),
+		new BundleAnalyzerPlugin(),
 		new webpack.DefinePlugin({
 			'process.env': {
 				'NODE_ENV': JSON.stringify('development')
