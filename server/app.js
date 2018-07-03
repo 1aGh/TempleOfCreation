@@ -82,6 +82,10 @@ app.post('/api/sendMail', function (req, res, next) {
   });
 });
 
+app.get('*', function(req, res) {
+    res.sendFile('./dist/index.html');
+});
+
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
