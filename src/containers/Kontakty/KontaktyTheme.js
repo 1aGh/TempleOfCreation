@@ -87,6 +87,11 @@ const theme = theme => ({
 	button: {
 		marginTop: '20px',
 		border: ['2px', 'dashed', theme.colors.blackolive],
+	},
+	stampimg: {
+		height: '100%',
+		marginLeft: '10px',
+		marginTop: '10px',
 	}
 });
 

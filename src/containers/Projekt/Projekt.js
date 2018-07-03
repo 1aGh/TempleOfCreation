@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import { Scrollbars } from 'react-custom-scrollbars';
-import TimelineAnim from 'Illustration/timeline_anim.svg';
-import Timeline from 'Illustration/timeline.svg';
 
 import Pudorys from './Pudorys';
 import Network from 'Network/Network';
@@ -94,13 +92,14 @@ export default class Projekt extends Component {
 
 		let timelineIcon;
 		if (anim) {
-			timelineIcon = <TimelineAnim/>;
+			timelineIcon = <img src='/api/store/static/timeline_anim.svg' height="100%"/>;
 		}
 		let timeline = (
 			<div className={classes.timeline}>
 				<div className={classes.svgWrapper}>
 					{timelineIcon}
-					<Timeline className={classes.svgClass} style={{animationPlayState: showSvg ? 'running' : 'paused'}}/>
+					{/* <Timeline className={classes.svgClass} style={{animationPlayState: showSvg ? 'running' : 'paused'}}/> */}
+					<img className={classes.svgClass} src='/api/store/static/timeline.svg' style={{animationPlayState: showSvg ? 'running' : 'paused'}} height="100%"/>
 				</div>
 				<div className={classes.legend} style={{animationPlayState: showSvg ? 'running' : 'paused'}}>
 					<p>

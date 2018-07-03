@@ -5,7 +5,6 @@ import * as reducer from 'redux/reducer';
 import theme from './KontaktyTheme.js';
 import { withStyles } from '@material-ui/core/styles';
 import Envelope from 'Icons/Envelope';
-import Stamp from 'Icons/Stamp';
 import { Scrollbars } from 'react-custom-scrollbars';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -55,7 +54,7 @@ export default class Kontakty extends Component {
 					<Typography variant='title' align='center' color='primary'>{'NAPIŠ NÁM'}</Typography>
 					<div className={classes.row}>
 						<div className={classes.form}>
-							<div className={classes.stamp}><Stamp/></div>
+							<div className={classes.stamp}><img src='/api/store/static/stamp.svg' className={classes.stampimg}/></div>
 							<Grid container spacing={24} direction='column' alignItems='flex-end'>
 								<Grid item container spacing={24} alignItems="center">
 									<Grid item xs={3}>
