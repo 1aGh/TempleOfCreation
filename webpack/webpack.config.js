@@ -45,6 +45,7 @@ module.exports = {
 		path: path.resolve(__dirname, "dist"),
 		filename: '[name].js',
 		chunkFilename: '[name].chunk.js',
+		publicPath: '/'
 	},
 	node: { fs: "empty" },
 	stats: {
@@ -147,6 +148,7 @@ module.exports = {
 	devServer: {
 		compress: true,
 		disableHostCheck: true,
+		historyApiFallback: true,
 		headers: { "X-Custom-Header": "yes" },
 		proxy: {
 			'/api/*': {
