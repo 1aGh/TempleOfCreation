@@ -7,7 +7,6 @@ import MobileDetect from 'mobile-detect';
 import Loadable from 'react-loadable';
 
 import Home from 'Home/Home';
-import Team from 'Team/Team';
 import Menu from 'Menu/Menu';
 import Footer from 'Footer/Footer';
 
@@ -56,6 +55,12 @@ const Pong = Loadable({
 
 const Iagh = Loadable({
 	loader: () => import('Iagh/Iagh'),
+	loading: Loading,
+	delay: 300,
+});
+
+const Team = Loadable({
+	loader: () => import('Team/Team'),
 	loading: Loading,
 	delay: 300,
 });
