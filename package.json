@@ -59,7 +59,8 @@
     "url-loader": "^0.6.1",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.13.1",
-    "webpack-dev-server": "^2.8.2"
+    "webpack-dev-server": "^2.8.2",
+    "webpack-isomorphic-tools": "^3.0.6"
   },
   "dependencies": {
     "@material-ui/core": "^1.2.0",
