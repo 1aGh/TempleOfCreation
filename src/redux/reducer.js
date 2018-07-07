@@ -1,6 +1,7 @@
 import update from 'immutability-helper';
 import portfolioStore from 'portfolioStore';
 import pudorysText from 'pudorysText';
+import team from 'team';
 import {network} from 'network';
 
 function updateAppState (state, struct){
@@ -31,6 +32,7 @@ export const initialState = {
 	pudorysText: pudorysText,
 	network: network,
 	draft: {},
+	team: team,
 };
 
 export default function reducer(state = initialState, action = {}) {

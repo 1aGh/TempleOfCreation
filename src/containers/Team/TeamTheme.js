@@ -1,9 +1,89 @@
 const theme = theme => ({
 	kontaktyWrapper: {
 		flex: '1 1 auto',
+		display: 'flex',
+		flexDirection: 'column',
+		justifyContent: 'center',
 		margin: '30px',
 		border: ['2px', 'solid', theme.colors.blackolive]
-	}
+	},
+	dialogBar: {
+		width: '250px',
+		height: '50px',
+		background: theme.colors.sand,
+		position: 'fixed',
+		color: theme.colors.blackolive,
+		display: 'flex',
+		alignItems: 'center',
+		left: 0,
+		top: 0,
+		zIndex: 10,
+		'&:after': {
+			content: '""',
+			position: 'absolute',
+			bottom: '-50px',
+			left: '0',
+			width: '0',
+			height: '0',
+			borderRight: '250px solid transparent',
+			borderTop: ['50px', 'solid', theme.colors.sand],
+			zIndex: 10,
+		},
+	},
+	introBar: {
+		width: '150px',
+		height: '25px',
+		background: theme.colors.blackolive,
+		position: 'absolute',
+		color: theme.colors.sand,
+		display: 'flex',
+		alignItems: 'center',
+		left: 0,
+		top: 0,
+		'&:after': {
+			content: '""',
+			position: 'absolute',
+			bottom: '-25px',
+			left: '0',
+			width: '0',
+			height: '0',
+			borderRight: '150px solid transparent',
+			borderTop: ['25px', 'solid', theme.colors.blackolive],
+		},
+	},
+	title: {
+		fontSize: '1.4rem',
+		textWrap: 'wrap',
+		paddingLeft: '20px',
+	},
+	teammate: {
+		border: ['1px', 'solid', theme.colors.sand],
+		height: '100%',
+		display: 'flex',
+		flexDirection: 'column',
+		color: theme.colors.sand,
+		fontSize: '0.8rem',
+		textAlign: 'center',
+		cursor: 'pointer',
+		padding: '5px',
+		transition: theme.transitions.create(),
+		'&:hover': {
+			borderWidth: '3px',
+			padding: '3px',
+		}
+	},
+	photo: {
+		flex: '0 0 auto',
+		backgroundSize: 'contain',
+		backgroundRepeat: 'no-repeat',
+		backgroundPosition: 'center',
+		minHeight: '100px',
+		margin: '10px',
+	},
+	divider: {
+		fontSize: '2rem',
+		padding: '10px',
+	},
 });
 
 export default theme;
