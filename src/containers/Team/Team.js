@@ -48,7 +48,7 @@ export default class Team extends Component {
 
 	render() {
 		const {classes, team} = this.props;
-		const {dialog} = this.state;
+		const {dialog, teammate} = this.state;
 
 		let teamContent = [];
 
@@ -71,6 +71,7 @@ export default class Team extends Component {
 						<div>{age()+' let'}</div>
 						<div className={classes.divider}>{'/'}</div>
 						<div className={classes.prof}>{prof}</div>
+						{item.jednatel && <div className={classes.jednatel}>{'Jednatel společnosti'}</div>}
 					</div>
 				</Grid>
 			);
@@ -90,7 +91,7 @@ export default class Team extends Component {
 					onClose={this.handleClose}
 					TransitionComponent={this.transition}
 					>
-						<Teammate/>
+						<Teammate handleClose={this.handleClose} teammate={teammate}/>
 					</Dialog>
 			</div>
 		);

@@ -1,7 +1,9 @@
 const team = {
 	// PETR MOJZISEK
 	pmojzisek: {
+		id: 'pmojzisek',
 		name: 'Ing. Petr Mojžíšek',
+		jednatel: true,
 		age: '1989/11/11',
 		prof: 'Designér, konstruktér',
 		about: 'Od mala jsem nadšený tvůrce. Začal jsem stavěním chat a vyráběním kuší, později přišly motorky a jízdní kola. Kolo mě chytlo a několik let jsem se věnoval downhillu. </br> Během spousty brigád jsem se postupně naučil stavební práce a práci se dřevem. Měl jsem možnost postavit dům od základů se zkušeným parťákem, nebo pracovat rok v profi dřevařské dílně. Brigády jsem absolvoval souběžně s vysokoškolským studiem průmyslového designu. </br> Během studia jsem podstoupil dva zahraniční pobyty. Zimní semestr na portugalské Universita de Aveiro, zde jsem pokračoval ve studiu průmyslového designu. Škola měla perfektní zázemí a jeden z lektorů praktické výuky Joao byl shaper surfboardů. Odtud pramení moje nadšení pro tvorbu surfboardů, s Joaem jsem stále v kontaktu. </br> Po této výborné zkušenosti jsem chtěl kousek dál, vybral jsem Vietnam. </br> V Saigonu jsem půlroku studoval mix předmětů humanitních věd/designu. </br> Studium jsem po návratu úspěšně zakončil na stupínku Ing. v oboru Strojní inženýrství na strojní fakultě VŠB v Ostravě. </br> Projekt Temple of Creation je pro mě logickým vyústěním řeky mých aktivit a zájmů.',
@@ -61,7 +63,9 @@ const team = {
 	},
 	// ADAM OHRAL
 	aohral: {
+		id: 'aohral',
 		name: 'Ing. Adam Ohřál',
+		jednatel: true,
 		age: '1992/07/17',
 		prof: 'Projektový manažer',
 		about: 'Můj život je velmi svázaný s rozvojem různých projektů. Poté, co jsem ve svých 20 letech, ukončil cyklistickou kariéru, pracoval jsem na částečný úvazek jako cyklomechnik v profesionálním týmu v Hradci Králové a na plný úvazek v rakouské firmě Airstreeem GmbH vyrábějící cyklistická kola. </br> I tady jsem začínal jako mechanik a postupně jsem se dostal na pozici projektového manažera, kde jsem měl za úkol pomocí různých projektů pomáhat rozvoji firmy. Některé z mých projektů byly například nové webové stránky s produktovým konfigurátorem nebo rozšíření společnosti do Španělska. </br> V průběhu mé práce v Rakousku jsem také studoval na brněnském VUT, kde jsem úspěšně dokončil magisterský obor Řízení a ekonomika podniku. Baví mě čísla a počty, kalkulace a rozpočty. Nejvíc jsem se však naučil praxí a to například jako hlavní pořadatel mezinárodních závodů v Crossfitu "FIT Monster" v Brně, spolu se svým kolegou Michalem Dovrtělem. Se závody je spojen i náš první sítotisk, který jsme sestrojili v zahradním domku, abychom mohli potisknout trička pro celé závody. </br> Žít na různých místech světa mě obohatilo v poznávání nových technik, způsobů, procesů práce a výroby, které rád využívám při realizaci projektu Temple of Creation.',
@@ -102,6 +106,7 @@ const team = {
 	},
 	// MICHAL DOVRTEL
 	mdovrtel: {
+		id: 'mdovrtel',
 		name: 'Bc. Michal Dovrtěl',
 		age: '1991/06/06',
 		prof: 'UI/UX Designer',
@@ -173,6 +178,7 @@ const team = {
 	},
 	// PETR KONSEL
 	pkonsel: {
+		id: 'pkonsel',
 		name: 'Petr Konšel',
 		age: '1986/03/17',
 		prof: 'Grafik, fotograf',
@@ -230,6 +236,7 @@ const team = {
 	},
 	// VACLAV SIPOS
 	vsipos: {
+		id: 'vsipos',
 		name: 'Bc. Václav Šipoš',
 		age: '1987/04/17',
 		prof: 'Konstruktér, průmyslový designér',
