@@ -14,10 +14,12 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'));
 var CompressionPlugin = require("compression-webpack-plugin");
+var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+	mode: 'production',
 	devtool: 'cheap-module-source-map',
 	context: path.resolve(__dirname, '..'),
 	entry: {
@@ -46,6 +48,47 @@ module.exports = {
 		publicPath: '',
 		filename: '[name].bundle.js',
 		chunkFilename: '[name].chunk.js',
+	},
+	optimization: {
+		nodeEnv: 'production',
+		minimize: true,
+		minimizer: [
+			new UglifyJsPlugin({
+				uglifyOptions: {
+					compress: {
+						warnings: false, // Suppress uglification warnings
+						pure_getters: true,
+						unsafe: true,
+						unsafe_comps: true,
+						screw_ie8: true
+					},
+					output: {
+						comments: false,
+					},
+					exclude: [/\.min\.js$/gi] // skip pre-minified libs
+				}
+			})
+		],
+		splitChunks: {
+			chunks: 'all',
+			minSize: 30000,
+			minChunks: 1,
+			maxAsyncRequests: 5,
+			maxInitialRequests: 3,
+			automaticNameDelimiter: '~',
+			name: true,
+			cacheGroups: {
+				vendors: {
+					test: /[\\/]node_modules[\\/]/,
+					priority: -10
+				},
+				default: {
+					minChunks: 2,
+					priority: -20,
+					reuseExistingChunk: true
+				}
+			}
+		}
 	},
 	module: {
 		rules: [
@@ -117,52 +160,27 @@ module.exports = {
 	plugins: [
 		new CleanPlugin([assetsPath], { root: projectRootPath }),
 
-		new webpack.NoErrorsPlugin(),
-
-		new webpack.LoaderOptionsPlugin({
-			minimize: true
-		}),
-
-		new webpack.optimize.CommonsChunkPlugin({
-			name: 'vendor', // Specify the common bundle's name.
-			minChunks: function (module) {
-				// this assumes your vendor imports exist in the node_modules directory
-				return module.context && module.context.indexOf('node_modules') !== -1;
-			}
-		}),
-
-		// new webpack.optimize.CommonsChunkPlugin({
-		//   name: 'manifest', // Specify the common bundle's name.
-		// }),
-
 		// css files from the extract-text-plugin loader
 		new ExtractTextPlugin({
 			filename: '[name]-[chunkhash].css',
 			allChunks: true
 		}),
 
-		new webpack.DefinePlugin({
-			'process.env': {
-				'NODE_ENV': JSON.stringify('production')
-			},
-			__DEV__: false
-		}),
-
 		// optimizations
-		new webpack.optimize.UglifyJsPlugin({
-			mangle: true,
-			compress: {
-				warnings: false, // Suppress uglification warnings
-				pure_getters: true,
-				unsafe: true,
-				unsafe_comps: true,
-				screw_ie8: true
-			},
-			output: {
-				comments: false,
-			},
-			exclude: [/\.min\.js$/gi] // skip pre-minified libs
-		}),
+		// new webpack.optimize.UglifyJsPlugin({
+		// 	mangle: true,
+		// 	compress: {
+		// 		warnings: false, // Suppress uglification warnings
+		// 		pure_getters: true,
+		// 		unsafe: true,
+		// 		unsafe_comps: true,
+		// 		screw_ie8: true
+		// 	},
+		// 	output: {
+		// 		comments: false,
+		// 	},
+		// 	exclude: [/\.min\.js$/gi] // skip pre-minified libs
+		// }),
 		webpackIsomorphicToolsPlugin,
 		new HtmlWebpackPlugin({
 				title: 'Temple of Creation',

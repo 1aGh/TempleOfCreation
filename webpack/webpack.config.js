@@ -23,6 +23,7 @@ var styleLoader = {
 };
 
 module.exports = {
+	mode: 'development',
 	devtool: 'cheap-module-eval-source-map',
 	context: path.resolve(__dirname, '..'),
 	entry: {
@@ -47,6 +48,9 @@ module.exports = {
 		chunkFilename: '[name].chunk.js',
 		publicPath: '/'
 	},
+	optimization: {
+		nodeEnv: 'development',
+	},
 	node: { fs: "empty" },
 	stats: {
 		// Configure the console output
@@ -56,7 +60,7 @@ module.exports = {
 		reasons: true
 	},
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.jsx?$/,
 				exclude: /node_modules/,
@@ -67,8 +71,8 @@ module.exports = {
 						plugins: ['transform-runtime', 'syntax-decorators', 'transform-decorators-legacy', 'transform-class-properties','react-hot-loader/babel'],
 						presets: [['es2015', { "modules": false }], 'stage-0', 'react'],
 					}
-				},
-				{loader: 'eslint-loader'},
+					},
+					{loader: 'eslint-loader'},
 				]
 			},
 			// {
@@ -126,19 +130,7 @@ module.exports = {
 	plugins: [
 		webpackIsomorphicToolsPlugin.development(),
 		new BundleAnalyzerPlugin(),
-		new webpack.DefinePlugin({
-			'process.env': {
-				'NODE_ENV': JSON.stringify('development')
-			},
-			__DEV__: true
-		}),
-		new webpack.optimize.CommonsChunkPlugin({
-			name: 'vendor', // Specify the common bundle's name.
-			minChunks: function (module) {
-				// this assumes your vendor imports exist in the node_modules directory
-				return module.context && module.context.indexOf('node_modules') !== -1;
-			}
-		}),
+		new webpack.LoaderOptionsPlugin({ options: {} }),
 		new HtmlWebpackPlugin({
 				title: 'Temple of Creation',
 				template: 'index.html',
