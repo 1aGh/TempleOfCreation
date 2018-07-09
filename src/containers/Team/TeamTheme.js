@@ -35,10 +35,10 @@ const theme = theme => ({
 	},
 	closeBar: {
 		width: '100px',
-		background: theme.colors.blackolive,
+		// background: theme.colors.blackolive,
 		'&:after': {
 			borderRight: '100px solid transparent',
-			borderTop: ['50px', 'solid', theme.colors.blackolive],
+			// borderTop: ['50px', 'solid', theme.colors.blackolive],
 		}
 	},
 	title: {
@@ -107,8 +107,9 @@ const theme = theme => ({
 		flex: '1 1 auto',
 		display: 'flex',
 		flexDirection: 'column',
-		backgroundColor: theme.colors.booger,
-		backgroundImage: 'url(api/store/static/pattern.png)',
+		backgroundColor: theme.colors.blackolive,
+		color: theme.colors.sand,
+		backgroundImage: 'url(api/store/static/pattern.svg)',
 		backgroundRepeat: 'repeat',
 		padding: '30px',
 	},
@@ -123,7 +124,7 @@ const theme = theme => ({
 		minWidth: '440px',
 	},
 	mainInfo: {
-		border: ['3px', 'solid', theme.colors.blackolive],
+		border: ['3px', 'solid', theme.colors.sand],
 		height: '100%',
 		display: 'flex',
 		flexDirection: 'column',
@@ -139,12 +140,12 @@ const theme = theme => ({
 		margin: '10px',
 	},
 	teamAbout: {
-		border: ['3px', 'solid', theme.colors.blackolive],
+		border: ['3px', 'solid', theme.colors.sand],
 		padding: '20px',
 		flex: '1 1 auto',
 	},
 	dotWrapper: {
-		border: ['3px', 'dashed', theme.colors.blackolive],
+		border: ['3px', 'dashed', theme.colors.sand],
 		padding: '20px',
 		flex: '1 1 auto',
 	},
@@ -180,7 +181,7 @@ const theme = theme => ({
 		minWidth: '200px',
 	},
 	skillWrapper: {
-		border: ['3px', 'solid', theme.colors.blackolive],
+		border: ['3px', 'solid', theme.colors.sand],
 		padding: '20px',
 		flex: '1 1 auto',
 		display: 'flex',
@@ -191,7 +192,7 @@ const theme = theme => ({
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		marginLeft: '20px',
-		borderLeft: ['3px', 'solid', theme.colors.blackolive],
+		borderLeft: ['3px', 'solid', theme.colors.sand],
 	},
 	skill: {
 		maxWidth: '150px',

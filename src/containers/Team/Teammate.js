@@ -76,8 +76,8 @@ export default class Team extends Component {
 		return (
 			<div className={classes.teammateWrapper}>
 				<div className={classes.dialogBar + ' ' + classes.closeBar}>
-					<IconButton className={classes.cancelBtn + ' ' + classes.cancelSand} onClick={handleClose}>
-						<CancelIcn className={classes.closeIcn + ' ' + classes.cancelSand}/>
+					<IconButton className={classes.cancelBtn} onClick={handleClose}>
+						<CancelIcn className={classes.closeIcn}/>
 					</IconButton>
 				</div>
 				<Scrollbars
