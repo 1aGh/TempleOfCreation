@@ -60,7 +60,6 @@ module.exports = {
 						pure_getters: true,
 						unsafe: true,
 						unsafe_comps: true,
-						screw_ie8: true
 					},
 					output: {
 						comments: false,
@@ -149,11 +148,11 @@ module.exports = {
 				test: /\.svg$/,
 				loader: 'babel-loader!svg-react-loader'
 			},
-			{ test: /\.woff2?$(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
-			{ test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=10000&mimetype=application/octet-stream" },
+			{ test: /\.woff2?$(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader?limit=10000&mimetype=application/font-woff" },
+			{ test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader?limit=10000&mimetype=application/octet-stream" },
 			{ test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
 			{ test: /\.(jpe?g|png|gif|ico)$/i, loader: 'file-loader?name=[name].[ext]'},
-			{ test: webpackIsomorphicToolsPlugin.regular_expression('images'), loader: 'url-loader?limit=10240' }
+			{ test: webpackIsomorphicToolsPlugin.regular_expression('images'), loader: 'file-loader?limit=10240' }
 		],
 		noParse: /node_modules\/dist/
 	},

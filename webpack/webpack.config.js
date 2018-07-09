@@ -116,14 +116,14 @@ module.exports = {
 			},
 			{ test: /\.(jpe?g|png|gif)$/i,
 				use: [
-					'url-loader',
+					'file-loader',
 					'img-loader'
 				]
 			},
 			{ test: /\.(png|woff|woff2|eot|ttf)$/,
-				loader: 'url-loader?limit=100000'
+				loader: 'file-loader?limit=100000'
 			},
-			{ test: webpackIsomorphicToolsPlugin.regular_expression('images'), loader: 'url-loader?limit=10240' }
+			{ test: webpackIsomorphicToolsPlugin.regular_expression('images'), loader: 'file-loader?limit=10240' }
 		],
 		noParse: /node_modules\/dist/
 	},
