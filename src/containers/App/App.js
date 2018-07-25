@@ -16,7 +16,6 @@ import jssPreset from 'jss-preset-default';
 import { create } from 'jss';
 import themeMui from 'theme/themeMui.js';
 import theme from './AppTheme.js';
-import Particles from 'react-particles-js';
 import particlesParams from './particlesParams.js';
 
 function Loading(props) {
@@ -63,6 +62,11 @@ const Team = Loadable({
 	loader: () => import('Team/Team'),
 	loading: Loading,
 	delay: 300,
+});
+
+const Particles = Loadable({
+	loader: () => import('react-particles-js'),
+	loading: Loading,
 });
 
 const generateClassName = createGenerateClassName({
@@ -169,6 +173,16 @@ class App extends Component {
 		const currentKey = location.pathname.split('/')[1] || '/';
 		const timeout = { enter: 475, exit: 375 };
 console.log('THEME: ', themeMui);
+		let bgstyle = {
+			backgroundImage: 'url(api/store/static/pattern.svg)',
+			backgroundRepeat: 'repeat',
+		};
+		let background;
+		if (mobile) {
+			background = (<div className={classes.particles} style={bgstyle}/>);
+		} else {
+			background = (<Particles className={classes.particles} params={particlesParams}/>);
+		}
 		return (
 			<JssProvider jss={jss} generateClassName={generateClassName}>
 				<MuiThemeProvider theme={themeMui}>
@@ -199,7 +213,7 @@ console.log('THEME: ', themeMui);
 								</TransitionGroup>
 							}
 							{!pong && <Footer location={location}/>}
-							<Particles className={classes.particles} params={particlesParams}/>
+							{background}
 						</div>
 					</MuiThemeProvider>
 			</JssProvider>
