@@ -4,9 +4,26 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import { Scrollbars } from 'react-custom-scrollbars';
+import Grid from '@material-ui/core/Grid';
+import Loadable from 'react-loadable';
 
 import Pudorys from './Pudorys';
-import Network from 'Network/Network';
+// import Network from 'Network/Network';
+
+function Loading(props) {
+	if (props.error) {
+		return <div>Error! <button onClick={ props.retry }>Retry</button></div>;
+	} else if (props.pastDelay) {
+		return <div>Loading...</div>;
+	} else {
+		return null;
+	}
+}
+
+const Network = Loadable({
+	loader: () => import('Network/Network'),
+	loading: Loading,
+});
 
 @connect(
 		state => ({
@@ -40,16 +57,20 @@ export default class Projekt extends Component {
 
 	scrollHandle = (e) => {
 		if (e.scrollTop >= 700 && !this.state.showSvg) {
-			Promise.resolve(this.setState({anim: true})).then(
-				setTimeout(() => {
-					this.setState({anim: false});
-				}, 11000),
-				setTimeout(() => {
-					this.setState({showSvg: true});
-				}, 10500)
-			);
+			// Promise.resolve(this.setState({anim: true})).then(
+			// 	setTimeout(() => {
+			// 		this.setState({anim: false});
+			// 	}, 11000),
+			// 	setTimeout(() => {
+			// 		this.setState({showSvg: true});
+			// 	}, 10500)
+			// );
+			this.setState({showSvg: true});
 		}
-		if (e.scrollTop >= 1100 && !this.state.showNetwork) {
+		if (e.scrollTop >= 800 && !this.state.showNetwork) {
+			Network.preload();
+		}
+		if (e.scrollTop >= 950 && !this.state.showNetwork) {
 			this.setState({showNetwork: true});
 		}
 	}
@@ -90,27 +111,26 @@ export default class Projekt extends Component {
 				);
 		}
 
-		let timelineIcon;
-		if (anim) {
-			timelineIcon = <img src='/api/store/static/timeline_anim.svg' height="100%"/>;
-		}
+		// let timelineIcon;
+		// if (anim) {
+		// 	timelineIcon = <img src='/api/store/static/timeline_anim.svg' height="100%"/>;
+		// }
 		let timeline = (
-			<div className={classes.timeline}>
-				<div className={classes.svgWrapper}>
-					{timelineIcon}
-					{/* <Timeline className={classes.svgClass} style={{animationPlayState: showSvg ? 'running' : 'paused'}}/> */}
+			<Grid container spacing={0} className={classes.timeline}>
+				<Grid item container justify={'center'} alignItems={'center'} xs={7}>
+					{/* {timelineIcon} */}
 					<img className={classes.svgClass} src='/api/store/static/timeline.svg' style={{animationPlayState: showSvg ? 'running' : 'paused'}} height="100%"/>
-				</div>
-				<div className={classes.legend} style={{animationPlayState: showSvg ? 'running' : 'paused'}}>
-					<p>
+				</Grid>
+				<Grid item container xs={5} justify={'flex-start'} alignItems={'center'}>
+					<div className={classes.legend} style={{animationPlayState: showSvg ? 'running' : 'paused'}}>
 						Fáze #1 -  Nalezení vhodných prostor<br/>
 						Fáze #2 - Regenerace prostor<br/>
 						Fáze #3 - Vybavení prostor dle priorit<br/>
 						Fáze #4 - Zahájení provozu<br/>
 						Fáze #5 - Rozvoj
-					</p>
-				</div>
-			</div>
+					</div>
+				</Grid>
+			</Grid>
 		);
 
 		return (
@@ -122,7 +142,7 @@ export default class Projekt extends Component {
 					{introduction}
 					{pudorysContent}
 					{timeline}
-					<Network graph={network} show={showNetwork}/>
+					{showNetwork && <Network graph={network} show={showNetwork}/>}
 				</div>
 			</Scrollbars>
 		);
