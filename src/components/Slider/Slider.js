@@ -58,7 +58,7 @@ export default class Slider extends Component {
 		let counter = src && src.length ? src.length : 0;
 		if (type === 'img') {
 			src.map((img, index) => {
-				let image = '/api/store/images/'+id+'/'+img;
+				let image = '/api/store/images/'+id+'/'+img+'?width=50&height=50&max=false';
 				carousel.push(
 					<CSSTransition
 						key={index}

@@ -1,12 +1,16 @@
+const path = require('path');
 const express = require('express');
 const app = express();
 const fs = require('fs');
 const compression = require('compression');
 const mailer = require('express-mailer');
+const sharpthumb = require('sharpthumb');
+const resize = require('./resize');
 
 const PORT = process.env.PORT || 5111;
 
-app.use(express.static('dist'));
+app.use(sharpthumb.static(path.join(__dirname, 'store'), {serveStatic: true}));
+// app.use(express.static('dist'));
 app.use(compression({
   filter: function (req, res) {
     return true;
@@ -52,7 +56,19 @@ app.get('/api/store/images/:folder_id/:img_id', function (req, res, next) {
   let fid = req.params.folder_id;
   let iid = req.params.img_id;
   let filepath = './store/images/'+fid+'/'+iid;
-  res.sendFile(filepath, { root : './' });
+  const widthString = req.query.width;
+  const heightString = req.query.height;
+  const format = req.query.format;
+  let width, height;
+  if (widthString) {
+      width = parseInt(widthString);
+  }
+  if (heightString) {
+      height = parseInt(heightString);
+  }
+  res.type(`image/${format || 'png'}`);
+  resize(filepath, format, width, height).pipe(res);
+  // res.sendFile(filepath, { root : './' });
 });
 
 app.get('/api/store/static/:img_id', function (req, res, next) {

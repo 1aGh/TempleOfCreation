@@ -64,7 +64,7 @@ export default class PortfolioPage extends Component {
 		);
 
 		return (
-			<div className={classes.dialogWrapper} style={{backgroundImage: 'url(/api/store/static/pattern.png)'}}>
+			<div className={classes.dialogWrapper} style={{backgroundImage: 'url(/api/store/static/pattern.svg)'}}>
 				<div className={classes.dialogBar}>
 					<div className={classes.title}>{title}</div>
 					<IconButton className={classes.cancelBtn} onClick={handleClose}>

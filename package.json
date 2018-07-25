@@ -92,6 +92,8 @@
     "react-xmasonry": "^2.5.5",
     "redux": "^3.7.2",
     "redux-notifications": "^4.0.1",
+    "sharp": "^0.20.5",
+    "sharpthumb": "0.0.2",
     "superagent": "^3.8.3",
     "superagent-no-cache": "^0.1.1",
     "typeface-ibm-plex-mono": "0.0.56"
