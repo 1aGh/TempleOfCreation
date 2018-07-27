@@ -42,7 +42,7 @@ export default class Portfolio extends Component {
 			if ((obj.category === this.state.filter) || this.state.filter === 'all') {
 				let height = i % 2 === 0 ? Math.floor(Math.random() * (200 + 1) + 400) : Math.floor(Math.random() * (200 + 1) + 200);
 				let id = obj.id;
-				let mainImg = id+'_1.jpg?width=50';
+				let mainImg = id+'_1.jpg?format=jpg&width=500';
 				let title = obj.title;
 				let category = obj.category;
 				let year = obj.year;

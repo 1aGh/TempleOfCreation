@@ -4,13 +4,13 @@ const app = express();
 const fs = require('fs');
 const compression = require('compression');
 const mailer = require('express-mailer');
-const sharpthumb = require('sharpthumb');
+// const sharpthumb = require('sharpthumb');
 const resize = require('./resize');
 
 const PORT = process.env.PORT || 5111;
 
-app.use(sharpthumb.static(path.join(__dirname, 'store'), {serveStatic: true}));
-// app.use(express.static('dist'));
+// app.use(sharpthumb.static(path.join(__dirname, 'store'), {serveStatic: true}));
+app.use(express.static('dist'));
 app.use(compression({
   filter: function (req, res) {
     return true;
