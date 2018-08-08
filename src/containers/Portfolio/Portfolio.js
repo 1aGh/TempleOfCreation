@@ -10,6 +10,7 @@ import Dialog from '@material-ui/core/Dialog';
 import { Scrollbars } from 'react-custom-scrollbars';
 import PortfolioPage from './PortfolioPage';
 import { XMasonry, XBlock } from 'react-xmasonry/dist/index.js';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 @connect(
 		state => ({
@@ -32,26 +33,51 @@ export default class Portfolio extends Component {
 			dialog: false,
 			project: '',
 			filter: 'all',
+			images: {},
+			loaded: [],
 		};
+	}
+
+	loadEnd = (id, load, height) => {
+		let images = {...this.state.images};
+		let loaded = [...this.state.loaded];
+		if (load) {
+			images[id] = height;
+			this.setState({images: images});
+		} else {
+			loaded.push(id);
+			this.setState({loaded: loaded});
+		}
 	}
 
 	getMasonry = () => {
 		const {classes, portfolio} = this.props;
+		const {images} = this.state;
 		let masonry = [];
 		portfolio.map((obj, i) => {
 			if ((obj.category === this.state.filter) || this.state.filter === 'all') {
-				let height = i % 2 === 0 ? Math.floor(Math.random() * (200 + 1) + 400) : Math.floor(Math.random() * (200 + 1) + 200);
 				let id = obj.id;
-				let mainImg = id+'_1.jpg?format=jpg&width=500';
+				let height = images[id] ? images[id] : i % 2 === 0 ? Math.floor(Math.random() * (200 + 1) + 400) : Math.floor(Math.random() * (200 + 1) + 200);
+				let mainImg = id+'_1.jpg';
 				let title = obj.title;
 				let category = obj.category;
 				let year = obj.year;
-				let image = '/api/store/images/'+id+'/'+mainImg;
+				let image = '/api/store/images/'+id+'/'+mainImg+'?format=jpeg&width=100';
+				let load = true;
+				let showBar = true;
+				if (Object.keys(images).length === portfolio.length && images[id]) {
+					image = '/api/store/images/'+id+'/'+mainImg;
+					load = false;
+				}
+				if (this.state.loaded.indexOf(id) > -1) {
+					showBar = false;
+				}
 				masonry.push(
 					<XBlock key={id+masonry.length} width={2}>
-						<Zoom in={true} style={{transitionDelay: i*20}}>
+						<Zoom in={true} style={{transitionDelay: (i+5)*20}}>
 							<div className={classes.masonryContainer} style={{height: `${height}px`}} onClick={this.openDialog.bind(this, obj, i)}>
-								<div style={{height: '100%', width: '100%', background: 'url('+image+') center/cover'}}/>
+								{showBar && <LinearProgress className={classes.progressbar} variant="query" />}
+								<img onLoad={this.loadEnd.bind(this, id, load, height)} src={image} className={classes.thumbnail} height={height} width={'100%'}/>
 								<div className={classes.infoHover}>{title}<br/>{category}<br/>{year}</div>
 							</div>
 						</Zoom>

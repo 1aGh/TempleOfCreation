@@ -85,7 +85,11 @@ const theme = theme => ({
 	},
 	fSelected: {
 		border: ['1px', 'solid', theme.colors.sand],
-	}
+	},
+	thumbnail: {
+		objectFit: 'cover',
+		objectPosition: '0 0',
+	},
 });
 
 export default theme;
