@@ -5,6 +5,7 @@ import * as reducer from 'redux/reducer';
 import theme from './SliderTheme.js';
 import animation from 'App/RouteAnimation.scss';
 import { withStyles } from '@material-ui/core/styles';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
@@ -26,6 +27,8 @@ export default class Slider extends Component {
 		this.state = {
 			index: 0,
 			next: true,
+			images: [],
+			loaded: [],
 		};
 	}
 
@@ -51,14 +54,33 @@ export default class Slider extends Component {
 		this.setState({index: i, next: type === 'next' ? true : false});
 	}
 
+	loadEnd = (id, load) => {
+		let images = [...this.state.images];
+		let loaded = [...this.state.loaded];
+		if (load) {
+			loaded.push(id);
+			this.setState({loaded: loaded});
+		} else if (!load) {
+			images.push(id);
+			this.setState({images: images});
+		}
+	}
+
 	render() {
 		const {classes, type, src, id} = this.props;
-		const {next} = this.state;
+		const {next, images, loaded} = this.state;
 		let carousel = [];
 		let counter = src && src.length ? src.length : 0;
 		if (type === 'img') {
 			src.map((img, index) => {
-				let image = '/api/store/images/'+id+'/'+img+'?width=50&height=50&max=false';
+				let load = images.indexOf(img) > -1 ? true : false;
+				let showBar = loaded.indexOf(img) > -1 ? false : true;
+				let image;
+				if (load) {
+					image = '/api/store/images/'+id+'/'+img;
+				} else {
+					image = '/api/store/images/'+id+'/'+img+'?format=jpeg&width=100';
+				}
 				carousel.push(
 					<CSSTransition
 						key={index}
@@ -72,7 +94,10 @@ export default class Slider extends Component {
 							exitActive: animation[next ? 'toLeftActive' : 'toRightActive'],
 						}}
 						>
-							<div style={{height: '100%', width: '100%', background: 'url('+image+') center/cover'}}/>
+							<div>
+								{showBar && <LinearProgress variant="query" />}
+								<img src={image} onLoad={this.loadEnd.bind(this, img, load)} className={classes.thumbnail}/>
+							</div>
 						</CSSTransition>
 				);
 			});

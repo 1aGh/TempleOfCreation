@@ -73,7 +73,12 @@ const theme = theme => ({
 		position: 'absolute',
 		right: 0,
 		bottom: 0,
-	}
+	},
+	thumbnail: {
+		objectFit: 'cover',
+		objectPosition: '50% 50%',
+		width: '100%',
+	},
 });
 
 export default theme;

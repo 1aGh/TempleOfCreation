@@ -5,8 +5,6 @@ import {connect} from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import theme from './PortfolioTheme.js';
 import Zoom from '@material-ui/core/Zoom';
-import Slide from '@material-ui/core/Slide';
-import Dialog from '@material-ui/core/Dialog';
 import { Scrollbars } from 'react-custom-scrollbars';
 import PortfolioPage from './PortfolioPage';
 import { XMasonry, XBlock } from 'react-xmasonry/dist/index.js';
@@ -25,13 +23,12 @@ export default class Portfolio extends Component {
 		dispatch: PropTypes.any,
 		portfolio: PropTypes.any,
 		classes: PropTypes.any,
+		history: PropTypes.any,
 	};
 
 	constructor(props){
 		super(props);
 		this.state = {
-			dialog: false,
-			project: '',
 			filter: 'all',
 			images: {},
 			loaded: [],
@@ -75,7 +72,7 @@ export default class Portfolio extends Component {
 				masonry.push(
 					<XBlock key={id+masonry.length} width={2}>
 						<Zoom in={true} style={{transitionDelay: (i+5)*20}}>
-							<div className={classes.masonryContainer} style={{height: `${height}px`}} onClick={this.openDialog.bind(this, obj, i)}>
+							<div className={classes.masonryContainer} style={{height: `${height}px`}} onClick={this.openDialog.bind(this, id)}>
 								{showBar && <LinearProgress className={classes.progressbar} variant="query" />}
 								<img onLoad={this.loadEnd.bind(this, id, load, height)} src={image} className={classes.thumbnail} height={height} width={'100%'}/>
 								<div className={classes.infoHover}>{title}<br/>{category}<br/>{year}</div>
@@ -88,17 +85,8 @@ export default class Portfolio extends Component {
 		return masonry;
 	}
 
-	transition = (props) => {
-		return <Slide direction="up" {...props} />;
-	}
-
-	openDialog = (obj, i) => {
-		this.setState({dialog: true, project: obj, index: i});
-		this.props.dispatch(reducer.getFolder(obj.id));
-	}
-
-	handleClose = () => {
-		this.setState({dialog: false, project: ''});
+	openDialog = (id) => {
+		this.props.history.push('/portfolio/'+id);
 	}
 
 	filter = (type) => {
@@ -107,7 +95,7 @@ export default class Portfolio extends Component {
 
 	render() {
 		const {classes, portfolio} = this.props;
-		const {dialog, project, filter} = this.state;
+		const {project, filter} = this.state;
 
 		let filterArray = ['all', 'Branding', 'Grafika', 'Web', 'Foto', 'Industrial design', 'Product design'];
 		let filterContent = [];
@@ -123,7 +111,6 @@ export default class Portfolio extends Component {
 		});
 
 		let masonry = this.getMasonry();
-
 		return (
 			<div className={classes.pageWrapper}>
 				<div className={classes.dialogBar}>
@@ -139,14 +126,6 @@ export default class Portfolio extends Component {
 						>
 						{masonry}
 					</XMasonry>
-					<Dialog
-						fullScreen
-						open={dialog}
-						onClose={this.handleClose}
-						TransitionComponent={this.transition}
-						>
-							<PortfolioPage project={project} handleClose={this.handleClose}/>
-						</Dialog>
 				</Scrollbars>
 			</div>
 		);

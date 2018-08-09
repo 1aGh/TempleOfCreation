@@ -9,6 +9,7 @@ import Loadable from 'react-loadable';
 import Home from 'Home/Home';
 import Menu from 'Menu/Menu';
 import Footer from 'Footer/Footer';
+import PortfolioPage from 'Portfolio/PortfolioPage';
 
 import { MuiThemeProvider, createGenerateClassName, withStyles } from '@material-ui/core/styles';
 import JssProvider from 'react-jss/lib/JssProvider';
@@ -206,6 +207,10 @@ console.log('THEME: ', themeMui);
 												<Route exact path='/projekt' component={Projekt}/>
 												<Route exact path='/kontakty' component={Kontakty}/>
 												<Route exact path='/portfolio' component={Portfolio}/>
+												<Route
+													path={'/portfolio/:id'}
+													render={ (props) => <PortfolioPage {...props}/>}
+												/>
 												<Route exact path='/team' component={Team}/>
 											</Switch>
 										</section>
