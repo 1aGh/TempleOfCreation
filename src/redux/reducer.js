@@ -36,7 +36,6 @@ export const initialState = {
 };
 
 export default function reducer(state = initialState, action = {}) {
-	console.log('STATE:: ', state);
 	switch (action.type) {
 		case Actions.ADDIMAGES:
 			return update(state, {portfolioImg: {$set: {[action.id]: action.value}}});
